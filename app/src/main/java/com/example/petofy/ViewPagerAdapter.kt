@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
 
 class ViewPagerAdapter(val images: List<Int>) : RecyclerView.Adapter<MyViewHolder>() {
@@ -18,7 +19,7 @@ class ViewPagerAdapter(val images: List<Int>) : RecyclerView.Adapter<MyViewHolde
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentImage = images[position]
+        val currentImage = images[position
         holder.itemView.img.setImageResource(currentImage)
 
     }

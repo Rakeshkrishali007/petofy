@@ -5,19 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
-import com.example.petofy.databinding.ActivityMainBinding
+import android.util.Log
+import com.example.petofy.databinding.ActivityHomeBinding
 
+public lateinit var binding:ActivityHomeBinding
 class LogIn_Activity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.login_activity)
-        val mString="Register now"
-        val mSpannableString = SpannableString(mString)
-        mSpannableString.setSpan(UnderlineSpan(), 0, mSpannableString.length, 0)
-        binding.etRegister.text=mSpannableString
+        binding=ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
     }
 }

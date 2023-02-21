@@ -5,20 +5,19 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.petofy.databinding.ActivitySplashBinding
 
 class Splash_Activity : AppCompatActivity() {
+    lateinit var binding:ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding= ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Log.d("splash","splash is running")
-        val image= listOf(
-            R.drawable.dogs,
-            R.drawable.man,
-            R.drawable.documemt
-        )
-        val adapter=ViewPagerAdapter(image)
-        binding.viewPager.adapter=adapter
+
+
         val intent = Intent(this@Splash_Activity, Home::class.java)
         startActivity(intent)
+        finish()
     }
 }

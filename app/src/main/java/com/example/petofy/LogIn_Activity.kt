@@ -10,27 +10,44 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LogIn_Activity : AppCompatActivity() {
-    public lateinit var binding:ActivityLogInBinding
+    public lateinit var binding: ActivityLogInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityLogInBinding.inflate(layoutInflater)
+        binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnLoginUser.setOnClickListener()
         {
 
-            RetrofitLogInClient.logInterface.login(Login_Request(Data("vet.petofy@gmail.com","Pass@123"))).enqueue(object :
-                Callback<LogIn_Response?> {
-                override fun onResponse(
-                    call: Call<LogIn_Response?>,
-                    response: Response<LogIn_Response?>
-                ) {
-                      Toast.makeText(this@LogIn_Activity,"successful",Toast.LENGTH_SHORT).show()
-                }
 
-                override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
-                    Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
-                }
-            })
+            val email = " vet.petofy@gmail.com"
+            val password = "Pass@123"
+            RetrofitLogInClient.logInterface.login(Login_Request(Data(email, password)))
+                .enqueue(object : Callback<LogIn_Response?> {
+                    override fun onResponse(
+                        call: Call<LogIn_Response?>,
+                        response: Response<LogIn_Response?>
+                    ) {
+                        if(response.code().equals(200))
+                        {
+                            Toast.makeText(this@LogIn_Activity, "${response.body()?.data?.encryptedId}", Toast.LENGTH_SHORT).show()
+/*
+                          if(response.body()?.data?.email=="vet.petofy@gmail.com"){
+                              Toast.makeText(this@LogIn_Activity,"Valid User", Toast.LENGTH_SHORT).show()
+                          }
+                            else
+                          {
+                              Toast.makeText(this@LogIn_Activity, "Invalid User", Toast.LENGTH_SHORT).show()
+                          }*/
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
+                        Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
+
+                    }
+                })
+
         }
     }
 }

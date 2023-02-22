@@ -14,10 +14,10 @@
         android:theme="@style/Theme.Petofy"
         tools:targetApi="31">
         <activity
-            android:name=".Dash_Board"
+            android:name=".DashBoard"
             android:exported="false" />
         <activity
-            android:name=".DashBoard"
+            android:name=".Dash_Board"
             android:exported="false" />
         <activity
             android:name=".GetStarted"

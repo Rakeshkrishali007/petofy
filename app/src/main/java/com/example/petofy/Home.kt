@@ -1,9 +1,12 @@
 package com.example.petofy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.petofy.databinding.ActivityHomeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Home : AppCompatActivity() {
     lateinit var binding:ActivityHomeBinding
@@ -16,8 +19,26 @@ class Home : AppCompatActivity() {
             R.drawable.man,
             R.drawable.documemt
         )
-        val adapter=ViewPagerAdapter(image)
+        val text=listOf(
+            "Manage all your patience on the go",
+            "Manage appointments",
+            "Allow instant access to patient reports"
+        )
+        val adapter=ViewPagerAdapter(image,text)
         binding.viewPager.adapter=adapter
+        binding.btnLogin.setOnClickListener()
+        {
+
+            val intent=Intent(this@Home,LogIn_Activity::class.java)
+            startActivity(intent)
+
+        }
+        binding.btnGetStarted.setOnClickListener()
+        {
+            val intent=Intent(this@Home,GetStarted::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }

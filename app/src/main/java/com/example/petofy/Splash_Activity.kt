@@ -1,11 +1,12 @@
 package com.example.petofy
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.example.petofy.databinding.ActivitySplashBinding
+
 
 class Splash_Activity : AppCompatActivity() {
     lateinit var binding:ActivitySplashBinding
@@ -13,11 +14,13 @@ class Splash_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d("splash","splash is running")
 
 
-        val intent = Intent(this@Splash_Activity, Home::class.java)
-        startActivity(intent)
-        finish()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            val intent = Intent(this@Splash_Activity, Home::class.java)
+            startActivity(intent)
+            finish()
+        }, 3000)
+
     }
 }

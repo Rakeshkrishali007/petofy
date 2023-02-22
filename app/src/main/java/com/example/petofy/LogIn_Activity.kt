@@ -19,8 +19,8 @@ class LogIn_Activity : AppCompatActivity() {
         {
 
 
-            val email = " vet.petofy@gmail.com"
-            val password = "Pass@123"
+            val email = "vet.petofy@gmail.com"
+            val password =  "pass@125"
             RetrofitLogInClient.logInterface.login(Login_Request(Data(email, password)))
                 .enqueue(object : Callback<LogIn_Response?> {
                     override fun onResponse(
@@ -29,7 +29,14 @@ class LogIn_Activity : AppCompatActivity() {
                     ) {
                         if(response.code().equals(200))
                         {
-                            Toast.makeText(this@LogIn_Activity, "${response.body()?.data?.encryptedId}", Toast.LENGTH_SHORT).show()
+                            if(response.body()?.data?.email=="vet.petofy@gmail.com")
+                            {
+                                Toast.makeText(this@LogIn_Activity, "valid user", Toast.LENGTH_SHORT).show()
+                            }
+                            else
+                            {
+                                Toast.makeText(this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT).show()
+                            }
 /*
                           if(response.body()?.data?.email=="vet.petofy@gmail.com"){
                               Toast.makeText(this@LogIn_Activity,"Valid User", Toast.LENGTH_SHORT).show()

@@ -1,9 +1,11 @@
 package com.example.petofy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.example.petofy.databinding.ActivityLogInBinding
 import retrofit2.Call
@@ -18,12 +20,16 @@ class LogIn_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.progressBar.visibility = View.INVISIBLE
         binding.btnLoginUser.setOnClickListener() {
 
 
-            email = binding.etEmail.text.toString()
-            password = binding.etPassword.text.toString()
-
+            /*  email = binding.etEmail.text.toString()
+              password = binding.etPassword.text.toString()
+  */
+            binding.progressBar.visibility = View.VISIBLE
+            email = "vet.petofy@gmail.com"
+            password = "pass@123"
             if (isValid()) {
                 RetrofitLogInClient.logInterface.login(Login_Request(Data(email, password)))
                     .enqueue(object : Callback<LogIn_Response?> {
@@ -32,9 +38,10 @@ class LogIn_Activity : AppCompatActivity() {
                         ) {
                             if (response.body() != null) {
                                 if (response.body()?.data?.email == "vet.petofy@gmail.com") {
-                                    Toast.makeText(
-                                        this@LogIn_Activity, "valid user", Toast.LENGTH_SHORT
-                                    ).show()
+
+                                    val intent = Intent(this@LogIn_Activity, DashBoard::class.java)
+                                    startActivity(intent)
+                                    finish()
                                 } else {
                                     Toast.makeText(
                                         this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT

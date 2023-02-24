@@ -17,7 +17,7 @@ class Splash_Activity : AppCompatActivity() {
 
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            val intent = Intent(this@Splash_Activity, Home::class.java)
+            val intent = Intent(this@Splash_Activity, DashBoard::class.java)
             startActivity(intent)
             finish()
         }, 3000)

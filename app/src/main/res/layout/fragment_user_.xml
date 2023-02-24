@@ -38,6 +38,7 @@
 
             <ImageView
                 android:id="@+id/img_profile_Pic"
+                android:src="@drawable/man2"
                 android:layout_width="120dp"
                 android:layout_height="120dp" />
         </androidx.cardview.widget.CardView>
@@ -118,6 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="310dp"
             android:layout_marginTop="15dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow" />
     </androidx.cardview.widget.CardView>
 
@@ -173,6 +175,7 @@
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -199,13 +202,13 @@
             android:textColor="@color/black" />
 
 
-
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -232,14 +235,13 @@
             android:textColor="@color/black" />
 
 
-
-
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -272,6 +274,7 @@
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -303,6 +306,7 @@
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -345,10 +349,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_arrow_blue"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
-            />
+            android:rotationX="124"
+            android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 
     <LinearLayout
@@ -367,6 +371,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 
@@ -387,6 +392,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 
@@ -406,6 +412,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 
@@ -426,6 +433,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 
@@ -445,6 +453,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:rotationX="124"
             android:src="@drawable/right_arrow_blue" />
     </LinearLayout>
 

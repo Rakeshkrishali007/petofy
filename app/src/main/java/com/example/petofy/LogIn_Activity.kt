@@ -21,9 +21,9 @@ class LogIn_Activity : AppCompatActivity() {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.progressBar.visibility = View.INVISIBLE
-        binding.imgLoginBack.setOnClickListener()
-        {
+        binding.imgLoginBack.setOnClickListener() {
             onBackPressed()
+
 
         }
         binding.btnLoginUser.setOnClickListener() {

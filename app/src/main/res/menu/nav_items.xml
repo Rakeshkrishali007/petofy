@@ -6,17 +6,17 @@
     <item android:id="@+id/nv_home"
 
         android:icon="@drawable/baseline_home_24"
-        android:title="" />
+        android:title="Home" />
 
     <item android:id="@+id/nv_dog"
         android:icon="@drawable/dg_foot"
-        android:title="" />
+        android:title="Your Pets" />
 
     <item android:id="@+id/nv_date"
         android:icon="@drawable/baseline_calendar_month_24"
-        android:title="" />
+        android:title="Appointments" />
 
     <item android:id="@+id/nv_user"
         android:icon="@drawable/baseline_account_circle_24"
-        android:title="" />
+        android:title="Profile" />
 </menu>

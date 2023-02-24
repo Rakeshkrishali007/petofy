@@ -30,9 +30,9 @@
         android:text="Dehradun,Uttarakhand"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -75,7 +75,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_450sdp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
@@ -154,6 +154,7 @@
 
                                   />
 
+
                           </androidx.cardview.widget.CardView>
 
 
@@ -204,7 +205,7 @@
                         android:layout_width="@dimen/_80sdp"
                         app:cardCornerRadius="@dimen/_10sdp"
                         android:layout_height="@dimen/_80sdp"
-                        app:cardElevation="@dimen/_5sdp"
+                        app:cardElevation="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         >
@@ -331,7 +332,7 @@
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_9sdp"
-                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginStart="@dimen/_25sdp"
                         />
                 </LinearLayout>
 
@@ -395,7 +396,7 @@
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_9sdp"
-                        android:layout_marginStart="@dimen/_31sdp"
+                        android:layout_marginStart="@dimen/_26sdp"
                         />
                 </LinearLayout>
 
@@ -449,7 +450,7 @@
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_9sdp"
-                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginStart="@dimen/_25sdp"
                         />
                 </LinearLayout>
 
@@ -513,7 +514,7 @@
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_9sdp"
-                        android:layout_marginStart="@dimen/_31sdp"
+                        android:layout_marginStart="@dimen/_17sdp"
                         />
                 </LinearLayout>
 

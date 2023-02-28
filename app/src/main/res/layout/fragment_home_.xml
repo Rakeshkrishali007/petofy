@@ -258,7 +258,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/online_appoint_icon"
+                        android:src="@drawable/online_appointment_icon"
                         />
 
                     <TextView

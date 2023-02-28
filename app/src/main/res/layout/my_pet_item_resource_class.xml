@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        app:cardElevation="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_90sdp"
+                app:cardElevation="@dimen/_5sdp"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_20ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/dog_image"
+                    />
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/_20ssp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:orientation="vertical"
+                >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/txt_dog_name"
+                    android:layout_height="wrap_content"
+                    android:text="Rambo"
+                    android:textSize="@dimen/_15ssp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_dog_dataOfBirth"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="DOB- 08/06/2020"
+                    android:textSize="@dimen/_10ssp"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pramod Rana"
+                    android:id="@+id/txt_dog_owner"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_10ssp"
+                    />
+            </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_29sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                app:cardBackgroundColor="#fff3eb"
+                android:layout_marginTop="@dimen/_20sdp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_2sdp"
+
+
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera_dog_icon"
+                        android:layout_marginTop="@dimen/_5sdp"
+
+                        />
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PETO-5930"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_110sdp"
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_5sdp"
+                >
+
+                <Button
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:text="View details"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                >
+
+                <Button
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:text="Add Clinic Visit"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

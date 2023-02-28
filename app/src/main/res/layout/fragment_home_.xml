@@ -220,7 +220,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/txt_myPets"
-                        android:text="22"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_200sdp"
@@ -256,7 +255,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/dog_image"
+                        android:src="@drawable/online_appoint_icon"
                         />
 
                     <TextView
@@ -314,7 +313,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/dog_image"
+                        android:src="@drawable/nurse_icon"
                         />
 
                     <TextView
@@ -428,7 +427,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/dog_image"
+                        android:src="@drawable/b2b_icon"
                         />
 
                     <TextView

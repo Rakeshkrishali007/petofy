@@ -52,13 +52,11 @@ class Home_Fragment : Fragment() {
                  if(response.body()!=null)
                  {
 
-                     Log.d("res1", "${myPets?.text.toString().trim()}")
-                   /*  myPets.text=response.body()?.data?.numberOfPets.toString()
-                     appointment?.text= response.body()?.data?.numberOfAppointments.toString()
-                     staff?.text= response.body()?.data?.numberOfStaffs.toString()
-                    *//* Log.d("res1", "${response.body()?.data?.numberOfPets.toString()}")
-                     Log.d("res2", "${response.body()?.data?.numberOfAppointments.toString()}")
-                     Log.d("res3", "${response.body()?.data?.numberOfStaffs.toString()}")*/
+
+                     myPets?.text= response.body()?.data?.numberOfPets.toString().trim()
+                     appointment?.text= response.body()?.data?.numberOfAppointments.toString().trim()
+                     staff?.text= response.body()?.data?.numberOfStaffs.toString().trim()
+
                  }
             }
 

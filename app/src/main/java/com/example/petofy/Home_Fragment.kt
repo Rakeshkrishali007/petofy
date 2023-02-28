@@ -7,14 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -40,13 +37,13 @@ class Home_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val myPets= view?.findViewById<TextView>(R.id.txt_myPets)
-        val appointment=view?.findViewById<TextView>(R.id.txt_appointment)
-        val staff=view?.findViewById<TextView>(R.id.txt_staff)
-        val record=view?.findViewById<TextView>(R.id.txt_record)
-        val b2b=view?.findViewById<TextView>(R.id.txt_b2b)
+        var myPets= view?.findViewById<TextView>(R.id.txt_myPets)
+        var appointment=view?.findViewById<TextView>(R.id.txt_appointment)
+        var staff=view?.findViewById<TextView>(R.id.txt_staff)
+        var record=view?.findViewById<TextView>(R.id.txt_record)
+        var b2b=view?.findViewById<TextView>(R.id.txt_b2b)
 
-        UserDashBoardCountClient.dashBoardCountInstance.GetDashBoardCount().enqueue(object : Callback<UserDashBoardCountResponse?> {
+        UserDashBoardCountClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object : Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
                 call: Call<UserDashBoardCountResponse?>,
                 response: Response<UserDashBoardCountResponse?>
@@ -54,9 +51,14 @@ class Home_Fragment : Fragment() {
 
                  if(response.body()!=null)
                  {
-                        myPets?.text= response.body()?.data?.numberOfPets.toString()
-                        appointment?.text= response.body()?.data?.numberOfAppointments.toString()
-                        staff?.text= response.body()?.data?.numberOfStaffs.toString()
+
+                     Log.d("res1", "${myPets?.text.toString().trim()}")
+                   /*  myPets.text=response.body()?.data?.numberOfPets.toString()
+                     appointment?.text= response.body()?.data?.numberOfAppointments.toString()
+                     staff?.text= response.body()?.data?.numberOfStaffs.toString()
+                    *//* Log.d("res1", "${response.body()?.data?.numberOfPets.toString()}")
+                     Log.d("res2", "${response.body()?.data?.numberOfAppointments.toString()}")
+                     Log.d("res3", "${response.body()?.data?.numberOfStaffs.toString()}")*/
                  }
             }
 

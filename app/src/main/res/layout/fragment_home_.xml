@@ -220,6 +220,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/txt_myPets"
+                        android:text="22"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_200sdp"

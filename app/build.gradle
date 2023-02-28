@@ -58,4 +58,8 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    implementation'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.1.0'
 }

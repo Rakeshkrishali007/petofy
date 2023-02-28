@@ -12,6 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+public  var token:String?=null
 class LogIn_Activity : AppCompatActivity() {
     public lateinit var binding: ActivityLogInBinding
     lateinit var email: String
@@ -42,6 +43,7 @@ class LogIn_Activity : AppCompatActivity() {
                             call: Call<LogIn_Response?>, response: Response<LogIn_Response?>
                         ) {
                             if (response.body() != null) {
+                                token=response.body()?.response?.token
                                 if (response.body()?.data?.email == "vet.petofy@gmail.com") {
 
                                     val intent = Intent(this@LogIn_Activity, DashBoard::class.java)

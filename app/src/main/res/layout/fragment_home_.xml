@@ -204,6 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="My Pets"
+
                         android:textSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_90sdp"
                         android:layout_marginTop="@dimen/_40sdp"
@@ -220,8 +221,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/txt_myPets"
+                        android:text="0"
+                        android:textColor="@color/black"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_20ssp"
                         android:layout_marginStart="@dimen/_200sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -260,7 +263,6 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:id="@+id/txt_appointment"
                         android:layout_height="wrap_content"
                         android:text="Online \n Appointment"
                         android:textSize="@dimen/_15ssp"
@@ -278,8 +280,11 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:id="@+id/txt_appointment"
+                        android:text="0"
+                        android:textColor="@color/black"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_20ssp"
                         android:layout_marginStart="@dimen/_200sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -318,7 +323,6 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:id="@+id/txt_staff"
                         android:layout_height="wrap_content"
                         android:text="Your Staff"
                         android:textSize="@dimen/_15ssp"
@@ -336,8 +340,11 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:id="@+id/txt_staff"
+                        android:text="0"
+                        android:textColor="@color/black"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_20ssp"
                         android:layout_marginStart="@dimen/_200sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />

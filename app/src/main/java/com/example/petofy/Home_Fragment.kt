@@ -35,6 +35,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
 
+
         }
     }
 
@@ -44,7 +45,8 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
     ): View{
 
-        binding= FragmentHomeBinding.inflate(inflater,container,false)
+        binding= FragmentHomeBinding.inflate(layoutInflater)
+        val pet=requireActivity().findViewById<TextView>(R.id.txt_myPets)
 
         UserDashBoardCountClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object : Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
@@ -54,9 +56,12 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
                  if(response.body()!=null)
                  {
-                     binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
-                     binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
-                     binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
+                    // binding.txtMyPets.text="123"
+                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
+                         binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
+
+                         binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
+                         binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
 
                  }
             }

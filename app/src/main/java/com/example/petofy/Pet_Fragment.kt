@@ -54,7 +54,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                  if(response.body()!=null)
                  {
                      Log.d("response", "onResponse: ${response.body()}")
-                     val petList=PetListResponse()
+                     val petList=PetListResponse().data.petList
                      //val PetList= petList.data.petList
 
                      val adapter=MyPetAdapter(petList.data.petList as ArrayList<Pet>)

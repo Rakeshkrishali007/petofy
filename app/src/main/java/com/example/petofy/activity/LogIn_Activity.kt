@@ -63,6 +63,7 @@ class LogIn_Activity : AppCompatActivity() {
                         }
 
                         override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
+                            binding.progressBar.visibility=View.INVISIBLE
                             Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
 
                         }

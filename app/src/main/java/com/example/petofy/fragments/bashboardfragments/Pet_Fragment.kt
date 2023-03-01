@@ -13,7 +13,6 @@ import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
 import com.example.petofy.apiResponse.PetListResponse
 import com.example.petofy.apiResponse.petlist_response_atributes
-import com.example.petofy.apiResponse.petlist_response_feilds
 import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.retrofit.RetrofitClient
@@ -39,9 +38,16 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     ): View? {
         binding = FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+
+        getPetList()
+
+        return binding.root
+    }
+
+    private fun getPetList() {
         RetrofitClient.petlistintanse.getPetList(
             token,
-            PetListRequest(petlist_request_feilds(1, 1, ""))
+            PetListRequest(petlist_request_feilds(1, 20, ""))
         ).enqueue(object :
             Callback<PetListResponse?> {
             override fun onResponse(
@@ -49,8 +55,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                 response: Response<PetListResponse?>
             ) {
                 if (response.body() != null) {
-
-
+                    val petList=response.body()?.data?.petList
+                    Log.d("petlist","$petList")
+                    Log.d("kuuka","${response.body()}")
+                    val adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                    binding.recycleView.adapter=adapter
                 }
             }
 
@@ -60,7 +69,6 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             }
         })
 
-        return binding.root
     }
 
 

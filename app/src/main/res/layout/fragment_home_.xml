@@ -264,10 +264,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Online \n Appointment"
+                        android:text="Online "
                         android:textSize="@dimen/_15ssp"
-                        android:layout_marginStart="@dimen/_90sdp"
+                        android:layout_marginStart="@dimen/_100sdp"
                         android:layout_marginTop="@dimen/_40sdp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appointment "
+                        android:textSize="@dimen/_15ssp"
+                        android:layout_marginStart="@dimen/_85sdp"
+                        android:layout_marginTop="@dimen/_59sdp"
                         />
 
                     <View

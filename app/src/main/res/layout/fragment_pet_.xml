@@ -8,30 +8,31 @@
 
 
     <TextView
+        android:id="@+id/resgisterPets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registered Pets"
-        android:id="@+id/resgisterPets"
         android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="@dimen/_220sdp"
         android:layout_height="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="52dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/resgisterPets"
-        app:layout_constraintBottom_toTopOf="@id/recycleView"
+        app:layout_constraintBottom_toTopOf="@id/resgisterPets"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resgisterPets">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +57,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="@dimen/_50sdp"
@@ -92,10 +92,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:layout_height="642dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

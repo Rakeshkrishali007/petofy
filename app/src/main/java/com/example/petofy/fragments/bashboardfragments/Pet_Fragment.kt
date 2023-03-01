@@ -39,6 +39,13 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     ): View? {
         binding = FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+
+        getPetList()
+
+        return binding.root
+    }
+
+    private fun getPetList() {
         RetrofitClient.petlistintanse.getPetList(
             token,
             PetListRequest(petlist_request_feilds(1, 1, ""))
@@ -51,6 +58,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                 if (response.body() != null) {
 
 
+                    val petList=response.body()?.data?.petList
+                    Log.d("petlist","$petList")
+                    Log.d("kuuka","${response.body()?.data?.petList}")
+                    val adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                    binding.recycleView.adapter=adapter
                 }
             }
 
@@ -60,7 +72,6 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             }
         })
 
-        return binding.root
     }
 
 

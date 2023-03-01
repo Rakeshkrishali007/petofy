@@ -12,3 +12,4 @@ interface PetListInterface {
     @POST(baseUrl)
     fun getPetList(@Header("Authorization",) token: String?, @Body petListRequest: PetListRequest):Call<PetListResponse>
 }
+

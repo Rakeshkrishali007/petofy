@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.getpetlist.Data
+import com.example.petofy.getpetlist.DataX
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +30,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var  binding: FragmentPetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,16 +44,21 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-         PetListClient.petlistintanse.getPetList(token,PetListRequest(Data(1,1,""))).enqueue(object : Callback<PetListResponse?> {
+       binding=FragmentPetBinding.inflate(layoutInflater)
+        binding.recycleView.layoutManager=LinearLayoutManager(context)
+        PetListClient.petlistintanse.getPetList(token,PetListRequest(Data(1,1,""))).enqueue(object : Callback<PetListResponse?> {
              override fun onResponse(
                  call: Call<PetListResponse?>,
                  response: Response<PetListResponse?>
              ) {
                  if(response.body()!=null)
                  {
-                    // Log.d("resfr","${response.body()?.data?.petList?.get(0)?.id}")
+                     Log.d("response", "onResponse: ${response.body()}")
+                     val petList=PetListResponse()
+                     //val PetList= petList.data.petList
 
+                     val adapter=MyPetAdapter(petList.data.petList as ArrayList<Pet>)
+                     binding.recycleView.adapter=adapter
                  }
              }
 
@@ -58,7 +68,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
              }
          })
 
-        return inflater.inflate(R.layout.fragment_pet_, container, false)
+        return binding.root
     }
 
 

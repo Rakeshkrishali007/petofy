@@ -14,7 +14,6 @@ object UserDashBoardCountClient {
         Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
 
     }
-    val dashBoardCountInstance= retrofit2.create(UserDashBoardCountInterface::class.java)
 
 
 }

@@ -1,5 +1,7 @@
 package com.example.petofy
 
+import com.example.petofy.getpetlist.PetListClient
+import com.example.petofy.getpetlist.PetListInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,7 +25,10 @@ object RetrofitLogInClient {
             .build()
 
     }
-    val logInterface = retrofit.create(LogIn_Inerface::class.java)
+
 
 
 }
+
+
+

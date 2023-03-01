@@ -10,5 +10,4 @@ object PetListClient {
 
         Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
     }
-    val petlistintanse= retrofit.create(PetListInterface::class.java)
 }

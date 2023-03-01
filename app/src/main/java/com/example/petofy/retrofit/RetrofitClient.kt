@@ -1,12 +1,9 @@
-package com.example.petofy
+package com.example.petofy.retrofit
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
-object UserDashBoardCountClient {
+class RetrofitClient {
 
 
     val baseUrl = "https://petofyoptimizedapi.azurewebsites.net/api/"
@@ -14,9 +11,4 @@ object UserDashBoardCountClient {
         Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
 
     }
-    val dashBoardCountInstance= retrofit2.create(UserDashBoardCountInterface::class.java)
-
-
 }
-
-

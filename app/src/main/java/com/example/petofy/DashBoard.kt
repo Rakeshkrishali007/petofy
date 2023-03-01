@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.petofy.databinding.ActivityDashBoardBinding
+import com.example.petofy.fragments.bashboardfragments.Calender_Fragment
+import com.example.petofy.fragments.bashboardfragments.Home_Fragment
+import com.example.petofy.fragments.bashboardfragments.Pet_Fragment
+import com.example.petofy.fragments.bashboardfragments.User_Fragment
 
 class DashBoard : AppCompatActivity() {
     lateinit var binding: ActivityDashBoardBinding

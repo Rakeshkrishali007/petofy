@@ -10,6 +10,7 @@ import com.example.petofy.apiRequest.Login_Request
 import com.example.petofy.apiRequest.login_request_fields
 import com.example.petofy.apiResponse.LogIn_Response
 import com.example.petofy.databinding.ActivityLogInBinding
+import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +40,7 @@ class LogIn_Activity : AppCompatActivity() {
             email = "vet.petofy@gmail.com"
             password = "pass@123"
             if (isValid()) {
-                RetrofitLogInClient.logInterface.login(Login_Request(login_request_fields(email, password)))
+                RetrofitClient.logInterface.login(Login_Request(login_request_fields(email, password)))
                     .enqueue(object : Callback<LogIn_Response?> {
                         override fun onResponse(
                             call: Call<LogIn_Response?>, response: Response<LogIn_Response?>

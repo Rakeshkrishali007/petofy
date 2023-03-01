@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.petofy.*
+import com.example.petofy.activity.token
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
+import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,15 +27,6 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-
-
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +37,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         binding= FragmentHomeBinding.inflate(layoutInflater)
         val pet=requireActivity().findViewById<TextView>(R.id.txt_myPets)
 
-        UserDashBoardCountClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
+        RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
                 call: Call<UserDashBoardCountResponse?>,

@@ -4,14 +4,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
-class RetrofitClient {
+object RetrofitClient {
 
 
     val baseUrl = "https://petofyoptimizedapi.azurewebsites.net/api/"
-    val retrofit2 by lazy {
+    val retrofit by lazy {
         Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
 
     }
 
-    val
+
+    val logInterface = RetrofitClient.retrofit.create(ApiInterfaces::class.java)
+    val dashBoardCountInstance= RetrofitClient.retrofit.create(ApiInterfaces::class.java)
+    val petlistintanse= RetrofitClient.retrofit.create(ApiInterfaces::class.java)
 }

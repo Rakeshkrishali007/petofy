@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petofy.ARG_PARAM1
 import com.example.petofy.ARG_PARAM2
 import com.example.petofy.R
+import com.example.petofy.apiRequest.PetListRequest
+import com.example.petofy.apiRequest.petlist_request_feilds
 import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.token
@@ -42,7 +44,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     ): View? {
        binding= FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager= LinearLayoutManager(context)
-        PetListClient.petlistintanse.getPetList(token, PetListRequest(Data(1, 1, ""))).enqueue(object :
+        PetListClient.petlistintanse.getPetList(token, PetListRequest(petlist_request_feilds(1, 1, ""))).enqueue(object :
             Callback<PetListResponse?> {
              override fun onResponse(
                  call: Call<PetListResponse?>,

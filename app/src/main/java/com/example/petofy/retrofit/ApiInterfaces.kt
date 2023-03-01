@@ -2,7 +2,7 @@ package com.example.petofy.retrofit
 
 import com.example.petofy.*
 import com.example.petofy.apiRequest.Login_Request
-import com.example.petofy.getpetlist.PetListRequest
+import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.getpetlist.PetListResponse
 import retrofit2.Call
 import retrofit2.http.Body

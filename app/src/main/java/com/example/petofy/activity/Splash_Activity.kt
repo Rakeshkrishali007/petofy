@@ -1,4 +1,4 @@
-package com.example.petofy
+package com.example.petofy.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,7 @@ class Splash_Activity : AppCompatActivity() {
 
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            val intent = Intent(this@Splash_Activity, Home::class.java)
+            val intent = Intent(this@Splash_Activity, Home_activity::class.java)
             startActivity(intent)
             finish()
         }, 3000)

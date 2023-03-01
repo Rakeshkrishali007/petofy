@@ -1,9 +1,9 @@
-package com.example.petofy
+package com.example.petofy.apiResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Response(
+data class userDashBoardCount_feilds(
     @SerializedName("redirectUrl")
     val redirectUrl: String,
     @SerializedName("responseCode")
@@ -11,7 +11,7 @@ data class Response(
     @SerializedName("responseMessage")
     val responseMessage: String,
     @SerializedName("token")
-    val token: String,
+    val token: Any,
     @SerializedName("value")
     val value: Any
 )

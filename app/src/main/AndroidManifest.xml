@@ -14,31 +14,27 @@
         android:theme="@style/Theme.Petofy"
         tools:targetApi="31">
         <activity
-            android:name=".TextLogin"
+            android:name=".activity.LogIn_Activity"
             android:exported="false" />
         <activity
-            android:name=".UserLogIn"
+            android:name=".activity.DashBoard_Activity"
             android:exported="false" />
         <activity
-            android:name=".LogIn_Actiivty"
+            android:name=".activity.DashBoard_Activity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".activity.GetStarted_activity"
             android:exported="false" />
         <activity
-            android:name=".DashBoard"
+            android:name=".activity.LogIn_Activity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".activity.Home_activity"
             android:exported="false" />
         <activity
-            android:name=".Dash_Board"
-            android:exported="false" />
-        <activity
-            android:name=".GetStarted"
-            android:exported="false" />
-        <activity
-            android:name=".LogIn_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".Splash_Activity"
+            android:name=".activity.Splash_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

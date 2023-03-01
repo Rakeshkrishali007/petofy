@@ -1,13 +1,16 @@
-package com.example.petofy
+package com.example.petofy.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.example.petofy.apiRequest.Login_Request
+import com.example.petofy.apiRequest.login_request_fields
+import com.example.petofy.apiResponse.LogIn_Response
 import com.example.petofy.databinding.ActivityLogInBinding
+import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +40,7 @@ class LogIn_Activity : AppCompatActivity() {
             email = "vet.petofy@gmail.com"
             password = "pass@123"
             if (isValid()) {
-                RetrofitLogInClient.logInterface.login(Login_Request(Data(email, password)))
+                RetrofitClient.logInterface.login(Login_Request(login_request_fields(email, password)))
                     .enqueue(object : Callback<LogIn_Response?> {
                         override fun onResponse(
                             call: Call<LogIn_Response?>, response: Response<LogIn_Response?>
@@ -46,7 +49,7 @@ class LogIn_Activity : AppCompatActivity() {
                                 token=response.body()?.response?.token
                                 if (response.body()?.data?.email == "vet.petofy@gmail.com") {
 
-                                    val intent = Intent(this@LogIn_Activity, DashBoard::class.java)
+                                    val intent = Intent(this@LogIn_Activity, DashBoard_Activity::class.java)
                                     startActivity(intent)
                                     finish()
                                 } else {

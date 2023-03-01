@@ -1,9 +1,9 @@
-package com.example.petofy.getpetlist
+package com.example.petofy.apiResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Pet(
+data class petlist_response_atributes(
     @SerializedName("address")
     val address: String,
     @SerializedName("ageOfPet")

@@ -1,11 +1,11 @@
-package com.example.petofy
+package com.example.petofy.apiResponse
 
 
 import com.google.gson.annotations.SerializedName
 
 data class UserDashBoardCountResponse(
     @SerializedName("data")
-    val `data`: DataXX,
+    val `data`: userDashBoardCount_response_atributes,
     @SerializedName("response")
-    val response: ResponseX
+    val response: userDashBoardCount_feilds
 )

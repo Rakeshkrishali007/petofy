@@ -1,9 +1,9 @@
-package com.example.petofy.getpetlist
+package com.example.petofy.apiRequest
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class petlist_request_feilds(
     @SerializedName("PageNumber")
     val pageNumber: Int,
     @SerializedName("pageSize")

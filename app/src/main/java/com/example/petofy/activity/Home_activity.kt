@@ -1,14 +1,13 @@
-package com.example.petofy
+package com.example.petofy.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.petofy.R
+import com.example.petofy.adapters.ViewPagerAdapter
 import com.example.petofy.databinding.ActivityHomeBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class Home : AppCompatActivity() {
+class Home_activity : AppCompatActivity() {
     lateinit var binding:ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +23,19 @@ class Home : AppCompatActivity() {
             "Manage appointments",
             "Allow instant access to patient reports"
         )
-        val adapter=ViewPagerAdapter(image,text)
+        val adapter= ViewPagerAdapter(image,text)
         binding.viewPager.adapter=adapter
         binding.btnLogin.setOnClickListener()
         {
 
-            val intent=Intent(this@Home,LogIn_Activity::class.java)
+            val intent=Intent(this@Home_activity,LogIn_Activity::class.java)
             startActivity(intent)
             finish()
 
         }
         binding.btnGetStarted.setOnClickListener()
         {
-            val intent=Intent(this@Home,GetStarted::class.java)
+            val intent=Intent(this@Home_activity, GetStarted_activity::class.java)
             startActivity(intent)
         }
 

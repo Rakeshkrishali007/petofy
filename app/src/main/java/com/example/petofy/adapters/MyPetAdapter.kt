@@ -7,8 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
+import com.example.petofy.apiResponse.petlist_response_atributes
 
-class MyPetAdapter(val item: ArrayList<Pet>) : RecyclerView.Adapter<MyViewHolder>() {
+class MyPetAdapter(val item: ArrayList<petlist_response_atributes>) : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

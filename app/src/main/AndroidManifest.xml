@@ -23,22 +23,22 @@
             android:name=".LogIn_Actiivty"
             android:exported="false" />
         <activity
-            android:name=".DashBoard"
+            android:name=".activity.DashBoard_Activity"
             android:exported="false" />
         <activity
             android:name=".Dash_Board"
             android:exported="false" />
         <activity
-            android:name=".GetStarted"
+            android:name=".activity.GetStarted_activity"
             android:exported="false" />
         <activity
             android:name=".LogIn_Activity"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".activity.Home_activity"
             android:exported="false" />
         <activity
-            android:name=".Splash_Activity"
+            android:name=".activity.Splash_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

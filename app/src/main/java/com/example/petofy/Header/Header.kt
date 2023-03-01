@@ -1,4 +1,4 @@
-package com.example.petofy.getpetlist
+package com.example.petofy.Header
 
 
 import com.google.gson.annotations.SerializedName

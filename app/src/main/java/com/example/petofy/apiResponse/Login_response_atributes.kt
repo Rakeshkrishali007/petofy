@@ -1,9 +1,9 @@
-package com.example.petofy
+package com.example.petofy.apiResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DataX(
+data class login_response_atributes(
     @SerializedName("address")
     val address: String,
     @SerializedName("email")

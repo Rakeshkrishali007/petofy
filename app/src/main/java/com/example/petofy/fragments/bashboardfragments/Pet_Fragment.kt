@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petofy.ARG_PARAM1
-import com.example.petofy.ARG_PARAM2
 import com.example.petofy.R
+import com.example.petofy.activity.token
 import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
+import com.example.petofy.apiResponse.PetListResponse
+import com.example.petofy.apiResponse.petlist_response_atributes
+import com.example.petofy.apiResponse.petlist_response_feilds
 import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
-import com.example.petofy.token
+import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +46,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     ): View? {
        binding= FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager= LinearLayoutManager(context)
-        PetListClient.petlistintanse.getPetList(token, PetListRequest(petlist_request_feilds(1, 1, ""))).enqueue(object :
+        RetrofitClient..getPetList(token, PetListRequest(petlist_request_feilds(1, 1, ""))).enqueue(object :
             Callback<PetListResponse?> {
              override fun onResponse(
                  call: Call<PetListResponse?>,
@@ -53,9 +55,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                  if(response.body()!=null)
                  {
 
-                      val petList= PetListResponse(DataX(List<Pet>)).data.petList
-                     val adapter= MyPetAdapter(petList.data.petList as ArrayList<Pet>)
-                     binding.recycleView.adapter=adapter
+
+
                  }
              }
 

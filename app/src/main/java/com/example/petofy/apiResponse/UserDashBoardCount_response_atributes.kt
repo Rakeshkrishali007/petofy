@@ -1,9 +1,9 @@
-package com.example.petofy
+package com.example.petofy.apiResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DataXX(
+data class userDashBoardCount_response_atributes(
     @SerializedName("numberOfAppointments")
     val numberOfAppointments: Int,
     @SerializedName("numberOfPets")

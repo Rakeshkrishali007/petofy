@@ -3,7 +3,9 @@ package com.example.petofy.retrofit
 import com.example.petofy.*
 import com.example.petofy.apiRequest.Login_Request
 import com.example.petofy.apiRequest.PetListRequest
-import com.example.petofy.getpetlist.PetListResponse
+import com.example.petofy.apiResponse.LogIn_Response
+import com.example.petofy.apiResponse.PetListResponse
+import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

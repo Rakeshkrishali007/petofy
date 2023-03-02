@@ -22,7 +22,7 @@ import retrofit2.Response
  * create an instance of this fragment.
  */
 class Home_Fragment : Fragment(R.layout.fragment_home_) {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
@@ -35,7 +35,26 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     ): View {
 
         binding= FragmentHomeBinding.inflate(layoutInflater)
+        binding.MyPet.setOnClickListener()
+        {
+            loadFragment(Pet_Fragment())
+
+        }
+        getPetCount()
         val pet=requireActivity().findViewById<TextView>(R.id.txt_myPets)
+
+
+        return binding.root
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        val transactionManger =activity?.supportFragmentManager
+        val fragmentTransaction=transactionManger?.beginTransaction()
+        fragmentTransaction?.replace(R.id.container,fragment)
+        fragmentTransaction?.commit()
+    }
+
+    private fun getPetCount() {
 
         RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
@@ -44,23 +63,21 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                 response: Response<UserDashBoardCountResponse?>
             ) {
 
-                 if(response.body()!=null)
-                 {
-                    // binding.txtMyPets.text="123"
-                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
-                         binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
+                if(response.body()!=null)
+                {    binding.homeFragment.visibility=View.INVISIBLE
+                    Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
+                    binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
 
-                         binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
-                         binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
+                    binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
+                    binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
 
-                 }
+                }
             }
 
             override fun onFailure(call: Call<UserDashBoardCountResponse?>, t: Throwable) {
                 Log.d("error", "onResponse: not runnning")
             }
         })
-        return binding.root//inflater.inflate(R.layout.fragment_home_, container, false)
     }
 
 

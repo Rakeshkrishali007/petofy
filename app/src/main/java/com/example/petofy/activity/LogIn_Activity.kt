@@ -1,8 +1,10 @@
 package com.example.petofy.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -15,7 +17,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 public  var token:String?=null
+private lateinit var editor: SharedPreferences.Editor
+
+
 class LogIn_Activity : AppCompatActivity() {
     public lateinit var binding: ActivityLogInBinding
     lateinit var email: String
@@ -28,7 +34,6 @@ class LogIn_Activity : AppCompatActivity() {
         binding.imgLoginBack.setOnClickListener() {
             onBackPressed()
 
-
         }
         binding.btnLoginUser.setOnClickListener() {
 
@@ -40,37 +45,48 @@ class LogIn_Activity : AppCompatActivity() {
             email = "vet.petofy@gmail.com"
             password = "pass@123"
             if (isValid()) {
-                RetrofitClient.logInterface.login(Login_Request(login_request_fields(email, password)))
-                    .enqueue(object : Callback<LogIn_Response?> {
-                        override fun onResponse(
-                            call: Call<LogIn_Response?>, response: Response<LogIn_Response?>
-                        ) {
-                            if (response.body() != null) {
-                                token=response.body()?.response?.token
-                                if (response.body()?.data?.email == "vet.petofy@gmail.com") {
+                logIn()
 
-                                    val intent = Intent(this@LogIn_Activity, DashBoard_Activity::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Toast.makeText(
-                                        this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-
-                            }
-
-                        }
-
-                        override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
-                            binding.progressBar.visibility=View.INVISIBLE
-                            Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
-
-                        }
-                    })
             }
 
         }
+    }
+
+    private fun logIn() {
+        RetrofitClient.logInterface.login(Login_Request(login_request_fields(email, password)))
+            .enqueue(object : Callback<LogIn_Response?> {
+                override fun onResponse(
+                    call: Call<LogIn_Response?>, response: Response<LogIn_Response?>
+                ) {
+                    if (response.body() != null) {
+                        editor= shrd.edit()
+                        token=response.body()?.response?.token
+                        Log.d("check","$token")
+                        editor.putString("valid",token)
+                        editor.commit()
+                        Log.d("yes","${shrd.getString("valid","null")}")
+                        if (response.body()?.data?.email == "vet.petofy@gmail.com") {
+
+                            val intent = Intent(this@LogIn_Activity, DashBoard_Activity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        if(response.body()?.data?.email != "vet.petofy@gmail.com") {
+                            Toast.makeText(
+                                this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+                }
+
+                override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
+                    binding.progressBar.visibility=View.INVISIBLE
+                    Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
+
+                }
+            })
     }
 
     private fun isValid(): Boolean {

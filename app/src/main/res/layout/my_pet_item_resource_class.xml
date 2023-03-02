@@ -40,7 +40,7 @@
                     android:layout_height="@dimen/_60sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8ssp"
-                    android:src="@drawable/dog_image" />
+                    android:src="@drawable/dog" />
             </androidx.cardview.widget.CardView>
 
 

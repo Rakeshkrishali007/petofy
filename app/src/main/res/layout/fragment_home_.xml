@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".fragments.bashboardfragments.Home_Fragment">
 
+
+    <ProgressBar
+        android:id="@+id/home_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
@@ -173,15 +183,18 @@
         app:layout_constraintTop_toBottomOf="@id/textView4"
         app:layout_constraintStart_toStartOf="parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
+                android:id="@+id/MyPet"
                 android:orientation="horizontal">
 
 
@@ -197,7 +210,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/dog_image"
+                        android:src="@drawable/dog"
                         />
 
                     <TextView
@@ -242,6 +255,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:id="@+id/myapp"
                 android:layout_height="@dimen/_100sdp"
                 android:orientation="horizontal">
 
@@ -258,7 +272,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/online_appointment_icon"
+                        android:src="@drawable/appointment"
                         />
 
                     <TextView
@@ -311,6 +325,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:id="@+id/yourStaff"
                 android:layout_height="@dimen/_100sdp"
                 android:orientation="horizontal">
 
@@ -327,7 +342,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/nurse_icon"
+                        android:src="@drawable/staff"
                         />
 
                     <TextView
@@ -443,7 +458,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/b2b_icon"
+                        android:src="@drawable/b2b"
                         />
 
                     <TextView

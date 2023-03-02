@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.petofy.*
+import com.example.petofy.activity.shrd
 import com.example.petofy.activity.token
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
@@ -56,6 +57,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
     private fun getPetCount() {
 
+        val token= shrd.getString("valid","null")
         RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(

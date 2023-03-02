@@ -89,33 +89,37 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="@dimen/_29sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 app:cardBackgroundColor="#fff3eb"
                 android:layout_marginTop="@dimen/_20sdp"
                 >
 
+
                 <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/_10sdp"
-
-
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:cardBackgroundColor="#f96014"
+                    android:layout_height="@dimen/_22sdp"
                     >
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:src="@drawable/camera_dog_icon"
-                        android:layout_marginTop="@dimen/_5sdp"
-
                         />
                 </androidx.cardview.widget.CardView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="8"
                     android:id="@+id/txt_petNumber"
                     android:text="PETO-5930"
-                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     />
             </androidx.cardview.widget.CardView>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petofy.R
+import com.example.petofy.activity.shrd
 import com.example.petofy.activity.token
 import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
@@ -39,15 +40,17 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         binding = FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 
-        getPetList()
+
+        getPetList(1)
 
         return binding.root
     }
 
-    private fun getPetList() {
+    private fun getPetList(pageNumber:Int) {
+        val token= shrd.getString("valid","null")
         RetrofitClient.petlistintanse.getPetList(
             token,
-            PetListRequest(petlist_request_feilds(1, 20, ""))
+            PetListRequest(petlist_request_feilds(pageNumber, 20, ""))
         ).enqueue(object :
             Callback<PetListResponse?> {
             override fun onResponse(
@@ -56,10 +59,14 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             ) {
                 if (response.body() != null) {
                     val petList=response.body()?.data?.petList
-                    Log.d("petlist","$petList")
-                    Log.d("kuuka","${response.body()}")
                     val adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                     binding.recycleView.adapter=adapter
+                    binding.petFragmentProgressBar.visibility=View.INVISIBLE
+                    if(pageNumber<= response?.body()?.data?.pagingHeader?.totalPages!!)
+                    {
+                        getPetList(pageNumber+1)
+
+                    }
                 }
             }
 

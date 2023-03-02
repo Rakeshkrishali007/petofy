@@ -90,6 +90,15 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+
+    <ProgressBar
+        android:id="@+id/pet_fragment_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/recycleView"
+        app:layout_constraintRight_toRightOf="@id/recycleView"
+        app:layout_constraintTop_toTopOf="@id/recycleView" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_marginTop="@dimen/_10sdp"

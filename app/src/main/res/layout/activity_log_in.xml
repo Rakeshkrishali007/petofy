@@ -54,14 +54,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -99,31 +102,29 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-
     <ProgressBar
-        android:layout_width="wrap_content"
         android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.471" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="0dp"
         android:text="@string/forget_password"
         android:textColor="#3366ff"
         android:textSize="15sp"
-        android:paddingTop="0dp"
 
-        app:layout_constraintHorizontal_bias="0.9"
-
-        app:layout_constraintVertical_bias="0.557"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="378dp" />
 
     <Button
         android:id="@+id/btn_login_user"
@@ -137,10 +138,10 @@
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.962"
+        app:layout_constraintVertical_bias="0.342"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -148,16 +149,14 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="264dp"
         android:text="Don't have an account yet?"
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/et_register"
@@ -180,19 +179,18 @@
         android:layout_gravity="center"
         android:background="@drawable/baseline_wifi_calling_3_24"
         app:boxBackgroundColor="#3366ff"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_user"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="733dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="100dp"
         android:text="Sign in via Otp"
         android:textColor="#272424"
         app:layout_constraintBottom_toBottomOf="parent"

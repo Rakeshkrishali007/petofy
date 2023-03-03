@@ -22,7 +22,7 @@ class Splash_Activity : AppCompatActivity() {
         setContentView(binding.root)
         Log.d("spl","${shrd.getString("valid","null")}")
         Log.d("spltoken","$token")
-        if(shrd.getString("valid","null")!=null )
+        if(shrd.getString("valid",null)!=null )
         {
 
             Handler(Looper.getMainLooper()).postDelayed(Runnable {

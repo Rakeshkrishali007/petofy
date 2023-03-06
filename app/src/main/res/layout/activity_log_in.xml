@@ -14,28 +14,29 @@
         android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:src="@drawable/petofy"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.5" />
+
 
     <ImageView
-        android:layout_width="33dp"
         android:id="@+id/img_login_back"
+        android:layout_width="33dp"
         android:layout_height="32dp"
         android:paddingStart="5dp"
         android:src="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
+        app:layout_constraintVertical_bias="0.156" />
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -48,16 +49,18 @@
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toEndOf="@+id/img_login_back"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.5">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -100,10 +103,12 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/textView"
@@ -113,10 +118,12 @@
         android:text="@string/forget_password"
         android:textColor="#3366ff"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_user"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -140,16 +147,17 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="@dimen/_20sdp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
         android:text="Don't have an account yet?"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/btn_login_user"
         android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="572dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_user"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/et_register"
@@ -168,17 +176,18 @@
 
     <Button
         android:id="@+id/button3"
-        app:layout_constraintBottom_toTopOf="@id/textView3"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
         android:background="@drawable/baseline_wifi_calling_3_24"
         app:boxBackgroundColor="#3366ff"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -186,11 +195,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="168dp"
         android:text="Sign in via Otp"
         android:textColor="#272424"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"

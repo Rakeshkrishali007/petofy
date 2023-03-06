@@ -48,6 +48,10 @@ class LogIn_Activity : AppCompatActivity() {
                 logIn()
 
             }
+            else
+            {
+                binding.progressBar.visibility=View.INVISIBLE
+            }
 
         }
     }

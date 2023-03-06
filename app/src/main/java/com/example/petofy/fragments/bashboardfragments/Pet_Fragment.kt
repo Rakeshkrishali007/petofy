@@ -62,11 +62,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     val adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                     binding.recycleView.adapter=adapter
                     binding.petFragmentProgressBar.visibility=View.INVISIBLE
-                    if(pageNumber<= response?.body()?.data?.pagingHeader?.totalPages!!)
+                    /*if(pageNumber<= response?.body()?.data?.pagingHeader?.totalPages!!)
                     {
                         getPetList(pageNumber+1)
 
-                    }
+                    }*/
                 }
             }
 

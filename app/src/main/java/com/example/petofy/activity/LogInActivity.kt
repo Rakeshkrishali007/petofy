@@ -71,7 +71,7 @@ class LogIn_Activity : AppCompatActivity() {
                         Log.d("yes","${shrd.getString("valid","null")}")
                         if (response.body()?.data?.email == "vet.petofy@gmail.com") {
 
-                            val intent = Intent(this@LogIn_Activity, DashBoard_Activity::class.java)
+                            val intent = Intent(this@LogIn_Activity, DashBoardActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

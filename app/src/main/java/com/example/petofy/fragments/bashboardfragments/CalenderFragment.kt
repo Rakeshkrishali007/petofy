@@ -9,10 +9,10 @@ import com.example.petofy.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Calender_Fragment.newInstance] factory method to
+ * Use the [CalenderFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Calender_Fragment : Fragment() {
+class CalenderFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

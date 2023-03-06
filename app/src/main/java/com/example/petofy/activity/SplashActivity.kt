@@ -8,7 +8,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petofy.databinding.ActivitySplashBinding
-import com.example.petofy.fragments.bashboardfragments.Home_Fragment
 
 public lateinit var shrd: SharedPreferences
 
@@ -26,7 +25,7 @@ class Splash_Activity : AppCompatActivity() {
         {
 
             Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                val intent=Intent(this@Splash_Activity,DashBoard_Activity::class.java)
+                val intent=Intent(this@Splash_Activity,DashBoardActivity::class.java)
                 startActivity(intent)
                 finish()
             }, 3000)

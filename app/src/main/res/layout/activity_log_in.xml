@@ -30,10 +30,10 @@
         android:src="@drawable/baseline_arrow_back_ios_24"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
+        app:layout_constraintVertical_bias="0.109" />
 
     <TextView
         android:id="@+id/textView5"
@@ -114,17 +114,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="0dp"
         android:text="@string/forget_password"
         android:textColor="#3366ff"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_user"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.5"
-        tools:ignore="MissingConstraints" />
+        />
 
     <Button
         android:id="@+id/btn_login_user"

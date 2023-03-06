@@ -17,21 +17,21 @@
             android:name=".activity.LogIn_Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.DashBoard_Activity"
+            android:name=".activity.DashBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DashBoard_Activity"
+            android:name=".activity.DashBoardActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".activity.GetStarted_activity"
+            android:name=".activity.GetStartedActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LogIn_Activity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".activity.Home_activity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".activity.Splash_Activity"

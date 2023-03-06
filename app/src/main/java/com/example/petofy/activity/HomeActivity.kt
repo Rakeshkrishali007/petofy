@@ -7,7 +7,7 @@ import com.example.petofy.R
 import com.example.petofy.adapters.ViewPagerAdapter
 import com.example.petofy.databinding.ActivityHomeBinding
 
-class Home_activity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     lateinit var binding:ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,14 +28,14 @@ class Home_activity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener()
         {
 
-            val intent=Intent(this@Home_activity,LogIn_Activity::class.java)
+            val intent=Intent(this@HomeActivity,LogIn_Activity::class.java)
             startActivity(intent)
             finish()
 
         }
         binding.btnGetStarted.setOnClickListener()
         {
-            val intent=Intent(this@Home_activity, GetStarted_activity::class.java)
+            val intent=Intent(this@HomeActivity, GetStartedActivity::class.java)
             startActivity(intent)
         }
 

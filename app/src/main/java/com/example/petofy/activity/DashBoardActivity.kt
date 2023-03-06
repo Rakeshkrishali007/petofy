@@ -5,12 +5,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
-import com.example.petofy.fragments.bashboardfragments.Calender_Fragment
+import com.example.petofy.fragments.bashboardfragments.CalenderFragment
 import com.example.petofy.fragments.bashboardfragments.Home_Fragment
 import com.example.petofy.fragments.bashboardfragments.Pet_Fragment
 import com.example.petofy.fragments.bashboardfragments.User_Fragment
 
-class DashBoard_Activity : AppCompatActivity() {
+class DashBoardActivity : AppCompatActivity() {
     lateinit var binding: ActivityDashBoardBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class DashBoard_Activity : AppCompatActivity() {
                     true
                 }
                 R.id.nv_date -> {
-                    loadFragment(Calender_Fragment())
+                    loadFragment(CalenderFragment())
                     true
                 }
                 R.id.nv_user -> {

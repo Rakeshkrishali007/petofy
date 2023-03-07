@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="Pramod Rana"
-                        android:autoSizeTextType="uniform"
+                        android:textSize="@dimen/_10ssp"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -131,8 +131,8 @@
                         android:layout_marginStart="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:maxLength="10"
-                        android:autoSizeTextType="uniform"
                         android:text="PETO-5930"
+                        android:textSize="@dimen/_10ssp"
 
                         />
                 </androidx.cardview.widget.CardView>
@@ -159,14 +159,12 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_40sdp"
             android:orientation="horizontal"
             android:layout_marginStart="@dimen/_150sdp"
             android:layout_marginTop="@dimen/_110sdp">
-
             <Button
                 android:layout_width="@dimen/_130sdp"
                 android:layout_marginStart="@dimen/_8sdp"

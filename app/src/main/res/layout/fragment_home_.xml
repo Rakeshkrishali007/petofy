@@ -209,7 +209,8 @@
                         android:layout_height="wrap_content"
                         android:text="My Pets"
 
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_90sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -270,7 +271,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Online "
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_100sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -280,7 +282,8 @@
                         android:id="@+id/rk"
                         android:layout_height="wrap_content"
                         android:text="Appointment "
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:layout_marginStart="@dimen/_85sdp"
                         android:layout_marginTop="@dimen/_59sdp"
                         />
@@ -350,7 +353,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Staff"
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_90sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -412,7 +416,8 @@
                         android:id="@+id/txt_record"
                         android:layout_height="wrap_content"
                         android:text="Records"
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_90sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />
@@ -467,7 +472,8 @@
                         android:id="@+id/txt_b2b"
                         android:layout_height="wrap_content"
                         android:text="B2B Services"
-                        android:textSize="@dimen/_15ssp"
+                        android:autoSizeMinTextSize="@dimen/_10ssp"
+                        android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:layout_marginStart="@dimen/_85sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         />

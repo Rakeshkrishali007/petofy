@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.activity.shrd
 import com.example.petofy.activity.token
@@ -31,6 +32,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentPetBinding
+    var page=1;
 
 
     override fun onCreateView(
@@ -40,7 +42,22 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         binding = FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 
-
+        binding.recycleView.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+               //  if(dy>0)
+              //  {
+                    val visibleItemCount=
+                        (binding.recycleView.layoutManager as LinearLayoutManager).childCount
+                    val pastVisibleItem=((binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition())
+                    val total=binding.recycleView.adapter?.itemCount
+                    if(visibleItemCount+pastVisibleItem >= total!!)
+                    {
+                        getPetList(page++)
+                    }
+             //   }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
         getPetList(1)
 
         return binding.root
@@ -59,6 +76,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             ) {
                 if (response.body() != null) {
                     val petList=response.body()?.data?.petList
+                    Log.d("petListmy","${response.body()?.data?.petList}")
                     val adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                     binding.recycleView.adapter=adapter
                     binding.petFragmentProgressBar.visibility=View.INVISIBLE

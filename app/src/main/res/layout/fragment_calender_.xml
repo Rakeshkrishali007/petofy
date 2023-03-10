@@ -188,6 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
                 >
 
                 <TextView
@@ -198,6 +199,9 @@
                     android:text="Upcoming"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp" />
+
+
+
             </LinearLayout>
 
 
@@ -205,6 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
                 >
 
                 <TextView
@@ -215,6 +220,16 @@
                     android:text="Request pending"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp" />
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycleView"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    />
             </LinearLayout>
         </LinearLayout>
 

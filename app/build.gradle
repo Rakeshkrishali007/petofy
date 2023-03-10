@@ -66,6 +66,9 @@ dependencies {
 
     implementation 'com.github.gastricspark:scrolldatepicker:0.0.1'
 
+    //noinspection GradleCompatible
+    implementation'com.android.support:recyclerview-v7:23.3.0'
+
 
 
 }

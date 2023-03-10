@@ -8,4 +8,5 @@ data class PetPendingRequestData(
     val fromDate: String,
     @SerializedName("toDate")
     val toDate: String
+
 )

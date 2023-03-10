@@ -29,5 +29,5 @@ interface ApiInterfaces {
     fun GetDashBoardCount(@Header("Authorization",) token: String?):Call<UserDashBoardCountResponse>
 
     @POST("appointment/GetPendingAppointments")
-    fun getPendinRequest(@Header("Authorization",) token: String?,@Body petPendingRequest:PetPendingRequest):Call<PetPendingResponse>
+    fun getPendinRequest(@Header("Authorization",) token: String?,@Body petPendingRequestData:PetPendingRequest):Call<PetPendingResponse>
 }

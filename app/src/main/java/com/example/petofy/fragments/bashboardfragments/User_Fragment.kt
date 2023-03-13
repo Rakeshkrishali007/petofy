@@ -11,11 +11,7 @@ import com.example.petofy.activity.LogIn_Activity
 import com.example.petofy.activity.shrd
 import com.example.petofy.databinding.FragmentUserBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [User_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class User_Fragment : Fragment(R.layout.fragment_user_) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -31,10 +27,12 @@ class User_Fragment : Fragment(R.layout.fragment_user_) {
 
         binding.logout.setOnClickListener()
         {
-            val editor= shrd.edit()
+            val editor = shrd.edit()
             editor.clear().commit()
             val intent= Intent(requireActivity(),LogIn_Activity::class.java)
             startActivity(intent)
+            activity?.finish()
+
         }
         return binding.root
     }

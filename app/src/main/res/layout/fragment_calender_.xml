@@ -201,13 +201,41 @@
                     android:textSize="@dimen/_15ssp" />
 
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar1"
+                        app:layout_constraintTop_toTopOf="@id/recycleViewUpcoming"
+                        app:layout_constraintLeft_toLeftOf="@id/recycleViewUpcoming"
+                        app:layout_constraintRight_toRightOf="@id/recycleViewUpcoming"
+                        app:layout_constraintBottom_toBottomOf="@id/recycleViewUpcoming"
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewUpcoming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="@dimen/_250sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical"
                 >
@@ -221,15 +249,33 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp" />
 
-
-
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:id="@+id/recycleView"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="horizontal"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    />
+                    android:layout_height="wrap_content">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/progressBar2"
+                  app:layout_constraintTop_toTopOf="@id/recycleView"
+                  app:layout_constraintLeft_toLeftOf="@id/recycleView"
+                  app:layout_constraintRight_toRightOf="@id/recycleView"
+                  app:layout_constraintBottom_toBottomOf="@id/recycleView"
+                  />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
         </LinearLayout>
 

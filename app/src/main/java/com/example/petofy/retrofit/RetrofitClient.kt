@@ -18,5 +18,6 @@ object RetrofitClient {
     val dashBoardCountInstance= RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val petlistintanse= RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val petpendingintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
+    val petupcomingintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
 }
 

@@ -8,10 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petofy.R
-import com.example.petofy.activity.token
+import com.example.petofy.activity.shrd
+import com.example.petofy.adapters.PendingRequestAdapter
+import com.example.petofy.adapters.UpcomingApapter
 import com.example.petofy.apiRequest.PetPendingRequest
 import com.example.petofy.apiRequest.PetPendingRequestData
+import com.example.petofy.apiRequest.PetRequestUpcominig
+import com.example.petofy.apiRequest.PetRequestUpcominigData
 import com.example.petofy.apiResponse.PetPendingResponse
+import com.example.petofy.apiResponse.PetPendingResponseData
+import com.example.petofy.apiResponse.PetResponseUpcoming
+import com.example.petofy.apiResponse.PetResponseUpcomingData
 import com.example.petofy.databinding.FragmentCalenderBinding
 import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
@@ -35,15 +42,44 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentCalenderBinding.inflate(layoutInflater)
-        binding.recycleView.layoutManager=LinearLayoutManager(context)
+        binding.recycleView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.recycleViewUpcoming.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        getUpcoming()
         getPendingRequest()
 
 
         return binding.root
     }
 
+    private fun getUpcoming() {
+        val token= shrd.getString("valid","null")
+        RetrofitClient.petupcomingintance.getUpcomingRequest(token, PetRequestUpcominig(
+            PetRequestUpcominigData("20/03/2023")
+        )).enqueue(object : Callback<PetResponseUpcoming?> {
+            override fun onResponse(
+                call: Call<PetResponseUpcoming?>,
+                response: Response<PetResponseUpcoming?>
+            ) {
+               if(response.body()!=null)
+
+               {
+                  val list=response.body()?.data
+                   val adapter=UpcomingApapter(list as ArrayList<PetResponseUpcomingData>)
+                   binding.recycleViewUpcoming.adapter=adapter
+                   binding.progressBar1.visibility=View.INVISIBLE
+               }
+            }
+
+            override fun onFailure(call: Call<PetResponseUpcoming?>, t: Throwable) {
+
+                Log.d("petupcomingError","$t")
+            }
+        })
+    }
+
     private fun getPendingRequest() {
-      RetrofitClient.petpendingintance.getPendinRequest(token, PetPendingRequest(
+        val token= shrd.getString("valid","null")
+      RetrofitClient.petpendingintance.getPendinRequest( token, PetPendingRequest(
           PetPendingRequestData("06/03/2023","06/04/2023")
       )).enqueue(object : Callback<PetPendingResponse?> {
           override fun onResponse(
@@ -52,8 +88,11 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
           ) {
               if(response.body()!=null)
               {
+                  val list=response.body()?.info
+                  val adapter=PendingRequestAdapter(list as ArrayList<PetPendingResponseData>)
+                  binding.recycleView.adapter=adapter
+                binding.progressBar2.visibility=View.INVISIBLE
 
-                  Log.d("petPendingsuccess","${response.body()?.info}")
 
               }
           }

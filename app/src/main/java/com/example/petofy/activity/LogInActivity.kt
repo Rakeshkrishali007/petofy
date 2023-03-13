@@ -38,12 +38,11 @@ class LogIn_Activity : AppCompatActivity() {
         binding.btnLoginUser.setOnClickListener() {
 
 
-            /*  email = binding.etEmail.text.toString()
+              email = binding.etEmail.text.toString()
               password = binding.etPassword.text.toString()
-  */
             binding.progressBar.visibility = View.VISIBLE
-            email = "vet.petofy@gmail.com"
-            password = "pass@123"
+         /*   email = "vet.petofy@gmail.com"
+            password = "pass@123"*/
             if (isValid()) {
                 logIn()
 

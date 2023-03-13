@@ -21,6 +21,7 @@ import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.retrofit.RetrofitClient
 import com.facebook.shimmer.ShimmerFrameLayout
+import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,6 +39,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     lateinit var binding: FragmentPetBinding
     lateinit var adapter: MyPetAdapter
     lateinit var shimmer:ShimmerFrameLayout
+    var cout=1
 
     var isLoading = false
     var page = 1
@@ -86,26 +88,23 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             PetListRequest(petlist_request_feilds(pageNumber, 20, ""))
         ).enqueue(object :
             Callback<PetListResponse?> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<PetListResponse?>,
                 response: Response<PetListResponse?>
             ) {
                 if (response.body() != null) {
                     val petList = response.body()?.data?.petList
-
-
+                    if (petList != null) {
+                        Log.d("petlist","${petList}")
+                    }
                     binding.recycleView.visibility=View.VISIBLE
                     binding.shimmerViewContainer.stopShimmerAnimation()
                     binding.shimmerViewContainer.visibility=View.INVISIBLE
-                    if (::adapter.isInitialized) {
-                         Log.d("out","hello")
-                        adapter.notifyDataSetChanged()
-                    } else {
-                         Log.d("yes","hy")
-                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
-                        binding.recycleView.adapter = adapter
-                    }
-                   isLoading=false
+                    adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                    binding.recycleView.adapter = adapter
+                    binding.recycleView.notify()
+                    isLoading=false
                     binding.petFragmentProgressBar.visibility = View.INVISIBLE
 
                 }

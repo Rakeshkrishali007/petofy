@@ -1,13 +1,16 @@
 package com.example.petofy.activity
 
+import android.R
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.petofy.apiRequest.Login_Request
 import com.example.petofy.apiRequest.login_request_fields
 import com.example.petofy.apiResponse.LogIn_Response
@@ -78,6 +81,7 @@ class LogIn_Activity : AppCompatActivity() {
                             Toast.makeText(
                                 this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT
                             ).show()
+                            binding.progressBar.visibility=View.INVISIBLE
                         }
 
                     }

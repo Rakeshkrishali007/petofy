@@ -66,10 +66,10 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
             ) {
 
                 if(response.body()!=null)
-                {    binding.homeFragment.visibility=View.INVISIBLE
+                {    binding.progressBar.visibility=View.INVISIBLE
+                   // binding.container.setBackgroundColor(resources.getColor(color.))
                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
                     binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
-
                     binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
                     binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
 

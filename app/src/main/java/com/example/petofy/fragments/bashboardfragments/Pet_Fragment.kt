@@ -28,15 +28,16 @@ import retrofit2.Response
  * Use the [Pet_Fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentPetBinding
-    lateinit var adapter:MyPetAdapter
-    var page=1;
-    var isLoading =false
-    var limi=10
+    lateinit var adapter: MyPetAdapter
+    var page = 0;
+    var isLoading = false
+    var limit = 10
 
 
     override fun onCreateView(
@@ -44,19 +45,34 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPetBinding.inflate(layoutInflater)
+        val layoutmanager = LinearLayoutManager(context)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
 
         getPetList(1)
-        binding.recycleView.addOnScrollListener(object :RecyclerView.OnScrollListener(){
-            var visibleItemCount=binding.recycleView.layoutManager.
+        binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+                var visibleItemCount = layoutmanager.childCount
+                var pastVisibleItem = layoutmanager.findFirstCompletelyVisibleItemPosition()
+                var total = adapter.itemCount
+                if(!isLoading)
+                {
+                    if(visibleItemCount+pastVisibleItem>=total)
+                    {
+                        page++
+                        getPetList(page)
+                    }
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
         })
         return binding.root
     }
 
-    private fun getPetList(pageNumber:Int) {
+    private fun getPetList(pageNumber: Int) {
 
-
-        val token= shrd.getString("valid","null")
+       isLoading=true
+        val token = shrd.getString("valid", "null")
         RetrofitClient.petlistintanse.getPetList(
             token,
             PetListRequest(petlist_request_feilds(pageNumber, 20, ""))
@@ -67,9 +83,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                 response: Response<PetListResponse?>
             ) {
                 if (response.body() != null) {
-                    val petList=response.body()?.data?.petList
-                    Log.d("petListmy","${response.body()?.data?.petList}")
-                     adapter=MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                    val petList = response.body()?.data?.petList
+
 
                     if (::adapter.isInitialized) {
                         adapter.notifyDataSetChanged()
@@ -77,8 +92,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                         adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                         binding.recycleView.adapter = adapter
                     }
-
-                    binding.petFragmentProgressBar.visibility=View.INVISIBLE
+                   isLoading=false
+                    binding.petFragmentProgressBar.visibility = View.INVISIBLE
 
                 }
             }

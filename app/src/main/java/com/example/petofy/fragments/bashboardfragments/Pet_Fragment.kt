@@ -1,5 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -37,7 +38,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     lateinit var adapter: MyPetAdapter
     var page = 0;
     var isLoading = false
-    var limit = 10
+
 
 
     override fun onCreateView(
@@ -57,9 +58,9 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                 var total = adapter.itemCount
                 if(!isLoading)
                 {
-                    if(visibleItemCount+pastVisibleItem>=total)
+                    if(visibleItemCount+pastVisibleItem >= total)
                     {
-                        page++
+                        ++page
                         getPetList(page)
                     }
                 }
@@ -71,13 +72,14 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
     private fun getPetList(pageNumber: Int) {
 
-       isLoading=true
+      //isLoading=true
         val token = shrd.getString("valid", "null")
         RetrofitClient.petlistintanse.getPetList(
             token,
             PetListRequest(petlist_request_feilds(pageNumber, 20, ""))
         ).enqueue(object :
             Callback<PetListResponse?> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<PetListResponse?>,
                 response: Response<PetListResponse?>
@@ -88,11 +90,12 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
                     if (::adapter.isInitialized) {
                         adapter.notifyDataSetChanged()
-                    } else {
+                    }
+                    else {
                         adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                         binding.recycleView.adapter = adapter
+                        isLoading=false
                     }
-                   isLoading=false
                     binding.petFragmentProgressBar.visibility = View.INVISIBLE
 
                 }

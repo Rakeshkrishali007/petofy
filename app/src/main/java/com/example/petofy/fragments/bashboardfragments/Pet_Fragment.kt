@@ -48,6 +48,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         binding = FragmentPetBinding.inflate(layoutInflater)
         val layoutmanager = LinearLayoutManager(context)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+        Log.d("tag","hello")
 
         getPetList(1)
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {

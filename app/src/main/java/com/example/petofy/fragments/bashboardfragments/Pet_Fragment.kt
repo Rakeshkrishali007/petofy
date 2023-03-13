@@ -1,5 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -19,6 +20,7 @@ import com.example.petofy.apiResponse.petlist_response_atributes
 import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.retrofit.RetrofitClient
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,31 +37,35 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     private var param2: String? = null
     lateinit var binding: FragmentPetBinding
     lateinit var adapter: MyPetAdapter
-    var page = 0;
-    var isLoading = false
-    var limit = 10
+    lateinit var shimmer:ShimmerFrameLayout
 
+    var isLoading = false
+    var page = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPetBinding.inflate(layoutInflater)
-        val layoutmanager = LinearLayoutManager(context)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+        binding.shimmerViewContainer.startShimmerAnimation()
 
-        getPetList(1)
+       getPetList(1)
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
-                var visibleItemCount = layoutmanager.childCount
-                var pastVisibleItem = layoutmanager.findFirstCompletelyVisibleItemPosition()
-                var total = adapter.itemCount
+                var visibleItemCount = binding.recycleView?.layoutManager?.childCount
+                var pastVisibleItem = (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                var total = binding.recycleView.adapter?.itemCount
+                Log.d("data","${visibleItemCount},${total},${pastVisibleItem}")
                 if(!isLoading)
                 {
-                    if(visibleItemCount+pastVisibleItem>=total)
+
+                    if(visibleItemCount!! + pastVisibleItem>= total!!)
                     {
-                        page++
+
+                        page=page+1
+                        Log.d("count","${page}")
                         getPetList(page)
                     }
                 }
@@ -69,9 +75,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun getPetList(pageNumber: Int) {
 
-       isLoading=true
+     isLoading=true
+        Log.d("page","${pageNumber}")
         val token = shrd.getString("valid", "null")
         RetrofitClient.petlistintanse.getPetList(
             token,
@@ -86,9 +94,14 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     val petList = response.body()?.data?.petList
 
 
+                    binding.recycleView.visibility=View.VISIBLE
+                    binding.shimmerViewContainer.stopShimmerAnimation()
+                    binding.shimmerViewContainer.visibility=View.INVISIBLE
                     if (::adapter.isInitialized) {
+                         Log.d("out","hello")
                         adapter.notifyDataSetChanged()
                     } else {
+                         Log.d("yes","hy")
                         adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                         binding.recycleView.adapter = adapter
                     }

@@ -1,6 +1,7 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.petofy.*
+import com.example.petofy.activity.IsSearched
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
@@ -23,7 +25,6 @@ import retrofit2.Response
  * create an instance of this fragment.
  */
 class Home_Fragment : Fragment(R.layout.fragment_home_) {
-
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
@@ -43,6 +44,11 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         progressDialog!!.setCancelable(false)
         progressDialog!!.show()
 
+        binding.appointment.setOnClickListener()
+        {
+
+            loadFragment(CalenderFragment())
+        }
         binding.MyPet.setOnClickListener()
         {
             loadFragment(Pet_Fragment())
@@ -50,8 +56,6 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         }
         getPetCount()
         val pet=requireActivity().findViewById<TextView>(R.id.txt_myPets)
-
-
         return binding.root
     }
 
@@ -59,6 +63,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         val transactionManger =activity?.supportFragmentManager
         val fragmentTransaction=transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container,fragment)
+        fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }
 

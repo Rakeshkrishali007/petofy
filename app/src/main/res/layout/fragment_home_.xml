@@ -95,7 +95,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_220sdp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_100sdp"
             app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
@@ -107,6 +107,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="@dimen/_220sdp"
+                android:id="@+id/search"
                 android:layout_height="@dimen/_40sdp"
                 android:drawableStart="@drawable/search_icon"
                 android:drawablePadding="@dimen/_10sdp"
@@ -188,12 +189,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
 
-                android:id="@+id/MyPet"
                 android:orientation="horizontal">
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    android:id="@+id/MyPet"
+
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
@@ -257,6 +259,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    android:id="@+id/appointment"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"

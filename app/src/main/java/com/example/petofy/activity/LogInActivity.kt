@@ -1,8 +1,6 @@
 package com.example.petofy.activity
 
 import android.R
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle

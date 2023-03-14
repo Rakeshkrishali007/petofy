@@ -1,7 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,7 +32,7 @@ class User_Fragment : Fragment(R.layout.fragment_user_) {
 
             AlertDialog.Builder(context)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
+                .setTitle("Log Out")
                 .setMessage("Are you sure you want to logout")
                 .setPositiveButton("Yes",
                  { dialog, which ->   val editor = shrd.edit()
@@ -43,8 +42,6 @@ class User_Fragment : Fragment(R.layout.fragment_user_) {
                         activity?.finish() })
                 .setNegativeButton("No", null)
                 .show()
-
-
         }
         return binding.root
     }

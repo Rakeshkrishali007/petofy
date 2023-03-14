@@ -2,7 +2,6 @@ package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.activity.shrd
-import com.example.petofy.activity.token
 import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
 import com.example.petofy.apiResponse.PetListResponse
@@ -21,7 +19,6 @@ import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.getpetlist.*
 import com.example.petofy.retrofit.RetrofitClient
 import com.facebook.shimmer.ShimmerFrameLayout
-import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,8 +35,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     private var param2: String? = null
     lateinit var binding: FragmentPetBinding
     lateinit var adapter: MyPetAdapter
-    lateinit var shimmer:ShimmerFrameLayout
-    var cout=1
+    lateinit var shimmer: ShimmerFrameLayout
+    var cout = 1
 
     var isLoading = false
     var page = 1
@@ -52,22 +49,21 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         binding.recycleView.layoutManager = LinearLayoutManager(context)
         binding.shimmerViewContainer.startShimmerAnimation()
 
-       getPetList(1)
+        getPetList(1)
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
                 var visibleItemCount = binding.recycleView?.layoutManager?.childCount
-                var pastVisibleItem = (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                var pastVisibleItem =
+                    (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
                 var total = binding.recycleView.adapter?.itemCount
-                Log.d("data","${visibleItemCount},${total},${pastVisibleItem}")
-                if(!isLoading)
-                {
+                Log.d("data", "${visibleItemCount},${total},${pastVisibleItem}")
+                if (!isLoading) {
 
-                    if(visibleItemCount!! + pastVisibleItem>= total!!)
-                    {
+                    if (visibleItemCount!! + pastVisibleItem >= total!!) {
 
-                        page=page+1
-                        Log.d("count","${page}")
+                        page = page + 1
+                        Log.d("count", "${page}")
                         getPetList(page)
                     }
                 }
@@ -80,8 +76,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     @SuppressLint("SuspiciousIndentation")
     private fun getPetList(pageNumber: Int) {
 
-     isLoading=true
-        Log.d("page","${pageNumber}")
+        isLoading = true
+        Log.d("page", "${pageNumber}")
         val token = shrd.getString("valid", "null")
         RetrofitClient.petlistintanse.getPetList(
             token,
@@ -96,15 +92,16 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                 if (response.body() != null) {
                     val petList = response.body()?.data?.petList
                     if (petList != null) {
-                        Log.d("petlist","${petList}")
+                        Log.d("petlist", "${petList}")
                     }
-                    binding.recycleView.visibility=View.VISIBLE
+                    binding.recycleView.visibility = View.VISIBLE
                     binding.shimmerViewContainer.stopShimmerAnimation()
-                    binding.shimmerViewContainer.visibility=View.INVISIBLE
+                    binding.shimmerViewContainer.visibility = View.INVISIBLE
                     adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                     binding.recycleView.adapter = adapter
-                    binding.recycleView.notify()
-                    isLoading=false
+                    isLoading = false
+                    adapter.notifyDataSetChanged()
+                    binding.recycleView?.adapter?.notifyDataSetChanged()
                     binding.petFragmentProgressBar.visibility = View.INVISIBLE
 
                 }

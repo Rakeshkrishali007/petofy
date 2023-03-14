@@ -147,43 +147,6 @@
 
             </LinearLayout>
 
-<!--
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="10sp"
-                    android:text="Upcoming"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp" />
-            </LinearLayout>
-
--->
-<!--
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="10sp"
-                android:text="Request pending"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_15ssp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-            </LinearLayout>-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
@@ -204,7 +167,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
+                    <!--
                     <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -213,7 +176,21 @@
                         app:layout_constraintLeft_toLeftOf="@id/recycleViewUpcoming"
                         app:layout_constraintRight_toRightOf="@id/recycleViewUpcoming"
                         app:layout_constraintBottom_toBottomOf="@id/recycleViewUpcoming"
-                        />
+                        />-->
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/shimmer_effect"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5">
+
+                        <include layout="@layout/pending_item_resource_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycleViewUpcoming"
                         android:layout_width="match_parent"
@@ -253,15 +230,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/progressBar2"
-                  app:layout_constraintTop_toTopOf="@id/recycleView"
-                  app:layout_constraintLeft_toLeftOf="@id/recycleView"
-                  app:layout_constraintRight_toRightOf="@id/recycleView"
-                  app:layout_constraintBottom_toBottomOf="@id/recycleView"
-                  />
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/shimmer_effect_upcoming"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5">
+
+                        <include layout="@layout/upcoming_item_resource_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycleView"
                         android:layout_width="match_parent"

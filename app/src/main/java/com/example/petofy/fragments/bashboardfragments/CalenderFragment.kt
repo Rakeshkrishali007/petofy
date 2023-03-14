@@ -44,6 +44,8 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
         binding=FragmentCalenderBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recycleViewUpcoming.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.shimmerEffect.startShimmerAnimation()
+        binding.shimmerEffectUpcoming.startShimmerAnimation()
         getUpcoming()
         getPendingRequest()
 
@@ -61,12 +63,11 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
                 response: Response<PetResponseUpcoming?>
             ) {
                if(response.body()!=null)
-
                {
-                  val list=response.body()?.data
+                   val list=response.body()?.data
                    val adapter=UpcomingApapter(list as ArrayList<PetResponseUpcomingData>)
                    binding.recycleViewUpcoming.adapter=adapter
-                   binding.progressBar1.visibility=View.INVISIBLE
+                   binding.shimmerEffect.stopShimmerAnimation()
                }
             }
 
@@ -91,8 +92,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
                   val list=response.body()?.info
                   val adapter=PendingRequestAdapter(list as ArrayList<PetPendingResponseData>)
                   binding.recycleView.adapter=adapter
-                binding.progressBar2.visibility=View.INVISIBLE
-
+                    binding.shimmerEffectUpcoming.stopShimmerAnimation()
 
               }
           }

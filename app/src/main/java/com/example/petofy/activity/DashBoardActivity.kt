@@ -44,13 +44,11 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    private  fun loadFragment(fragment: Fragment)
-    {
-        val transactionManger =supportFragmentManager
-        val fragmentTransaction=transactionManger.beginTransaction()
-        fragmentTransaction.replace(R.id.container,fragment)
+    private fun loadFragment(fragment: Fragment) {
+        val transactionManger = supportFragmentManager
+        val fragmentTransaction = transactionManger.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
         fragmentTransaction.commit()
-
 
 
     }

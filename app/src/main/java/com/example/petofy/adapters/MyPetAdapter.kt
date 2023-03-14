@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.apiResponse.petlist_response_atributes
 
-class MyPetAdapter(private val item: ArrayList<petlist_response_atributes>) : RecyclerView.Adapter<MyViewHolder>() {
+class MyPetAdapter(private var item: ArrayList<petlist_response_atributes>) : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -19,6 +19,11 @@ class MyPetAdapter(private val item: ArrayList<petlist_response_atributes>) : Re
         return MyViewHolder(view)
     }
 
+
+    fun appendData(newDataList: ArrayList<petlist_response_atributes>) {
+        item.addAll(newDataList)
+        notifyDataSetChanged()
+    }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
       var current=item[position]
 

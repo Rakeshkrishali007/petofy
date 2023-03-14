@@ -1,5 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,8 +49,6 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
         binding.shimmerEffectUpcoming.startShimmerAnimation()
         getUpcoming()
         getPendingRequest()
-
-
         return binding.root
     }
 
@@ -83,6 +82,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
       RetrofitClient.petpendingintance.getPendinRequest( token, PetPendingRequest(
           PetPendingRequestData("06/03/2023","06/04/2023")
       )).enqueue(object : Callback<PetPendingResponse?> {
+
           override fun onResponse(
               call: Call<PetPendingResponse?>,
               response: Response<PetPendingResponse?>
@@ -91,8 +91,13 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
               {
                   val list=response.body()?.info
                   val adapter=PendingRequestAdapter(list as ArrayList<PetPendingResponseData>)
-                  binding.recycleView.adapter=adapter
+                    binding.recycleView.adapter=adapter
                     binding.shimmerEffectUpcoming.stopShimmerAnimation()
+
+              }
+              else
+              {
+                  binding.recycleView.visibility=View.INVISIBLE
 
               }
           }

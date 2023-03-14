@@ -28,7 +28,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
-    var progressDialog:ProgressDialog?=null
+    var progressDialog: ProgressDialog? = null
 
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
     ): View {
 
-        binding= FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
         progressDialog = ProgressDialog(context)
         progressDialog!!.setTitle("Loading")
         progressDialog!!.setMessage("Please wait...")
@@ -55,21 +55,21 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
         }
         getPetCount()
-        val pet=requireActivity().findViewById<TextView>(R.id.txt_myPets)
+        val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
         return binding.root
     }
 
     private fun loadFragment(fragment: Fragment) {
-        val transactionManger =activity?.supportFragmentManager
-        val fragmentTransaction=transactionManger?.beginTransaction()
-        fragmentTransaction?.replace(R.id.container,fragment)
+        val transactionManger = activity?.supportFragmentManager
+        val fragmentTransaction = transactionManger?.beginTransaction()
+        fragmentTransaction?.replace(R.id.container, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }
 
     private fun getPetCount() {
 
-        val token= shrd.getString("valid","null")
+        val token = shrd.getString("valid", "null")
         RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
@@ -77,12 +77,13 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                 response: Response<UserDashBoardCountResponse?>
             ) {
 
-                if(response.body()!=null)
-                {    binding.progressBar.visibility=View.INVISIBLE
+                if (response.body() != null) {
+                    binding.progressBar.visibility = View.INVISIBLE
                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
-                    binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
-                    binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
-                    binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
+                    binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
+                    binding.txtAppointment.text =
+                        response.body()?.data?.numberOfAppointments.toString()
+                    binding.txtStaff.text = response.body()?.data?.numberOfStaffs.toString()
 
                 }
                 progressDialog?.dismiss()

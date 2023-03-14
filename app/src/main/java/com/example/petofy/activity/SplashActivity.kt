@@ -13,31 +13,27 @@ public lateinit var shrd: SharedPreferences
 
 
 class Splash_Activity : AppCompatActivity() {
-    lateinit var binding:ActivitySplashBinding
+    lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivitySplashBinding.inflate(layoutInflater)
-        shrd=getSharedPreferences("demo", MODE_PRIVATE)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        shrd = getSharedPreferences("demo", MODE_PRIVATE)
         setContentView(binding.root)
-        Log.d("spl","${shrd.getString("valid","null")}")
-        Log.d("spltoken","$token")
-        if(shrd.getString("valid",null)!=null )
-        {
+        Log.d("spl", "${shrd.getString("valid", "null")}")
+        Log.d("spltoken", "$token")
+        if (shrd.getString("valid", null) != null) {
 
             Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                val intent=Intent(this@Splash_Activity,DashBoardActivity::class.java)
+                val intent = Intent(this@Splash_Activity, DashBoardActivity::class.java)
                 startActivity(intent)
                 finish()
             }, 3000)
 
-        }
-        else
-        {
-            val intent=Intent(this@Splash_Activity,LogIn_Activity::class.java)
+        } else {
+            val intent = Intent(this@Splash_Activity, LogIn_Activity::class.java)
             startActivity(intent)
             finish()
         }
-
 
 
     }

@@ -322,7 +322,7 @@
                         android:id="@+id/progressBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
+                        android:visibility="invisible"
                         android:layout_marginTop="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_125sdp"
                         tools:ignore="NotSibling" />

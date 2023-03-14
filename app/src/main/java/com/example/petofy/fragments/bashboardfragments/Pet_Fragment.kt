@@ -37,6 +37,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     lateinit var adapter: MyPetAdapter
     lateinit var shimmer: ShimmerFrameLayout
     var cout = 1
+    var newData= mutableListOf<petlist_response_atributes>()
 
     var isLoading = false
     var page = 1
@@ -53,20 +54,26 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
-                var visibleItemCount = binding.recycleView?.layoutManager?.childCount
-                var pastVisibleItem =
-                    (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                var total = binding.recycleView.adapter?.itemCount
-                Log.d("data", "${visibleItemCount},${total},${pastVisibleItem}")
-                if (!isLoading) {
+                if(dy>0)
+                {
+                    var visibleItemCount = binding.recycleView?.layoutManager?.childCount
+                    var pastVisibleItem =
+                        (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
 
-                    if (visibleItemCount!! + pastVisibleItem >= total!!) {
+                    var total = binding.recycleView.adapter?.itemCount
+                    Log.d("data", "${visibleItemCount},${total},${pastVisibleItem}")
+                    if (!isLoading) {
 
-                        page = page + 1
-                        Log.d("count", "${page}")
-                        getPetList(page)
+                        if (visibleItemCount!! +pastVisibleItem>= total!!) {
+
+                            page = page + 1
+                            Log.d("count", "${page}")
+                            if(page<29)
+                                getPetList(page)
+                        }
                     }
                 }
+
                 super.onScrolled(recyclerView, dx, dy)
             }
         })
@@ -76,7 +83,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
     @SuppressLint("SuspiciousIndentation")
     private fun getPetList(pageNumber: Int) {
 
-        isLoading = true
+        isLoading=true;
         Log.d("page", "${pageNumber}")
         val token = shrd.getString("valid", "null")
         RetrofitClient.petlistintanse.getPetList(
@@ -97,12 +104,20 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     binding.recycleView.visibility = View.VISIBLE
                     binding.shimmerViewContainer.stopShimmerAnimation()
                     binding.shimmerViewContainer.visibility = View.INVISIBLE
-                    adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
-                    binding.recycleView.adapter = adapter
-                    isLoading = false
-                    adapter.notifyDataSetChanged()
-                    binding.recycleView?.adapter?.notifyDataSetChanged()
-                    binding.petFragmentProgressBar.visibility = View.INVISIBLE
+                    if(::adapter.isInitialized)
+                    {
+                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                        adapter.notifyDataSetChanged()
+
+                    }
+                    else
+                    {
+
+                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                        binding.recycleView.adapter = adapter
+                        binding.petFragmentProgressBar.visibility = View.INVISIBLE
+                    }
+                    isLoading=false;
 
                 }
             }

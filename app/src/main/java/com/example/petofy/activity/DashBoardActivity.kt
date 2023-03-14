@@ -18,6 +18,8 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
+
         loadFragment(Home_Fragment())
         binding.bnView.setOnNavigationItemSelectedListener {
             when (it.itemId) {

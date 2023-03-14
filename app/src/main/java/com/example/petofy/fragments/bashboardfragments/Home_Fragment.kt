@@ -1,5 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
+    var progressDialog:ProgressDialog?=null
 
 
     override fun onCreateView(
@@ -35,6 +37,12 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     ): View {
 
         binding= FragmentHomeBinding.inflate(layoutInflater)
+        progressDialog = ProgressDialog(context)
+        progressDialog!!.setTitle("Loading")
+        progressDialog!!.setMessage("Please wait...")
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.show()
+
         binding.MyPet.setOnClickListener()
         {
             loadFragment(Pet_Fragment())
@@ -66,13 +74,13 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
                 if(response.body()!=null)
                 {    binding.progressBar.visibility=View.INVISIBLE
-                   // binding.container.setBackgroundColor(resources.getColor(color.))
                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
                     binding.txtMyPets.text=response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text= response.body()?.data?.numberOfAppointments.toString()
                     binding.txtStaff.text= response.body()?.data?.numberOfStaffs.toString()
 
                 }
+                progressDialog?.dismiss()
             }
 
             override fun onFailure(call: Call<UserDashBoardCountResponse?>, t: Throwable) {

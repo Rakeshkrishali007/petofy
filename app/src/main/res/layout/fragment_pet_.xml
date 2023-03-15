@@ -105,7 +105,6 @@
         android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/pet_fragment_progressBar"
         app:layout_constraintLeft_toLeftOf="@id/recycleView"
         app:layout_constraintRight_toRightOf="@id/recycleView"
         app:layout_constraintTop_toTopOf="@id/recycleView"

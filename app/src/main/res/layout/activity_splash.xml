@@ -8,6 +8,7 @@
 
     <ImageView
         android:layout_width="302dp"
+        android:id="@+id/imageView"
         android:layout_height="224dp"
         android:paddingStart="10dp"
         android:src="@drawable/petofy"

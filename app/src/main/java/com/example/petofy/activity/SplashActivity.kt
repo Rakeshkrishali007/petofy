@@ -1,11 +1,14 @@
 package com.example.petofy.activity
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petofy.databinding.ActivitySplashBinding
 
@@ -21,6 +24,13 @@ class Splash_Activity : AppCompatActivity() {
         setContentView(binding.root)
         Log.d("spl", "${shrd.getString("valid", "null")}")
         Log.d("spltoken", "$token")
+        val animator = ObjectAnimator.ofPropertyValuesHolder(
+            binding.imageView,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.0f, 2.0f),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.0f, 2.0f)
+        )
+        animator.duration = 5000 // 5 seconds
+        animator.start()
         if (shrd.getString("valid", null) != null) {
 
             Handler(Looper.getMainLooper()).postDelayed(Runnable {

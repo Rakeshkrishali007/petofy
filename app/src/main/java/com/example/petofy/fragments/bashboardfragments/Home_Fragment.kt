@@ -1,7 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
-import com.example.petofy.activity.IsSearched
+import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
@@ -19,15 +19,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+public var hasData = true
+
 class Home_Fragment : Fragment(R.layout.fragment_home_) {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
+    lateinit var viewModel: HomeFragmentViewModel
     var progressDialog: ProgressDialog? = null
 
 
@@ -35,26 +34,28 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
+
     ): View {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        progressDialog = ProgressDialog(context)
-        progressDialog!!.setTitle("Loading")
-        progressDialog!!.setMessage("Please wait...")
-        progressDialog!!.setCancelable(false)
-        progressDialog!!.show()
-
+         viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        binding.txtAppointment.text=viewModel.onlineAppointment
+        binding.txtMyPets.text=viewModel.myPet
+        binding.txtStaff.text=viewModel.staff
+        if (hasData)
+            getPetCount()
         binding.appointment.setOnClickListener()
         {
 
+            hasData=false
             loadFragment(CalenderFragment())
         }
         binding.MyPet.setOnClickListener()
         {
+            hasData=false
             loadFragment(Pet_Fragment())
-
         }
-        getPetCount()
+
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
         return binding.root
     }
@@ -69,6 +70,13 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
     private fun getPetCount() {
 
+        progressDialog = ProgressDialog(context)
+        progressDialog!!.setTitle("Loading")
+        progressDialog!!.setMessage("Please wait...")
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.show()
+
+
         val token = shrd.getString("valid", "null")
         RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
@@ -76,9 +84,11 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                 call: Call<UserDashBoardCountResponse?>,
                 response: Response<UserDashBoardCountResponse?>
             ) {
-
                 if (response.body() != null) {
                     binding.progressBar.visibility = View.INVISIBLE
+                    viewModel.myPet= response.body()?.data?.numberOfPets.toString()
+                    viewModel.onlineAppointment= response.body()?.data?.numberOfAppointments.toString()
+                    viewModel.staff=response.body()?.data?.numberOfStaffs.toString()
                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
                     binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text =

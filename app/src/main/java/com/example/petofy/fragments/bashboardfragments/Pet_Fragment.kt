@@ -111,7 +111,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     if (::adapter.isInitialized) {
 
 
-                         newData= petList as ArrayList<petlist_response_atributes>
+                        newData= petList as ArrayList<petlist_response_atributes>
                         (binding.recycleView.adapter as MyPetAdapter).appendData(newData)
                         adapter.notifyDataSetChanged()
                         binding.progressBar.visibility=View.INVISIBLE

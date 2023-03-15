@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
@@ -23,6 +24,20 @@ import retrofit2.Response
 public var hasData = true
 
 class Home_Fragment : Fragment(R.layout.fragment_home_) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(isAdded)
+        {
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+
+                    requireActivity().finish()
+                }
+            })
+
+        }
+    }
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
@@ -38,21 +53,21 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     ): View {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
-         viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
-        binding.txtAppointment.text=viewModel.onlineAppointment
-        binding.txtMyPets.text=viewModel.myPet
-        binding.txtStaff.text=viewModel.staff
+        viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        setViewModelData()
+
+        setViewModelData()
         if (hasData)
             getPetCount()
         binding.appointment.setOnClickListener()
         {
 
-            hasData=false
+            hasData = false
             loadFragment(CalenderFragment())
         }
         binding.MyPet.setOnClickListener()
         {
-            hasData=false
+            hasData = false
             loadFragment(Pet_Fragment())
         }
 
@@ -60,11 +75,18 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         return binding.root
     }
 
+    public fun setViewModelData() {
+
+        binding.txtAppointment.text = viewModel.onlineAppointment
+        binding.txtMyPets.text = viewModel.myPet
+        binding.txtStaff.text = viewModel.staff
+    }
+
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container, fragment)
-        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.addToBackStack(Home_Fragment().toString())
         fragmentTransaction?.commit()
     }
 
@@ -86,9 +108,10 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
             ) {
                 if (response.body() != null) {
                     binding.progressBar.visibility = View.INVISIBLE
-                    viewModel.myPet= response.body()?.data?.numberOfPets.toString()
-                    viewModel.onlineAppointment= response.body()?.data?.numberOfAppointments.toString()
-                    viewModel.staff=response.body()?.data?.numberOfStaffs.toString()
+                    viewModel.myPet = response.body()?.data?.numberOfPets.toString()
+                    viewModel.onlineAppointment =
+                        response.body()?.data?.numberOfAppointments.toString()
+                    viewModel.staff = response.body()?.data?.numberOfStaffs.toString()
                     Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
                     binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text =

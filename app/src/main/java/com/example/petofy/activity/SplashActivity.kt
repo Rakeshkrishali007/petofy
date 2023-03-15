@@ -24,15 +24,16 @@ class Splash_Activity : AppCompatActivity() {
         setContentView(binding.root)
         Log.d("spl", "${shrd.getString("valid", "null")}")
         Log.d("spltoken", "$token")
-        val animator = ObjectAnimator.ofPropertyValuesHolder(
-            binding.imageView,
-            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.0f, 2.0f),
-            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.0f, 2.0f)
-        )
-        animator.duration = 5000 // 5 seconds
-        animator.start()
+
         if (shrd.getString("valid", null) != null) {
 
+            val animator = ObjectAnimator.ofPropertyValuesHolder(
+                binding.imageView,
+                PropertyValuesHolder.ofFloat(View.SCALE_X, 0.0f, 2.0f),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.0f, 2.0f)
+            )
+            animator.duration = 5000 // 5 seconds
+            animator.start()
             Handler(Looper.getMainLooper()).postDelayed(Runnable {
                 val intent = Intent(this@Splash_Activity, DashBoardActivity::class.java)
                 startActivity(intent)

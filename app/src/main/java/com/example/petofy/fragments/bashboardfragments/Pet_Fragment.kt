@@ -67,7 +67,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                             page = page + 1
                             Log.d("count", "${page}")
                             if (page < 29)
+                            {
+                                binding.progressBar.visibility=View.VISIBLE
                                 getPetList(page)
+                            }
+
                         }
                     }
                 }
@@ -106,9 +110,11 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     binding.shimmerViewContainer.visibility = View.INVISIBLE
                     if (::adapter.isInitialized) {
 
+
                          newData= petList as ArrayList<petlist_response_atributes>
                         (binding.recycleView.adapter as MyPetAdapter).appendData(newData)
                         adapter.notifyDataSetChanged()
+                        binding.recycleView
 
                     } else {
 

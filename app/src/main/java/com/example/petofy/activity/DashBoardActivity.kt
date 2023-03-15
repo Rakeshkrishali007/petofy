@@ -48,6 +48,7 @@ class DashBoardActivity : AppCompatActivity() {
         val transactionManger = supportFragmentManager
         val fragmentTransaction = transactionManger.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.addToBackStack()
         fragmentTransaction.commit()
 
 

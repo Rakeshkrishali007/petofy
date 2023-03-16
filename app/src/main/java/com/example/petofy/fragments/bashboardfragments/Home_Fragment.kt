@@ -24,26 +24,28 @@ import retrofit2.Response
 
 public var hasData = true
 
-class Home_Fragment : Fragment(R.layout.fragment_home_) {
+class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        Log.d("viewmodel","${viewModel.staff}")
-        if(isAdded)
-        {
-            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
+        if (isAdded) {
+            requireActivity().onBackPressedDispatcher.addCallback(
+                viewLifecycleOwner,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
 
-                    requireActivity().finish()
-                }
-            })
+                        requireActivity().finish()
+                    }
+                })
 
 
         }
     }
+
+
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
@@ -56,22 +58,16 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         savedInstanceState: Bundle?
 
 
-
-    ): View {
+    ):View {
 
         Log.d("tag", "come back")
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
-        if (hasData)
-        {
-
+        if (hasData) {
             getPetCount()
         }
-        else
-        {
-          //  viewModel.showData()
-        }
+
         setViewModelData()
         binding.appointment.setOnClickListener()
         {
@@ -87,17 +83,20 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
         return binding.root
     }
-   public fun setViewModelData() {
+
+    public fun setViewModelData() {
 
         binding.txtAppointment.text = viewModel.onlineAppointment
         binding.txtMyPets.text = viewModel.myPet
         binding.txtStaff.text = viewModel.staff
+
     }
+
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container, fragment)
-        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.addToBackStack(Home_Fragment().toString())
         fragmentTransaction?.commit()
     }
 

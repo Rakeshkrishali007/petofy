@@ -100,21 +100,16 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
             ) {
                 if (response.body() != null) {
                     val petList = response.body()?.data?.petList
-                    if (petList != null) {
-                        Log.d("petlist", "${petList}")
-                    }
 
                     binding.recycleView.visibility = View.VISIBLE
                     binding.shimmerViewContainer.stopShimmerAnimation()
                     binding.shimmerViewContainer.visibility = View.INVISIBLE
-                    if (::adapter.isInitialized) {
+                    if (::adapter.isInitialized && binding.recycleView.adapter is MyPetAdapter) {
 
                         newData = petList as ArrayList<petlist_response_atributes>
                         (binding.recycleView.adapter as MyPetAdapter)?.appendData(newData)
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
-
-
                         adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                         binding.recycleView.adapter = adapter
                         binding.petFragmentProgressBar.visibility = View.INVISIBLE

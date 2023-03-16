@@ -13,6 +13,7 @@ public var bool = false
 
 class DashBoardActivity : AppCompatActivity() {
     lateinit var binding: ActivityDashBoardBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
@@ -20,14 +21,18 @@ class DashBoardActivity : AppCompatActivity() {
 
         loadFragment(Home_Fragment())
 
-        val fragment = supportFragmentManager.findFragmentById(R.id.container) as? Home_Fragment
+        val fragment = supportFragmentManager.findFragmentById(R.id.container ) as? Home_Fragment
         bool = true
         binding.bnView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nv_home -> {
                     if (!bool) {
                         loadFragment(Home_Fragment())
-                        fragment?.setViewModelData()
+                        if (fragment != null) {
+                            fragment.setViewModelData()
+                        } else {
+                                Log.d("null","mkdjfkjd")
+                        }
                         hasData = false
                     }
                     true
@@ -55,11 +60,12 @@ class DashBoardActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = supportFragmentManager
         val fragmentTransaction = transactionManger.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)
-        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.addToBackStack("my_fragment")
         fragmentTransaction.commit()
 
 

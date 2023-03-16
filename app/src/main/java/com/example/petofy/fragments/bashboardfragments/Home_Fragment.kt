@@ -56,17 +56,23 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         savedInstanceState: Bundle?
 
 
+
     ): View {
 
+        Log.d("tag", "come back")
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
-        setViewModelData()
         if (hasData)
+        {
+
             getPetCount()
+        }
         else
         {
-            Log.d("model","${viewModel.staff}${viewModel.myPet}${viewModel.onlineAppointment}")
+          //  viewModel.showData()
         }
+        setViewModelData()
         binding.appointment.setOnClickListener()
         {
 
@@ -80,10 +86,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         }
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
         return binding.root
-
-
     }
-
    public fun setViewModelData() {
 
         binding.txtAppointment.text = viewModel.onlineAppointment
@@ -94,7 +97,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container, fragment)
-        fragmentTransaction?.addToBackStack(Home_Fragment().toString())
+        fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }
 
@@ -120,6 +123,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                     viewModel.onlineAppointment =
                         response.body()?.data?.numberOfAppointments.toString()
                     viewModel.staff = response.body()?.data?.numberOfStaffs.toString()
+                    viewModel.showData2()
                     binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text =
                         response.body()?.data?.numberOfAppointments.toString()

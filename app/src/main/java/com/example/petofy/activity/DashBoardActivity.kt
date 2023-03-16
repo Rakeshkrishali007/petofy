@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
 import com.example.petofy.fragments.bashboardfragments.*
-import kotlin.properties.Delegates
 
 public lateinit var fragment: Fragment
 public var bool = false
@@ -21,6 +19,7 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadFragment(Home_Fragment())
+
         val fragment = supportFragmentManager.findFragmentById(R.id.container) as? Home_Fragment
         bool = true
         binding.bnView.setOnNavigationItemSelectedListener {
@@ -29,7 +28,6 @@ class DashBoardActivity : AppCompatActivity() {
                     if (!bool) {
                         loadFragment(Home_Fragment())
                         fragment?.setViewModelData()
-                        Log.d("call","hello")
                         hasData = false
                     }
                     true
@@ -57,12 +55,11 @@ class DashBoardActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = supportFragmentManager
         val fragmentTransaction = transactionManger.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)
-        fragmentTransaction.addToBackStack(Home_Fragment().toString())
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
 import com.example.petofy.Classes.HomeFragmentViewModel
@@ -25,8 +26,12 @@ public var hasData = true
 
 class Home_Fragment : Fragment(R.layout.fragment_home_) {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        Log.d("viewmodel","${viewModel.staff}")
         if(isAdded)
         {
             requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -35,6 +40,7 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                     requireActivity().finish()
                 }
             })
+
 
         }
     }
@@ -53,12 +59,14 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
     ): View {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
-        setViewModelData()
-
+        viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
         setViewModelData()
         if (hasData)
             getPetCount()
+        else
+        {
+            Log.d("model","${viewModel.staff}${viewModel.myPet}${viewModel.onlineAppointment}")
+        }
         binding.appointment.setOnClickListener()
         {
 
@@ -70,18 +78,18 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
             hasData = false
             loadFragment(Pet_Fragment())
         }
-
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
         return binding.root
+
+
     }
 
-    public fun setViewModelData() {
+   public fun setViewModelData() {
 
         binding.txtAppointment.text = viewModel.onlineAppointment
         binding.txtMyPets.text = viewModel.myPet
         binding.txtStaff.text = viewModel.staff
     }
-
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
@@ -112,7 +120,6 @@ class Home_Fragment : Fragment(R.layout.fragment_home_) {
                     viewModel.onlineAppointment =
                         response.body()?.data?.numberOfAppointments.toString()
                     viewModel.staff = response.body()?.data?.numberOfStaffs.toString()
-                    Log.d("res", "onResponse: ${response.body()?.data?.numberOfPets}")
                     binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text =
                         response.body()?.data?.numberOfAppointments.toString()

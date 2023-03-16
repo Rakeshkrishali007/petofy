@@ -2,14 +2,17 @@ package com.example.petofy.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
 import com.example.petofy.fragments.bashboardfragments.*
 import kotlin.properties.Delegates
 
-public  lateinit var fragment:Fragment
-public  var bool =false
+public lateinit var fragment: Fragment
+public var bool = false
+
 class DashBoardActivity : AppCompatActivity() {
     lateinit var binding: ActivityDashBoardBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,48 +22,42 @@ class DashBoardActivity : AppCompatActivity() {
 
         loadFragment(Home_Fragment())
         val fragment = supportFragmentManager.findFragmentById(R.id.container) as? Home_Fragment
-        bool=true
+        bool = true
         binding.bnView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nv_home -> {
-                    if(!bool)
-                    {
+                    if (!bool) {
                         loadFragment(Home_Fragment())
-                    }
-
-                    else
-                    {
                         fragment?.setViewModelData()
+                        Log.d("call","hello")
+                        hasData = false
                     }
-
-
-                    hasData=false
-
                     true
                 }
                 R.id.nv_dog -> {
-                    bool=false
+                    bool = false
                     loadFragment(Pet_Fragment())
-                    hasData=false
+                    hasData = false
 
                     true
                 }
                 R.id.nv_date -> {
-                    bool=false
+                    bool = false
                     loadFragment(CalenderFragment())
-                    hasData=false
+                    hasData = false
                     true
                 }
                 R.id.nv_user -> {
-                    bool=false
+                    bool = false
                     loadFragment(User_Fragment())
-                    hasData=false
+                    hasData = false
                     true
                 }
                 else -> false
             }
         }
     }
+
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = supportFragmentManager
         val fragmentTransaction = transactionManger.beginTransaction()

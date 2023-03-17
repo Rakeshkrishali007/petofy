@@ -27,5 +27,8 @@ interface ApiInterfaces {
 
     @POST("appointment/GetAppointmentByDate")
     fun getUpcomingRequest(@Header("Authorization",) token: String?,@Body petRequestUpcominig:PetRequestUpcominig):Call<PetResponseUpcoming>
+
+    @POST("staff/GetStaffList")
+    fun getStaffList(@Header("Authorization",) token: String?,@Body mystaffdata:MyStaffRequest):Call<MyStaffResponse>
 }
 

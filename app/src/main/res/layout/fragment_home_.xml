@@ -377,6 +377,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    android:id="@+id/staff"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"

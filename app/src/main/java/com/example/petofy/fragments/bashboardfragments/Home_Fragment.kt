@@ -1,6 +1,8 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
 import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.Classes.ViewModelObject.viewModel
+import com.example.petofy.activity.MyStaffActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
@@ -84,6 +87,11 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
             setViewModelData()
         }
 
+        binding.staff.setOnClickListener()
+        {
+            val intent= Intent(this@Home_Fragment.requireContext(),MyStaffActivity::class.java)
+            startActivity(intent)
+        }
         binding.appointment.setOnClickListener()
         {
 

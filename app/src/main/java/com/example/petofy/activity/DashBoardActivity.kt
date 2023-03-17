@@ -20,7 +20,7 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
         loadFragment(Home_Fragment())
 
-        val fragment=Home_Fragment.newInstance(toString(), toString())
+        val fragment=Home_Fragment.newInstance("hello", "hello")
         if(fragment==null)
         {
             Log.d("isnull","yes")
@@ -38,7 +38,7 @@ class DashBoardActivity : AppCompatActivity() {
 
                         loadFragment(Home_Fragment())
                         if (fragment != null) {
-                            fragment.setViewModelData()
+                            //fragment.setViewModelData()
                         } else {
                                 Log.d("null","mkdjfkjd")
                         }

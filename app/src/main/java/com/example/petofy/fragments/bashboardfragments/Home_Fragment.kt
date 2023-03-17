@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
 import com.example.petofy.Classes.HomeFragmentViewModel
+import com.example.petofy.Classes.ViewModelObject.viewModel
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
 import com.example.petofy.databinding.FragmentHomeBinding
@@ -20,6 +21,7 @@ import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
 
 
 public var hasData = true
@@ -28,6 +30,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
-    lateinit var viewModel: HomeFragmentViewModel
+
     var progressDialog: ProgressDialog? = null
 
 
@@ -69,14 +72,18 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
     ):View {
 
-        Log.d("tag", "come back")
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        if(viewModel==null)
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
+
         if (hasData) {
             getPetCount()
         }
+        else
+        {
+            setViewModelData()
+        }
 
-        setViewModelData()
         binding.appointment.setOnClickListener()
         {
 
@@ -94,10 +101,10 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
     public fun setViewModelData() {
 
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        binding.txtAppointment.text = viewModel.onlineAppointment
-        binding.txtMyPets.text = viewModel.myPet
-        binding.txtStaff.text = viewModel.staff
+      Log.d("yes1","hello")
+        binding.txtAppointment.text = viewModel?.onlineAppointment
+        binding.txtMyPets.text = viewModel?.myPet
+        binding.txtStaff.text = viewModel?.staff
 
     }
 
@@ -128,11 +135,10 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
             ) {
                 if (response.body() != null) {
                     binding.progressBar.visibility = View.INVISIBLE
-                    viewModel.myPet = response.body()?.data?.numberOfPets.toString()
-                    viewModel.onlineAppointment =
+                    viewModel?.myPet = response.body()?.data?.numberOfPets.toString()
+                    viewModel?.onlineAppointment =
                         response.body()?.data?.numberOfAppointments.toString()
-                    viewModel.staff = response.body()?.data?.numberOfStaffs.toString()
-                    viewModel.showData2()
+                    viewModel?.staff = response.body()?.data?.numberOfStaffs.toString()
                     binding.txtMyPets.text = response.body()?.data?.numberOfPets.toString()
                     binding.txtAppointment.text =
                         response.body()?.data?.numberOfAppointments.toString()

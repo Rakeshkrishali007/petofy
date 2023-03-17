@@ -10,16 +10,19 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petofy"
-        android:screenOrientation="landscape"
         tools:targetApi="31">
         <activity
-            android:name=".IsSearched"
+            android:name=".activity.PasswordChangedActivity"
             android:exported="false" />
         <activity
-            android:name=".date"
+            android:name=".activity.IsSearched"
             android:exported="false" />
+     <!--   <activity
+            android:name=".date"
+            android:exported="false" />-->
         <activity
             android:name=".activity.LogIn_Activity"
             android:exported="false" />

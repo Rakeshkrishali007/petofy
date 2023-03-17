@@ -21,7 +21,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18">
+        app:layout_constraintVertical_bias="0.18"
+        tools:ignore="NotSibling">
 
 
         <androidx.cardview.widget.CardView
@@ -180,6 +181,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:id="@+id/changePassword"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"

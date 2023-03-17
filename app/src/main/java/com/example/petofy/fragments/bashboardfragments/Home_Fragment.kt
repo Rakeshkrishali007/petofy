@@ -24,6 +24,7 @@ import retrofit2.Response
 
 public var hasData = true
 
+
 class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
 
@@ -81,7 +82,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
             loadFragment(Pet_Fragment())
         }
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
-        return binding.root
+         return  binding.root
     }
 
     public fun setViewModelData() {
@@ -96,6 +97,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container, fragment)
+
         fragmentTransaction?.addToBackStack(Home_Fragment().toString())
         fragmentTransaction?.commit()
     }
@@ -109,8 +111,8 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
         progressDialog!!.show()
 
 
-        val token = shrd.getString("valid", "null")
-        RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
+            val token = shrd.getString("valid", "null")
+            RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
                 call: Call<UserDashBoardCountResponse?>,
@@ -137,6 +139,5 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
             }
         })
     }
-
 
 }

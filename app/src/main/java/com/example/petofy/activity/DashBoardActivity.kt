@@ -18,7 +18,6 @@ class DashBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         loadFragment(Home_Fragment())
 
         val fragment = supportFragmentManager.findFragmentById(R.id.container ) as? Home_Fragment
@@ -27,6 +26,7 @@ class DashBoardActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nv_home -> {
                     if (!bool) {
+
                         loadFragment(Home_Fragment())
                         if (fragment != null) {
                             fragment.setViewModelData()

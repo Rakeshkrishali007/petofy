@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.petofy.R
 import com.example.petofy.activity.LogIn_Activity
+import com.example.petofy.activity.PasswordChangedActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.databinding.FragmentUserBinding
 
@@ -26,6 +27,12 @@ class User_Fragment : Fragment(R.layout.fragment_user_) {
     ): View? {
         binding= FragmentUserBinding.inflate(layoutInflater)
 
+        binding.changePassword.setOnClickListener()
+        {
+
+            val intent=Intent(this@User_Fragment.requireContext(),PasswordChangedActivity::class.java)
+            startActivity(intent)
+        }
         binding.logout.setOnClickListener()
         {
 

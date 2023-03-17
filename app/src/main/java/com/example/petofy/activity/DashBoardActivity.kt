@@ -20,9 +20,18 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(binding.root)
         loadFragment(Home_Fragment())
 
-        val fragment = supportFragmentManager.findFragmentById(R.id.container ) as? Home_Fragment
+        val fragment=Home_Fragment.newInstance(toString(), toString())
+        if(fragment==null)
+        {
+            Log.d("isnull","yes")
+        }
+        else
+        {
+            Log.d("isnull","no")
+        }
+      //  val fragment = supportFragmentManager.findFragmentById(R.id.container ) as? Home_Fragment
         bool = true
-        binding.bnView.setOnNavigationItemSelectedListener {
+        binding.bnView.setOnNavigationItemSelectedListener {null
             when (it.itemId) {
                 R.id.nv_home -> {
                     if (!bool) {

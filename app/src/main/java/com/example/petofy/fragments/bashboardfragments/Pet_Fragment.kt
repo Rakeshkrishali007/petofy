@@ -118,7 +118,6 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
                 }
             }
-
             override fun onFailure(call: Call<PetListResponse?>, t: Throwable) {
                 Log.d("error", "not running")
 

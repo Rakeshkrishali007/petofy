@@ -60,8 +60,8 @@
             app:cardCornerRadius="@dimen/_10sdp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/wave_icon" />
         </androidx.cardview.widget.CardView>
 
@@ -343,7 +343,7 @@
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/appointment" />
+                        android:src="@drawable/generate_bill" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -436,6 +436,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    android:id="@+id/record"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"

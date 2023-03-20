@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
 import com.example.petofy.Classes.HomeFragmentViewModel
@@ -24,7 +23,6 @@ import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
 
 
 public var hasData = true
@@ -68,6 +66,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
     var progressDialog: ProgressDialog? = null
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -86,6 +85,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
         {
             setViewModelData()
         }
+
 
         binding.staff.setOnClickListener()
         {

@@ -7,17 +7,19 @@
     tools:context=".activity.MyStaffActivity">
 
 
+
     <LinearLayout
-        android:id="@+id/linearLayout6"
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.0">
 
 
         <LinearLayout
@@ -30,11 +32,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="10dp"
 
                 >
-
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -52,37 +53,42 @@
                 android:layout_marginTop="10dp"
                 android:text="STAFF"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
 
                 />
 
         </LinearLayout>
 
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="415dp"
             android:layout_height="249dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/staff_groups" />
+            android:src="@drawable/staff_groups"
+            app:layout_constraintBottom_toTopOf="@+id/cardView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            app:layout_constraintVertical_bias="0.5" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="582dp"
+        android:layout_height="550dp"
         app:cardCornerRadius="50dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
         app:layout_constraintVertical_bias="0.5">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -130,7 +136,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout2"
                     android:layout_width="@dimen/_230sdp"
-                    android:layout_height="@dimen/_55sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal"
@@ -142,25 +148,21 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="@dimen/_220sdp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_100sdp"
-                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                        app:boxCornerRadiusBottomStart="@dimen/_7sdp"
-                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp">
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:hint="Search patient,pet etc"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="20dp"
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/search"
-                            android:layout_width="@dimen/_220sdp"
-                            android:layout_height="@dimen/_40sdp"
+                            android:layout_width="270dp"
+                            android:drawablePadding="10dp"
                             android:drawableStart="@drawable/search_icon"
-                            android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Search patient, pet etc"
-                            android:paddingTop="@dimen/_10sdp" />
+                            android:layout_height="50dp"
+                            android:inputType="textEmailAddress"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -182,13 +184,14 @@
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_40sdp"
                         app:cardBackgroundColor="#f6f6f6"
-                        app:cardCornerRadius="@dimen/_10sdp">
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        >
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_15sdp"
-                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="@dimen/_5sdp">
 

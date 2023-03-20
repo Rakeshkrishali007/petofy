@@ -6,6 +6,7 @@
 
     <application
         android:allowBackup="true"
+
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +18,7 @@
 
         <activity
             android:name=".activity.MyStaffActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".activity.PasswordChangedActivity"
@@ -24,11 +26,6 @@
         <activity
             android:name=".activity.IsSearched"
             android:exported="false" />
-        <!--
-   <activity
-            android:name=".date"
-            android:exported="false" />
-        -->
         <activity
             android:name=".activity.LogIn_Activity"
             android:exported="false" />

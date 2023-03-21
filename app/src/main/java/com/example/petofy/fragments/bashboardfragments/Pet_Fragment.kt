@@ -64,6 +64,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
                         if (visibleItemCount!! + pastVisibleItem >= total!!) {
 
+                            binding.progressBar.visibility=View.VISIBLE
                             page = page + 1
                             Log.d("count", "${page}")
                             if (page < 29) {
@@ -112,7 +113,6 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                     } else {
                         adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
                         binding.recycleView.adapter = adapter
-                        binding.petFragmentProgressBar.visibility = View.INVISIBLE
                     }
                     isLoading = false;
 

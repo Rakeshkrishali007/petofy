@@ -122,6 +122,11 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
         fragmentTransaction?.replace(R.id.container, fragment)
 
         fragmentTransaction?.addToBackStack(Home_Fragment().toString())
+        var count=transactionManger?.backStackEntryCount
+        for(i in 0 until count!! -1)
+        {
+            transactionManger?.popBackStack()
+        }
         fragmentTransaction?.commit()
     }
 

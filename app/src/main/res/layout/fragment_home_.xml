@@ -82,7 +82,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="@dimen/_220sdp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_55sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal"
@@ -120,7 +120,7 @@
 
     <LinearLayout
         android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -135,10 +135,10 @@
             app:cardCornerRadius="@dimen/_10sdp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/_5sdp">
 
@@ -160,10 +160,12 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_goneMarginTop="@dimen/_5sdp" />
 
     <ScrollView
@@ -376,8 +378,8 @@
 
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
                     android:id="@+id/staff"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -435,8 +437,8 @@
 
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
                     android:id="@+id/record"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"

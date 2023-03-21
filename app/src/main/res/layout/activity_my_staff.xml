@@ -7,22 +7,19 @@
     tools:context=".activity.MyStaffActivity">
 
 
-
     <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -60,9 +57,9 @@
 
         </LinearLayout>
 
-        <ImageView
+         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="415dp"
+            android:layout_width="match_parent"
             android:layout_height="249dp"
             android:src="@drawable/staff_groups"
             app:layout_constraintBottom_toTopOf="@+id/cardView3"
@@ -76,7 +73,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="590dp"
         app:cardCornerRadius="50dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +132,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="@dimen/_230sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -148,50 +145,34 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/LoginTextInputLayoutStyle"
-                        android:hint="Search patient,pet etc"
-                        android:layout_marginTop="5dp"
                         android:layout_marginStart="20dp"
-                        >
+                        android:layout_marginTop="5dp"
+                        android:hint="Search patient,pet etc">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="270dp"
-                            android:drawablePadding="10dp"
-                            android:drawableStart="@drawable/search_icon"
                             android:layout_height="50dp"
-                            android:inputType="textEmailAddress"
-                            />
+                            android:drawableStart="@drawable/search_icon"
+                            android:drawablePadding="10dp"
+                            android:inputType="textEmailAddress" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.493"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-                    app:layout_constraintVertical_bias="1.0">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
                         app:cardBackgroundColor="#f6f6f6"
-                        app:cardCornerRadius="@dimen/_10sdp"
-                        >
+                        app:cardCornerRadius="@dimen/_10sdp">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_1sdp"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="@dimen/_5sdp">
 
@@ -201,38 +182,58 @@
                                 android:src="@drawable/add" />
                         </androidx.cardview.widget.CardView>
                     </androidx.cardview.widget.CardView>
+
+
                 </LinearLayout>
+
+
             </LinearLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="34dp">
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp">
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerContainer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="@id/recycleView"
                     app:layout_constraintLeft_toLeftOf="@id/recycleView"
                     app:layout_constraintRight_toRightOf="@id/recycleView"
-                    app:layout_constraintTop_toTopOf="@id/recycleView"
-                    app:layout_constraintVertical_bias="0.397" />
+                    app:layout_constraintTop_toTopOf="@id/recycleView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/my_staff_shimmer" />
+
+                        <include layout="@layout/my_staff_shimmer" />
+
+                        <include layout="@layout/my_staff_shimmer" />
+
+                        <include layout="@layout/my_staff_shimmer" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/shimmerContainer"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="0.5">
+
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

@@ -34,6 +34,7 @@ class MyStaffActivity : AppCompatActivity() {
         binding=ActivityMyStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.recycleView.layoutManager=LinearLayoutManager(this)
+        binding.shimmerContainer.startShimmerAnimation()
         getStaff("1")
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -53,7 +54,6 @@ class MyStaffActivity : AppCompatActivity() {
                             count=count+1
                             page=count.toString()
                             if (count<6) {
-                                binding.progressBar.visibility = View.VISIBLE
                                 getStaff(page)
                             }
 
@@ -74,17 +74,18 @@ class MyStaffActivity : AppCompatActivity() {
             ) {
                if(response.body()!=null)
                {
+                   binding.shimmerContainer.visibility=View.INVISIBLE
+                   binding.shimmerContainer.stopShimmerAnimation()
                   val stafflist= response.body()?.data?.staffDetail
 
                    if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
 
                        newData = stafflist as ArrayList<MyStaffResponseStaffDetail>
                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(newData)
-                       binding.progressBar.visibility=View.INVISIBLE
                    } else {
                        adapter = MyStaffAdapter(stafflist as ArrayList<MyStaffResponseStaffDetail>)
                        binding.recycleView.adapter = adapter
-                       binding.progressBar.visibility = View.INVISIBLE
+
                    }
 
                }

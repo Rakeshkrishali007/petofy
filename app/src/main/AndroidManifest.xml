@@ -6,7 +6,6 @@
 
     <application
         android:allowBackup="true"
-
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -15,11 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Petofy"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MyRecordActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.MyStaffActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.PasswordChangedActivity"
             android:exported="false" />

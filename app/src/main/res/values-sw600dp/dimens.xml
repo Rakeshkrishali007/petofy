@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Small screen (phones) -->
+    <dimen name="text_size_xlarge" tools:ignore="MissingDefaultResource">20sp</dimen>
+
+
+</resources>

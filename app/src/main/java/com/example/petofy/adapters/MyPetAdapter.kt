@@ -1,5 +1,7 @@
 package com.example.petofy.getpetlist
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,12 +26,16 @@ class MyPetAdapter(var item: ArrayList<petlist_response_atributes>) : RecyclerVi
         item.addAll(newDataList)
         notifyDataSetChanged()
     }
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
       var current=item[position]
 
         holder.dogname.text=current.petName
         holder.dogdate.text=current.dateOfBirth
-        holder.petNumber.text=current.petUniqueId
+        val s1:String= current.petUniqueId.subSequence(0,5) as String
+        val l=current.petUniqueId.length
+        val s2=current.petUniqueId.subSequence(l-3,l) as String
+        holder.petNumber.text=  s1.plus(" ").plus(s2)
         holder.owner.text=current.petParentName
     }
 

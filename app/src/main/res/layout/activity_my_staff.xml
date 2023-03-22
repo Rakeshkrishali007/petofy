@@ -61,6 +61,7 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="249dp"
+             android:layout_marginTop="5dp"
             android:src="@drawable/staff_groups"
             app:layout_constraintBottom_toTopOf="@+id/cardView3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +103,7 @@
                     android:layout_marginStart="40dp"
                     android:text="You have total "
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -111,7 +112,7 @@
                     android:layout_marginStart="1dp"
                     android:text="38"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
                 <TextView
@@ -120,51 +121,43 @@
                     android:layout_marginStart="5dp"
                     android:text="staff registered"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
             </LinearLayout>
 
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search"
+                    android:layout_width="300dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:queryHint="Search here ..." />
+
+
+
+
+
                 <LinearLayout
-                    android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toTopOf="@id/textView4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.076"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/have_a">
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/LoginTextInputLayoutStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Search patient,pet etc">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="270dp"
-                            android:layout_height="50dp"
-                            android:drawableStart="@drawable/search_icon"
-                            android:drawablePadding="10dp"
-                            android:inputType="textEmailAddress" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
+                    >
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
+                        android:id="@+id/addStaff"
                         android:layout_height="@dimen/_40sdp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
                         app:cardBackgroundColor="#f6f6f6"
                         app:cardCornerRadius="@dimen/_10sdp">
 
@@ -182,10 +175,7 @@
                                 android:src="@drawable/add" />
                         </androidx.cardview.widget.CardView>
                     </androidx.cardview.widget.CardView>
-
-
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -198,42 +188,54 @@
                 android:layout_marginEnd="5dp">
 
                 <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmerContainer"
                     android:layout_width="match_parent"
+                    android:id="@+id/shimmerContainer"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@id/recycleView"
-                    app:layout_constraintLeft_toLeftOf="@id/recycleView"
+                   app:layout_constraintLeft_toLeftOf="@id/recycleView"
                     app:layout_constraintRight_toRightOf="@id/recycleView"
-                    app:layout_constraintTop_toTopOf="@id/recycleView">
+                    app:layout_constraintTop_toTopOf="@id/recycleView"
+                    app:layout_constraintBottom_toBottomOf="@id/recycleView"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        >
 
-                        <include layout="@layout/my_staff_shimmer" />
-
-                        <include layout="@layout/my_staff_shimmer" />
-
-                        <include layout="@layout/my_staff_shimmer" />
-
-                        <include layout="@layout/my_staff_shimmer" />
+                        <include layout="@layout/my_staff_shimmer"/>
+                        <include layout="@layout/my_staff_shimmer"/>
+                        <include layout="@layout/my_staff_shimmer"/>
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/shimmerContainer"
+                    android:layout_height="470dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:paddingBottom="60dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5">
+                    app:layout_constraintVertical_bias="1.0" />
 
-                </LinearLayout>
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:id="@+id/progressBar"
+                    android:visibility="invisible"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/recycleView"
+                    app:layout_constraintBottom_toBottomOf="@id/recycleView"
+                    app:layout_constraintLeft_toLeftOf="@id/recycleView"
+                    app:layout_constraintRight_toRightOf="@id/recycleView"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

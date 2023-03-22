@@ -15,7 +15,10 @@
         android:theme="@style/Theme.Petofy"
         tools:targetApi="31">
         <activity
-            android:name=".MyRecordActivity"
+            android:name=".activity.AddStaffActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyRecordActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MyStaffActivity"

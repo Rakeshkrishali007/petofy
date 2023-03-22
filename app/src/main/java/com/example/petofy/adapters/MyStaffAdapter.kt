@@ -1,5 +1,6 @@
 package com.example.petofy.adapters
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
-import com.example.petofy.apiResponse.petlist_response_atributes
 
-class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>,) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
-
+class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
 
 
+   // private var filteredList: MutableList<MyStaffResponseStaffDetail> = item.toMutableList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.staff_resource_file,parent,false)
         return ViewHolder(view)
@@ -20,6 +20,11 @@ class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>,) : Recycle
 
     override fun getItemCount(): Int {
        return  item.size
+    }
+
+    fun setData(newList: List<MyStaffResponseStaffDetail>) {
+       item.addAll(newList)
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,7 +37,7 @@ class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>,) : Recycle
     }
 
     fun appendData(newData: ArrayList<MyStaffResponseStaffDetail>) {
-        item.addAll(newData)
+        item=newData
         notifyDataSetChanged()
 
     }

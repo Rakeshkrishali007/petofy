@@ -18,5 +18,6 @@ object RetrofitClient {
     val petpendingintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val petupcomingintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val staffintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
+    val addstaffintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
 }
 

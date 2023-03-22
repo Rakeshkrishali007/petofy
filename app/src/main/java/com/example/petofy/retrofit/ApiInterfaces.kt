@@ -30,5 +30,8 @@ interface ApiInterfaces {
 
     @POST("staff/GetStaffList")
     fun getStaffList(@Header("Authorization",) token: String?,@Body mystaffdata:MyStaffRequest):Call<MyStaffResponse>
+
+    @POST("staff/AddStaff")
+    fun addStaff(@Header("Authorization",) token: String?,@Body addStaffRequest: AddStaffRequest):Call<AddStaffResponse>
 }
 

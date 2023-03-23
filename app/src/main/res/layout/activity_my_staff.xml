@@ -19,13 +19,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-          <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
+                android:id="@+id/backPressed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -33,6 +33,7 @@
                 app:cardCornerRadius="10dp"
 
                 >
+
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -57,11 +58,11 @@
 
         </LinearLayout>
 
-         <ImageView
+        <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="249dp"
-             android:layout_marginTop="5dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/staff_groups"
             app:layout_constraintBottom_toTopOf="@+id/cardView3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +127,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
@@ -137,35 +137,40 @@
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/search"
                     android:layout_width="300dp"
-                    android:layout_marginTop="5dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/edit_text_outline"
                     app:iconifiedByDefault="false"
                     app:queryBackground="@android:color/transparent"
                     app:queryHint="Search here ..." />
 
 
-
-
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="5dp"
-                    android:orientation="horizontal"
-                    >
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
                     <androidx.cardview.widget.CardView
-                        android:layout_width="@dimen/_50sdp"
                         android:id="@+id/addStaff"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_40sdp"
                         app:cardBackgroundColor="#f6f6f6"
                         app:cardCornerRadius="@dimen/_10sdp">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_width="60dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="@dimen/_5sdp">
 
@@ -188,24 +193,24 @@
                 android:layout_marginEnd="5dp">
 
                 <com.facebook.shimmer.ShimmerFrameLayout
-                    android:layout_width="match_parent"
                     android:id="@+id/shimmerContainer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   app:layout_constraintLeft_toLeftOf="@id/recycleView"
-                    app:layout_constraintRight_toRightOf="@id/recycleView"
-                    app:layout_constraintTop_toTopOf="@id/recycleView"
                     app:layout_constraintBottom_toBottomOf="@id/recycleView"
-                    >
+                    app:layout_constraintLeft_toLeftOf="@id/recycleView"
+                    app:layout_constraintRight_toRightOf="@id/recycleView"
+                    app:layout_constraintTop_toTopOf="@id/recycleView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
-                        <include layout="@layout/my_staff_shimmer"/>
-                        <include layout="@layout/my_staff_shimmer"/>
-                        <include layout="@layout/my_staff_shimmer"/>
+                        <include layout="@layout/my_staff_shimmer" />
+
+                        <include layout="@layout/my_staff_shimmer" />
+
+                        <include layout="@layout/my_staff_shimmer" />
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -227,15 +232,14 @@
 
 
                 <ProgressBar
-                    android:layout_width="wrap_content"
                     android:id="@+id/progressBar"
-                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/recycleView"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/recycleView"
                     app:layout_constraintLeft_toLeftOf="@id/recycleView"
                     app:layout_constraintRight_toRightOf="@id/recycleView"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/recycleView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

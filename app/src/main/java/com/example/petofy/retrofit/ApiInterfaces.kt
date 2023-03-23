@@ -33,5 +33,9 @@ interface ApiInterfaces {
 
     @POST("staff/AddStaff")
     fun addStaff(@Header("Authorization",) token: String?,@Body addStaffRequest: AddStaffRequest):Call<AddStaffResponse>
+
+    @POST("staff/ChangeStatus")
+    fun changeStaffStatus(@Header("Authorization",) token: String?,@Body changedStaffStatusRequest: ChangedStaffStatusRequest):Call<ChangeStaffStatusResponse>
+
 }
 

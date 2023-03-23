@@ -23,6 +23,10 @@ class AddStaffActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityAddStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.backPressed.setOnClickListener()
+        {
+            onBackPressed()
+        }
         val status = arrayOf("Dr.", "Mrs.", "Mr.", "Miss.")
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, status)
@@ -32,7 +36,6 @@ class AddStaffActivity : AppCompatActivity() {
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                Toast.makeText(this@AddStaffActivity, "Selected item: $selectedItem", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -58,13 +61,16 @@ class AddStaffActivity : AppCompatActivity() {
         val lastname=binding.lastname.text.toString()
         val email=binding.email.text.toString()
         val password=binding.password.text.toString()
+
+
         val confirmpassword=binding.confirmpassword.text.toString()
         val phone=binding.phonenumber.text.toString()
         val quli=binding.qualification.text.toString()
         val regis=binding.resgisnumer.text.toString()
         val ini=binding.spinner.selectedItem.toString()
-      //  confirmpassword,"false",email,firstname,ini,lastname,password,phone,quli,regis
-        RetrofitClient.addstaffintance.addStaff(token, AddStaffRequest(AddStaffData("123321","false","email@gmail.com","fifa","Dr.","word","123321","9879876545","kjfkj","kfjkdjfks;j"))).enqueue(object : Callback<AddStaffResponse?> {
+        Log.d("pass","${password},${ firstname},${ lastname},${ email},${ phone},${ quli},${ regis},${ ini}")
+      //
+        RetrofitClient.addstaffintance.addStaff(token, AddStaffRequest(AddStaffData( confirmpassword.toString(),"false",email.toString(),firstname.toString(),ini.toString(),lastname.toString(),password.toString(),phone.toString(),quli.toString(),regis.toString()))).enqueue(object : Callback<AddStaffResponse?> {
             override fun onResponse(
                 call: Call<AddStaffResponse?>,
                 response: Response<AddStaffResponse?>
@@ -73,8 +79,13 @@ class AddStaffActivity : AppCompatActivity() {
                 {
 
                 Toast.makeText(this@AddStaffActivity,"${response.body()!!.response.responseMessage}",Toast.LENGTH_SHORT).show()
-                    res= response.body()!!.response.responseMessage
+                    Log.d("res","success")
+                    Log.d("res","${response.body()!!.data.fullName}")
 
+                }
+                else
+                {
+                    Log.d("res","null")
                 }
 
 

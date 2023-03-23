@@ -2,6 +2,7 @@ package com.example.petofy.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 object RetrofitClient {
 
@@ -19,5 +20,6 @@ object RetrofitClient {
     val petupcomingintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val staffintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
     val addstaffintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
+    val changestatusintance=RetrofitClient.retrofit.create(ApiInterfaces::class.java)
 }
 

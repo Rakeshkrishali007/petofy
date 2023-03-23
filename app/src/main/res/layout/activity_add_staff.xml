@@ -25,14 +25,15 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
+                android:id="@+id/backPressed"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 app:cardCornerRadius="10dp"
 
                 >
+
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -83,6 +84,7 @@
                     <Spinner
                         android:layout_width="150dp"
                         android:layout_marginStart="20dp"
+                        android:background="@drawable/outline_resource"
                         android:id="@+id/spinner"
                         android:layout_height="50dp"/>
                 <TextView
@@ -123,14 +125,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="Last Name">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/lastname"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -148,14 +151,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="Email">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/email"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -173,14 +177,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="* * * * * * *">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/password"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -197,14 +202,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="* * * * * * *">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/confirmpassword"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -222,14 +228,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="Phone Number">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/phonenumber"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -246,14 +253,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="Qualification">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/qualification"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -271,14 +279,15 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:hint="Registration Number">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:id="@+id/resgisnumer"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
@@ -299,7 +308,7 @@
         android:layout_marginStart="10dp"
         android:background="@drawable/round_corners"
         android:layout_marginEnd="10dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:id="@+id/addStaff"
         android:text="Add Staff"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
 
-class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
+class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>,private val listener:ActiveClicked) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
 
 
    // private var filteredList: MutableList<MyStaffResponseStaffDetail> = item.toMutableList()
@@ -34,6 +34,17 @@ class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>) : Recycler
         holder.staffstudy.text=currentData.vetQualification
         holder.stafflastname.text=currentData.lastName
         holder.phonenumber.text=currentData.phoneNumber
+        holder.status.setOnClickListener()
+        {
+          listener.itemClicked(holder.status,currentData.encryptedId)
+
+        }
+        holder.viewDetails.setOnClickListener()
+        {
+
+            listener.vieDetailsClicked(holder.viewDetails,currentData.firstName,currentData.lastName,currentData.email,currentData.vetQualification,currentData.phoneNumber)
+        }
+
     }
 
     fun appendData(newData: ArrayList<MyStaffResponseStaffDetail>) {
@@ -49,6 +60,21 @@ class MyStaffAdapter(var item: ArrayList<MyStaffResponseStaffDetail>) : Recycler
         var staffstudy=itemView.findViewById<TextView>(R.id.staff_study)
         var staffemail=itemView.findViewById<TextView>(R.id.staff_email)
         var phonenumber=itemView.findViewById<TextView>(R.id.phonenumber)
+        var status=itemView.findViewById<TextView>(R.id.staff_status)
+        var viewDetails=itemView.findViewById<TextView>(R.id.viewDetails)
     }
 
+}
+
+interface ActiveClicked
+{
+    fun itemClicked(active: TextView, encryptedId: String)
+    fun vieDetailsClicked(
+        viewdetails: TextView,
+        firstName: String,
+        lastName: String?,
+        email: String,
+        vetQualification: String?,
+        phoneNumber: String?
+    )
 }

@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
@@ -25,6 +27,7 @@ import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 import kotlin.collections.ArrayList
 
 var status=false
@@ -45,6 +48,24 @@ class MyStaffActivity : AppCompatActivity() {
         binding.recycleView.layoutManager=LinearLayoutManager(this)
         binding.shimmerContainer.startShimmerAnimation()
         getStaff("1")
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+               return  false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filterData= ArrayList<MyStaffResponseStaffDetail>()
+                for (item in stafflist)
+                {
+                    if(item.firstName.toLowerCase(Locale.ROOT).contains(newText.toString()))
+                    {
+                        filterData.add(item)
+                    }
+                }
+                adapter.FilterData(filterData)
+                return  true
+            }
+        })
         binding.backPressed.setOnClickListener()
         {
             onBackPressed()
@@ -109,7 +130,7 @@ class MyStaffActivity : AppCompatActivity() {
 
                    if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
 
-                       newData = stafflist
+                       newData = stafflist as ArrayList<MyStaffResponseStaffDetail>
                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(newData)
                        binding.progressBar.visibility=View.INVISIBLE
                    } else {

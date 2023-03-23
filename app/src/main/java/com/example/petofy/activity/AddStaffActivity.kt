@@ -21,7 +21,7 @@ class AddStaffActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddStaffBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityAddStaffBinding.inflate(layoutInflater)
+        binding = ActivityAddStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.backPressed.setOnClickListener()
         {
@@ -31,10 +31,15 @@ class AddStaffActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, status)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter=adapter
+        binding.spinner.adapter = adapter
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
             }
 
@@ -49,50 +54,61 @@ class AddStaffActivity : AppCompatActivity() {
         }
 
 
-
-
     }
 
     private fun addNewStaff() {
 
-        var res=""
+        var res = ""
         val token = shrd.getString("valid", "null")
-        val firstname=binding.firstname.text.toString()
-        val lastname=binding.lastname.text.toString()
-        val email=binding.email.text.toString()
-        val password=binding.password.text.toString()
-
-
-        val confirmpassword=binding.confirmpassword.text.toString()
-        val phone=binding.phonenumber.text.toString()
-        val quli=binding.qualification.text.toString()
-        val regis=binding.resgisnumer.text.toString()
-        val ini=binding.spinner.selectedItem.toString()
-        Log.d("pass","${password},${ firstname},${ lastname},${ email},${ phone},${ quli},${ regis},${ ini}")
-      //
-        RetrofitClient.addstaffintance.addStaff(token, AddStaffRequest(AddStaffData( confirmpassword.toString(),"false",email.toString(),firstname.toString(),ini.toString(),lastname.toString(),password.toString(),phone.toString(),quli.toString(),regis.toString()))).enqueue(object : Callback<AddStaffResponse?> {
+        val firstname = binding.firstname.text.toString()
+        val lastname = binding.lastname.text.toString()
+        val email = binding.email.text.toString()
+        val password = binding.password.text.toString()
+        val confirmpassword = binding.confirmpassword.text.toString()
+        val phone = binding.phonenumber.text.toString()
+        val quli = binding.qualification.text.toString()
+        val regis = binding.resgisnumer.text.toString()
+        val ini = binding.spinner.selectedItem.toString()
+        RetrofitClient.addstaffintance.addStaff(
+            token,
+            AddStaffRequest(
+                AddStaffData(
+                    confirmpassword.toString(),
+                    "false",
+                    email.toString(),
+                    firstname.toString(),
+                    ini.toString(),
+                    lastname.toString(),
+                    password.toString(),
+                    phone.toString(),
+                    quli.toString(),
+                    regis.toString()
+                )
+            )
+        ).enqueue(object : Callback<AddStaffResponse?> {
             override fun onResponse(
                 call: Call<AddStaffResponse?>,
                 response: Response<AddStaffResponse?>
             ) {
-                if(response.body()!=null)
-                {
+                if (response.body() != null) {
 
-                Toast.makeText(this@AddStaffActivity,"${response.body()!!.response.responseMessage}",Toast.LENGTH_SHORT).show()
-                    Log.d("res","success")
-                    Log.d("res","${response.body()!!.data.fullName}")
+                    Toast.makeText(
+                        this@AddStaffActivity,
+                        "${response.body()!!.response.responseMessage}",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                }
-                else
-                {
-                    Log.d("res","null")
+
+                } else {
+                    Log.d("res", "null")
                 }
 
 
             }
 
             override fun onFailure(call: Call<AddStaffResponse?>, t: Throwable) {
-                Log.d("res","error")
+                Toast.makeText(this@AddStaffActivity, "Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }

@@ -154,6 +154,7 @@
             <LinearLayout
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="50dp"
+                android:id="@+id/numberView"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="30dp"
@@ -190,6 +191,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="@dimen/_200sdp"
+                android:id="@+id/studyView"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -228,6 +230,7 @@
 
             <LinearLayout
                 android:layout_width="@dimen/_200sdp"
+                android:id="@+id/resView"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="30dp"

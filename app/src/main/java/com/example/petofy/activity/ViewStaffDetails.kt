@@ -3,6 +3,7 @@ package com.example.petofy.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityViewStaffDetailsBinding
 
@@ -22,6 +23,14 @@ class ViewStaffDetails : AppCompatActivity() {
         val email=intent.getStringExtra("Email")
         val study=intent.getStringExtra("Study")
         val number =intent.getStringExtra("PhoneNumber")
+        if(number==null)
+        {
+            binding.numberView.visibility=View.INVISIBLE
+        }
+        if(study==null)
+        {
+            binding.studyView.visibility=View.INVISIBLE
+        }
         if(lastname!=null)
          fullname=firstname+" "+lastname
         else

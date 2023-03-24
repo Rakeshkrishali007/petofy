@@ -69,7 +69,7 @@ class AddStaffActivity : AppCompatActivity() {
         val quli = binding.qualification.text.toString()
         val regis = binding.resgisnumer.text.toString()
         val ini = binding.spinner.selectedItem.toString()
-        RetrofitClient.addstaffintance.addStaff(
+        RetrofitClient.apiInterface.addStaff(
             token,
             AddStaffRequest(
                 AddStaffData(

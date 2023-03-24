@@ -1,6 +1,7 @@
 package com.example.petofy.adapters
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,10 +38,18 @@ class MyStaffAdapter(
         holder.staffstudy.text = currentData.vetQualification
         holder.stafflastname.text = currentData.lastName
         holder.phonenumber.text = currentData.phoneNumber
+        Log.d("check","${currentData.isActive},${currentData.email},${currentData.encryptedId}")
         holder.status.setOnClickListener()
         {
             listener.itemClicked(holder.status, currentData.encryptedId)
-
+        }
+        if(currentData.isActive==true)
+        {
+            listener.State(true,holder.status)
+        }
+        else
+        {
+            listener.State(false,holder.status)
         }
         holder.viewDetails.setOnClickListener()
         {
@@ -63,7 +72,7 @@ class MyStaffAdapter(
     }
 
     fun appendData(newData: ArrayList<MyStaffResponseStaffDetail>) {
-        item = newData
+        item.addAll(newData)
         notifyDataSetChanged()
 
     }
@@ -90,4 +99,5 @@ interface ActiveClicked {
         vetQualification: String?,
         phoneNumber: String?
     )
+    fun State(b: Boolean, status: TextView)
 }

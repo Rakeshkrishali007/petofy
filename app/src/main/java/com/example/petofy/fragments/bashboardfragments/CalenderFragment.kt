@@ -54,7 +54,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
 
     private fun getUpcoming() {
         val token= shrd.getString("valid","null")
-        RetrofitClient.petupcomingintance.getUpcomingRequest(token, PetRequestUpcominig(
+        RetrofitClient.apiInterface.getUpcomingRequest(token, PetRequestUpcominig(
             PetRequestUpcominigData("20/03/2023")
         )).enqueue(object : Callback<PetResponseUpcoming?> {
             override fun onResponse(
@@ -79,7 +79,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
 
     private fun getPendingRequest() {
         val token= shrd.getString("valid","null")
-      RetrofitClient.petpendingintance.getPendinRequest( token, PetPendingRequest(
+      RetrofitClient.apiInterface.getPendinRequest( token, PetPendingRequest(
           PetPendingRequestData("06/03/2023","06/04/2023")
       )).enqueue(object : Callback<PetPendingResponse?> {
 

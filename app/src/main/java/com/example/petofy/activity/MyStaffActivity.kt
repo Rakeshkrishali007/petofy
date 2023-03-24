@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -30,49 +29,47 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-var status=false
+var status = false
+
 class MyStaffActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyStaffBinding
     var isLoading = false
-    lateinit var  stafflist:ArrayList<MyStaffResponseStaffDetail>
+    lateinit var stafflist: ArrayList<MyStaffResponseStaffDetail>
     var page = "1"
-    var count=1
-    lateinit var adapter:MyStaffAdapter
+    var count = 1
+    lateinit var adapter: MyStaffAdapter
     var newData = ArrayList<MyStaffResponseStaffDetail>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityMyStaffBinding.inflate(layoutInflater)
+        binding = ActivityMyStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.recycleView.layoutManager=LinearLayoutManager(this)
+        binding.recycleView.layoutManager = LinearLayoutManager(this)
         binding.shimmerContainer.startShimmerAnimation()
         getStaff("1")
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-               return  false
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val filterData= ArrayList<MyStaffResponseStaffDetail>()
-                for (item in stafflist)
-                {
-                    if(item.firstName.toLowerCase(Locale.ROOT).contains(newText.toString()))
-                    {
+                val filterData = ArrayList<MyStaffResponseStaffDetail>()
+                for (item in stafflist) {
+                    if (item.firstName.toLowerCase(Locale.ROOT).contains(newText.toString())) {
                         filterData.add(item)
                     }
                 }
                 adapter.FilterData(filterData)
-                return  true
+                return true
             }
         })
-        binding.backPressed.setOnClickListener()
-        {
+        binding.backPressed.setOnClickListener() {
+
             onBackPressed()
         }
-        binding.addStaff.setOnClickListener()
-        {
-            val intent= Intent(this@MyStaffActivity,AddStaffActivity::class.java)
+        binding.addStaff.setOnClickListener() {
+            val intent = Intent(this@MyStaffActivity, AddStaffActivity::class.java)
             startActivity(intent)
         }
 
@@ -89,17 +86,16 @@ class MyStaffActivity : AppCompatActivity() {
 
                         if (visibleItemCount!! + pastVisibleItem >= total!!) {
 
-                           binding.progressBar.visibility=View.VISIBLE
+                            binding.progressBar.visibility = View.VISIBLE
 
-                            page=""
-                            count=count+1
-                            page=count.toString()
-                            if (count<6) {
+                            page = ""
+                            count = count + 1
+                            page = count.toString()
+                            Log.d("count", "${count},${page}")
+                            if (count < 6) {
                                 getStaff(page)
-                            }
-                            else
-                            {
-                               binding.progressBar.visibility=View.INVISIBLE
+                            } else {
+                                binding.progressBar.visibility = View.INVISIBLE
                             }
 
                         }
@@ -112,57 +108,56 @@ class MyStaffActivity : AppCompatActivity() {
     }
 
 
-
     private fun getStaff(page: String) {
         val token = shrd.getString("valid", "null")
-        RetrofitClient.staffintance.getStaffList(token, MyStaffRequest(MyStaffRequestData(page,"10",""))).enqueue(object : Callback<MyStaffResponse?>,
-            ActiveClicked {
+        RetrofitClient.apiInterface.getStaffList(
+            token, MyStaffRequest(MyStaffRequestData(page, "10", ""))
+        ).enqueue(object : Callback<MyStaffResponse?>, ActiveClicked {
             override fun onResponse(
-                call: Call<MyStaffResponse?>,
-                response: Response<MyStaffResponse?>
+                call: Call<MyStaffResponse?>, response: Response<MyStaffResponse?>
             ) {
-               if(response.body()!=null)
-               {
-                   binding.shimmerContainer.visibility=View.INVISIBLE
-                   binding.shimmerContainer.stopShimmerAnimation()
-                   stafflist= response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
+
+                if (response.body() != null) {
+                    binding.shimmerContainer.visibility = View.INVISIBLE
+                    binding.shimmerContainer.stopShimmerAnimation()
+
+                    stafflist =
+                        response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
 
 
-                   if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
 
-                       newData = stafflist as ArrayList<MyStaffResponseStaffDetail>
-                       (binding.recycleView.adapter as MyStaffAdapter)?.appendData(newData)
-                       binding.progressBar.visibility=View.INVISIBLE
-                   } else {
-                       adapter = MyStaffAdapter(stafflist ,this)
-                       binding.recycleView.adapter = adapter
-                       binding.progressBar.visibility=View.INVISIBLE
+                    if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
 
-                   }
+                        newData = stafflist
+                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(newData)
+                        binding.progressBar.visibility = View.INVISIBLE
+                    } else {
+                        adapter = MyStaffAdapter(stafflist, this)
+                        binding.recycleView.adapter = adapter
+                        binding.progressBar.visibility = View.INVISIBLE
 
-               }
+                    }
+
+                }
             }
+
             override fun onFailure(call: Call<MyStaffResponse?>, t: Throwable) {
-              Toast.makeText(this@MyStaffActivity,"error",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MyStaffActivity, "error", Toast.LENGTH_SHORT).show()
             }
 
             override fun itemClicked(active: TextView, encryptedId: String) {
-                if(active.text=="Active")
-                {
-                    Log.d("id","${encryptedId}")
-
-                   active.setTextColor(Color.parseColor("#FF0000"))
-                    active.text="Deactive"
-                    active.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down_arrow_red,0)
-                    changeStatus(false,encryptedId)
-                    Toast.makeText(this@MyStaffActivity, "status changed successfully", Toast.LENGTH_SHORT).show()
-                }
-                else
-                {
+                if (active.text.toString() == "Active") {
+                    Log.d("id", "${encryptedId}")
+                    active.setTextColor(Color.parseColor("#FF0000"))
+                    active.text = "Deactive"
+                    active.setCompoundDrawablesWithIntrinsicBounds(
+                        0, 0, R.drawable.down_arrow_red, 0
+                    )
+                    changeStatus(false, encryptedId)
+                } else {
                     active.setTextColor(Color.parseColor("#47B84B"))
-                    active.text="Active"
-                    active.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.down_arrow,0)
-                    Toast.makeText(this@MyStaffActivity, "status changed successfully", Toast.LENGTH_SHORT).show()
+                    active.text = "Active"
+                    active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
                     changeStatus(true, encryptedId)
                 }
 
@@ -177,32 +172,57 @@ class MyStaffActivity : AppCompatActivity() {
                 phoneNumber: String?
             ) {
 
-                val intent=Intent(this@MyStaffActivity,ViewStaffDetails::class.java)
-                intent.putExtra("Firstname",firstName)
-                intent.putExtra("Lastname",lastName)
-                intent.putExtra("Email",email)
-                intent.putExtra("Study",vetQualification)
-                intent.putExtra("PhoneNumber",phoneNumber)
+                val intent = Intent(this@MyStaffActivity, ViewStaffDetails::class.java)
+                intent.putExtra("Firstname", firstName)
+                intent.putExtra("Lastname", lastName)
+                intent.putExtra("Email", email)
+                intent.putExtra("Study", vetQualification)
+                intent.putExtra("PhoneNumber", phoneNumber)
 
                 startActivity(intent);
+            }
+
+            override fun State(b: Boolean, status: TextView) {
+                CheckState(b, status)
             }
         })
 
     }
+    //NjZhOGNjY2QtYTVmZC00ZjVhLTk1MDMtYjY5MmI1MGRmY2Yz
+
+    fun CheckState(b: Boolean, status: TextView) {
+        if (b == true) {
+            status.setTextColor(Color.parseColor("#47B84B"))
+            status.text = "Active"
+            status.setCompoundDrawablesWithIntrinsicBounds(
+                0, 0, R.drawable.down_arrow, 0
+            )
+        } else {
+
+            status.setTextColor(Color.parseColor("#FF0000"))
+            status.text = "Deactive"
+            status.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow_red, 0)
+        }
+
+
+    }
 
     private fun changeStatus(status: Boolean, encryptedId: String) {
-        RetrofitClient.changestatusintance.changeStaffStatus(token, ChangedStaffStatusRequest(
-            ChangeStaffStatusData(encryptedId, status)
-        )).enqueue(object : Callback<ChangeStaffStatusResponse?> {
+        RetrofitClient.apiInterface.changeStaffStatus(
+            token, ChangedStaffStatusRequest(
+                ChangeStaffStatusData(encryptedId, status)
+            )
+        ).enqueue(object : Callback<ChangeStaffStatusResponse?> {
             override fun onResponse(
                 call: Call<ChangeStaffStatusResponse?>,
                 response: Response<ChangeStaffStatusResponse?>
             ) {
-                 if(response.body()!=null)
-                 {
-                     Log.d("id","$encryptedId")
-                     Log.d("state","${response.body()!!.data.isActive}")
-                 }
+                if (response.body() != null) {
+                    Log.d("stateres", "${response!!.body()?.data?.isActive},${encryptedId}")
+                    Toast.makeText(
+                        this@MyStaffActivity, "Status changed successfully", Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {

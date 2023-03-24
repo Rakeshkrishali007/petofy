@@ -140,7 +140,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
 
             val token = shrd.getString("valid", "null")
-            RetrofitClient.dashBoardCountInstance.GetDashBoardCount(token).enqueue(object :
+            RetrofitClient.apiInterface.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
                 call: Call<UserDashBoardCountResponse?>,

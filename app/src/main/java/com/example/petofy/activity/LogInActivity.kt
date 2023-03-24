@@ -57,7 +57,7 @@ class LogIn_Activity : AppCompatActivity() {
     }
 
     private fun logIn() {
-        RetrofitClient.logInterface.login(Login_Request(login_request_fields(email, password)))
+        RetrofitClient.apiInterface.login(Login_Request(login_request_fields(email, password)))
             .enqueue(object : Callback<LogIn_Response?> {
                 override fun onResponse(
                     call: Call<LogIn_Response?>, response: Response<LogIn_Response?>

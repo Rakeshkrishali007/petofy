@@ -89,7 +89,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
 
         val token = shrd.getString("valid", "null")
-        RetrofitClient.petlistintanse.getPetList(
+        RetrofitClient.apiInterface.getPetList(
             token,
             PetListRequest(petlist_request_feilds(pageNumber, 20, ""))
         ).enqueue(object :

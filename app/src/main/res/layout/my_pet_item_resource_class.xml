@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/_190sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_100sdp"
                 android:orientation="horizontal">
 
@@ -96,13 +96,20 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
                 android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/_99sdp"
                     android:layout_height="@dimen/_29sdp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginTop="@dimen/_25sdp"
                     app:cardBackgroundColor="#fff3eb"
                     app:cardCornerRadius="@dimen/_5sdp">

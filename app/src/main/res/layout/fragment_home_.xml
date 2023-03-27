@@ -93,7 +93,24 @@
         app:layout_constraintTop_toBottomOf="@id/have_a">
 
 
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_outline"
+            app:iconifiedByDefault="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="Search here ..." />
+
+       <!-- <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_220sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
@@ -113,7 +130,7 @@
                 android:drawablePadding="@dimen/_10sdp"
                 android:hint="Search patient, pet etc"
                 android:paddingTop="@dimen/_10sdp" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>-->
 
     </LinearLayout>
 

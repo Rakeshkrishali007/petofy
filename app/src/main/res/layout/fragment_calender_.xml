@@ -139,6 +139,7 @@
 
                             <com.harrywhewell.scrolldatepicker.DayScrollDatePicker
                                 android:layout_width="match_parent"
+                                android:visibility="invisible"
                                 android:layout_height="@dimen/_90sdp" />
                         </LinearLayout>
                     </LinearLayout>

@@ -1,17 +1,20 @@
-package com.example.petofy.activity
+package com.example.petofy.fragments.bashboardfragments
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
-import com.example.petofy.adapters.ActiveClicked
+import com.example.petofy.activity.MyStaffActivity
+import com.example.petofy.activity.shrd
 import com.example.petofy.adapters.MyStaffAdapter
 import com.example.petofy.apiRequest.ChangeStaffStatusData
 import com.example.petofy.apiRequest.ChangedStaffStatusRequest
@@ -20,7 +23,7 @@ import com.example.petofy.apiRequest.MyStaffRequestData
 import com.example.petofy.apiResponse.ChangeStaffStatusResponse
 import com.example.petofy.apiResponse.MyStaffResponse
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
-import com.example.petofy.databinding.ActivityMyStaffBinding
+import com.example.petofy.databinding.FragmentMyStaffBinding
 import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,10 +31,10 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-var status = false
 
-class MyStaffActivity : AppCompatActivity(), ActiveClicked {
-    lateinit var binding: ActivityMyStaffBinding
+var status = false
+class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
+    lateinit var binding: FragmentMyStaffBinding
     var isLoading = false
     lateinit var stafflist: ArrayList<MyStaffResponseStaffDetail>
     var page = "1"
@@ -39,11 +42,20 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
     lateinit var adapter: MyStaffAdapter
     var newData = ArrayList<MyStaffResponseStaffDetail>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
 
-        init()
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding= FragmentMyStaffBinding.inflate(layoutInflater)
+        //init()
+
         binding.shimeercontainer.startShimmerAnimation()
 
 
@@ -52,13 +64,15 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
         clickEvents()
 
         getStaffList()
+
+        return binding.root
     }
 
-    private fun init() {
-        binding = ActivityMyStaffBinding.inflate(layoutInflater)
+  /*  private fun init() {
+        binding = FragmentMyStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.recycleView.layoutManager = LinearLayoutManager(this)
-    }
+    }*/
 
     private fun getStaffList() {
         getStaff("1")
@@ -96,15 +110,15 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
         })
     }
 
-    private fun MyStaffActivity.clickEvents() {
-        onBackPress()
+    private fun MyStaffFragment.clickEvents() {
+        activity?.onBackPressed()
         openAddStaffScreen()
     }
 
     private fun openAddStaffScreen() {
         binding.addStaff.setOnClickListener() {
-          /*  val intent = Intent(this@MyStaffActivity, AddStafFragment::class.java)
-            startActivity(intent)*/
+            /*  val intent = Intent(this@MyStaffActivity, AddStafFragment::class.java)
+              startActivity(intent)*/
         }
     }
 
@@ -133,7 +147,6 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
         })
     }
 
-
     private fun getStaff(page: String) {
         val token = shrd.getString("valid", "null")
         RetrofitClient.apiInterface.getStaffList(
@@ -159,7 +172,7 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
                         adapter =
-                            MyStaffAdapter(stafflist, this@MyStaffActivity, this@MyStaffActivity)
+                            MyStaffAdapter(stafflist, this@MyStaffFragment.requireContext(), this@MyStaffFragment.requireContext())
                         binding.recycleView.adapter = adapter
                         binding.progressBar.visibility = View.INVISIBLE
 
@@ -169,14 +182,13 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
             }
 
             override fun onFailure(call: Call<MyStaffResponse?>, t: Throwable) {
-                Toast.makeText(this@MyStaffActivity, "error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT).show()
             }
 
 
         })
 
     }
-
 
     private fun changeStatus(status: Boolean, encryptedId: String) {
         val token = shrd.getString("valid", "null")
@@ -192,13 +204,13 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
                 if (response.body() != null) {
                     Log.d("stateres", "${response!!.body()?.data?.isActive},${encryptedId}")
                     Toast.makeText(
-                        this@MyStaffActivity, "Status changed successfully", Toast.LENGTH_SHORT
+                        this@MyStaffFragment.requireContext(), "Status changed successfully", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {
-                Toast.makeText(this@MyStaffActivity, "error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -220,6 +232,5 @@ class MyStaffActivity : AppCompatActivity(), ActiveClicked {
         }
 
     }
-
 
 }

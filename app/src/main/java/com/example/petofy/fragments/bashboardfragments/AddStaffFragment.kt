@@ -1,35 +1,49 @@
-package com.example.petofy.activity
+package com.example.petofy.fragments.bashboardfragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.petofy.R
+import com.example.petofy.activity.shrd
 import com.example.petofy.apiRequest.AddStaffData
 import com.example.petofy.apiRequest.AddStaffRequest
 import com.example.petofy.apiResponse.AddStaffResponse
-import com.example.petofy.databinding.ActivityAddStaffBinding
+import com.example.petofy.databinding.FragmentAddStaffBinding
 import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AddStaffActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAddStaffBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
+class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
+
+
+    lateinit var binding: FragmentAddStaffBinding
+
+            override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddStaffBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        arguments?.let {
+
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentAddStaffBinding.inflate(layoutInflater)
         binding.backPressed.setOnClickListener()
         {
-            onBackPressed()
+            activity?.onBackPressed()
         }
         val status = arrayOf("Dr.", "Mrs.", "Mr.", "Miss.")
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, status)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, status)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = adapter
 
@@ -54,6 +68,7 @@ class AddStaffActivity : AppCompatActivity() {
         }
 
 
+        return binding.root
     }
 
     private fun addNewStaff() {
@@ -93,7 +108,7 @@ class AddStaffActivity : AppCompatActivity() {
                 if (response.body() != null) {
 
                     Toast.makeText(
-                        this@AddStaffActivity,
+                        this@AddStafFragment.requireContext(),
                         "${response.body()!!.response.responseMessage}",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -107,9 +122,10 @@ class AddStaffActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<AddStaffResponse?>, t: Throwable) {
-                Toast.makeText(this@AddStaffActivity, "Something went wrong", Toast.LENGTH_SHORT)
+                Toast.makeText(this@AddStafFragment.requireContext(), "Something went wrong", Toast.LENGTH_SHORT)
                     .show()
             }
         })
     }
+
 }

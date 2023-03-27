@@ -1,6 +1,9 @@
 package com.example.petofy.adapters
 
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +11,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
+import com.example.petofy.activity.ViewStaffDetails
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
 
 class MyStaffAdapter(
     var item: ArrayList<MyStaffResponseStaffDetail>,
-    private val listener: ActiveClicked
+    private val listener: Context,
+    myStaffActivity: Context
+
 ) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
 
+    private  val mcontext=myStaffActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -45,23 +52,28 @@ class MyStaffAdapter(
         }
         if(currentData.isActive==true)
         {
-            listener.State(true,holder.status)
+            holder.status.setTextColor(Color.parseColor("#47B84B"))
+            holder.status.text = "Active"
+            holder.status.setCompoundDrawablesWithIntrinsicBounds(
+                0, 0, R.drawable.down_arrow, 0
+            )
         }
         else
         {
-            listener.State(false,holder.status)
+            holder.status.setTextColor(Color.parseColor("#FF0000"))
+            holder.status.text = "Deactive"
+            holder.status.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow_red, 0)
         }
         holder.viewDetails.setOnClickListener()
         {
+            val intent = Intent(mcontext, ViewStaffDetails::class.java)
+            intent.putExtra("Firstname", currentData.firstName)
+            intent.putExtra("Lastname",currentData.lastName)
+            intent.putExtra("Email", currentData.email)
+            intent.putExtra("Study", currentData.vetQualification)
+            intent.putExtra("PhoneNumber", currentData.phoneNumber)
 
-            listener.vieDetailsClicked(
-                holder.viewDetails,
-                currentData.firstName,
-                currentData.lastName,
-                currentData.email,
-                currentData.vetQualification,
-                currentData.phoneNumber
-            )
+           mcontext.startActivity(intent);
         }
 
     }
@@ -91,13 +103,6 @@ class MyStaffAdapter(
 
 interface ActiveClicked {
     fun itemClicked(active: TextView, encryptedId: String)
-    fun vieDetailsClicked(
-        viewdetails: TextView,
-        firstName: String,
-        lastName: String?,
-        email: String,
-        vetQualification: String?,
-        phoneNumber: String?
-    )
-    fun State(b: Boolean, status: TextView)
+
+
 }

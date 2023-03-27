@@ -6,12 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddStaffActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backPressed"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="15dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="9dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+
+            />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ADD STAFF"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="?actionBarSize"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/addStaff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -19,56 +58,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/backPressed"
-                android:layout_width="wrap_content"
-                android:layout_height="33dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="10dp"
-
-                >
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="9dp"
-                    android:src="@drawable/baseline_arrow_back_ios_24"
-
-                    />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
-                android:layout_marginTop="10dp"
-                android:text="ADD STAFF"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-
-                />
-
-        </LinearLayout>
-
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="30dp"
-            >
+            android:paddingBottom="30dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,13 +79,13 @@
                     android:textSize="20dp" />
 
 
-
                 <Spinner
-                    android:layout_width="150dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/outline_resource"
                     android:id="@+id/spinner"
-                    android:layout_height="50dp"/>
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/outline_resource" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,14 +100,14 @@
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="First Name">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/firstname"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -128,13 +127,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="Last Name">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/lastname"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -153,14 +152,14 @@
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="Email">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/email"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -178,18 +177,19 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="* * * * * * *">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/password"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,15 +203,15 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="* * * * * * *">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/confirmpassword"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -229,18 +229,19 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="Phone Number">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/phonenumber"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -254,15 +255,15 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="Qualification">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/qualification"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -280,21 +281,18 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:hint="Registration Number">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/resgisnumer"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
 
             </LinearLayout>
@@ -304,14 +302,13 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/round_corners"
-        android:layout_marginEnd="10dp"
-        android:layout_height="50dp"
         android:id="@+id/addStaff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_corners"
         android:text="Add Staff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

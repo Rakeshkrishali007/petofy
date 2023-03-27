@@ -13,8 +13,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
-import com.example.petofy.activity.MyStaffActivity
 import com.example.petofy.activity.shrd
+import com.example.petofy.adapters.ActiveClicked
 import com.example.petofy.adapters.MyStaffAdapter
 import com.example.petofy.apiRequest.ChangeStaffStatusData
 import com.example.petofy.apiRequest.ChangedStaffStatusRequest
@@ -33,7 +33,8 @@ import kotlin.collections.ArrayList
 
 
 var status = false
-class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
+
+class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     lateinit var binding: FragmentMyStaffBinding
     var isLoading = false
     lateinit var stafflist: ArrayList<MyStaffResponseStaffDetail>
@@ -49,30 +50,59 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
         }
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(isAdded)
+        {
+
+        }
+
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentMyStaffBinding.inflate(layoutInflater)
-        //init()
+        binding = FragmentMyStaffBinding.inflate(layoutInflater)
+        init()
 
         binding.shimeercontainer.startShimmerAnimation()
 
 
         searchBarFilter()
 
-        clickEvents()
+        binding.addStaff.setOnClickListener()
+        {
+            loadFragment(AddStafFragment())
+        }
+
 
         getStaffList()
 
         return binding.root
     }
 
-  /*  private fun init() {
+    private fun loadFragment(fragment: Fragment) {
+        val transactionManger = activity?.supportFragmentManager
+        val fragmentTransaction = transactionManger?.beginTransaction()
+        fragmentTransaction?.replace(R.id.myStaffContainer, fragment)
+     //   fragmentTransaction?.addToBackStack("my_fragment")
+        var count = transactionManger?.backStackEntryCount
+        /* for(i in 0 until count-1)
+         {
+             transactionManger.popBackStack()
+         }*/
+        fragmentTransaction?.commit()
+
+
+    }
+
+    private fun init() {
         binding = FragmentMyStaffBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.recycleView.layoutManager = LinearLayoutManager(this)
-    }*/
+        binding.recycleView.layoutManager =
+            LinearLayoutManager(this@MyStaffFragment.requireContext())
+    }
 
     private fun getStaffList() {
         getStaff("1")
@@ -110,10 +140,6 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
         })
     }
 
-    private fun MyStaffFragment.clickEvents() {
-        activity?.onBackPressed()
-        openAddStaffScreen()
-    }
 
     private fun openAddStaffScreen() {
         binding.addStaff.setOnClickListener() {
@@ -122,10 +148,10 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
         }
     }
 
-    private fun MyStaffActivity.onBackPress() {
-        binding.backPressed.setOnClickListener() {
-            onBackPressed()
-        }
+    private fun MyStaffFragment.onBackPress() {
+        /*  binding.backPressed.setOnClickListener() {
+              onBackPressed()
+          }*/
     }
 
     private fun searchBarFilter() {
@@ -172,7 +198,12 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
                         adapter =
-                            MyStaffAdapter(stafflist, this@MyStaffFragment.requireContext(), this@MyStaffFragment.requireContext())
+
+                            MyStaffAdapter(
+                                stafflist, this@MyStaffFragment,
+                                requireActivity()
+
+                            )
                         binding.recycleView.adapter = adapter
                         binding.progressBar.visibility = View.INVISIBLE
 
@@ -182,7 +213,14 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
             }
 
             override fun onFailure(call: Call<MyStaffResponse?>, t: Throwable) {
-                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT).show()
+                if (isAdded) {
+                    Toast.makeText(
+                        this@MyStaffFragment.requireContext(),
+                        "error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             }
 
 
@@ -190,7 +228,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
 
     }
 
-    private fun changeStatus(status: Boolean, encryptedId: String) {
+    private fun changeStatus(status: Boolean, encryptedId: String, active: TextView) {
         val token = shrd.getString("valid", "null")
         RetrofitClient.apiInterface.changeStaffStatus(
             token, ChangedStaffStatusRequest(
@@ -204,17 +242,40 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
                 if (response.body() != null) {
                     Log.d("stateres", "${response!!.body()?.data?.isActive},${encryptedId}")
                     Toast.makeText(
-                        this@MyStaffFragment.requireContext(), "Status changed successfully", Toast.LENGTH_SHORT
+                        this@MyStaffFragment.requireContext(),
+                        "Status changed successfully",
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
             }
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {
-                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT).show()
+
+                RefectorStafStatus(active)
+                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
 
+    fun RefectorStafStatus(active: TextView)
+    {
+        if (active.text.toString() == "Active") {
+
+            active.setTextColor(Color.parseColor("#FF0000"))
+            active.text = "Deactive"
+            active.setCompoundDrawablesWithIntrinsicBounds(
+                0, 0, R.drawable.down_arrow_red, 0
+            )
+
+        }
+        else
+        {
+            active.setTextColor(Color.parseColor("#47B84B"))
+            active.text = "Active"
+            active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
+        }
+    }
     override fun itemClicked(active: TextView, encryptedId: String) {
         if (active.text.toString() == "Active") {
             Log.d("id", "${encryptedId}")
@@ -223,12 +284,12 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff) {
             active.setCompoundDrawablesWithIntrinsicBounds(
                 0, 0, R.drawable.down_arrow_red, 0
             )
-            changeStatus(false, encryptedId)
+            changeStatus(false, encryptedId,active)
         } else {
             active.setTextColor(Color.parseColor("#47B84B"))
             active.text = "Active"
             active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
-            changeStatus(true, encryptedId)
+            changeStatus(true, encryptedId,active)
         }
 
     }

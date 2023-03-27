@@ -2,6 +2,7 @@ package com.example.petofy.fragments.bashboardfragments
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.petofy.Classes.Validation
 import com.example.petofy.R
+import com.example.petofy.activity.bool
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiRequest.AddStaffData
 import com.example.petofy.apiRequest.AddStaffRequest
@@ -19,13 +22,14 @@ import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.system.exitProcess
 
 class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
 
 
     lateinit var binding: FragmentAddStaffBinding
 
-            override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
@@ -64,11 +68,90 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
 
         binding.addStaff.setOnClickListener()
         {
-            addNewStaff()
+
+            if (isValid()) {
+                addNewStaff()
+            }
+
+
         }
 
 
         return binding.root
+    }
+
+    fun isValid(): Boolean {
+        if(binding.firstname.text?.isEmpty()==true&&binding.lastname.text?.isEmpty()==true&&
+            binding.password.text?.isEmpty()==true&&binding.confirmpassword.text?.isEmpty()==true&&binding.email.text?.isEmpty()==true&&binding.qualification.text?.isEmpty()==true&&binding.resgisnumer.text?.isEmpty()==true)
+        {
+            Toast.makeText(this@AddStafFragment.requireContext(), "Fill all the details", Toast.LENGTH_SHORT).show()
+            return  false
+        }
+        if (binding.firstname.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "name require",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        if (binding.lastname.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "name require",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        if (binding.password.text?.isEmpty() == true && binding.confirmpassword.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "Password require",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        if (binding.email.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "email require",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.toString().trim()).matches()) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "Invalid email",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        if (binding.password.text != binding.confirmpassword.text) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "Both password feild should be same",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+
+        if (binding.qualification.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "Qualification require",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        if (binding.resgisnumer.text?.isEmpty() == true) {
+            Toast.makeText(
+                this@AddStafFragment.requireContext(),
+                "Registration Number require",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        return true
     }
 
     private fun addNewStaff() {
@@ -122,7 +205,11 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
             }
 
             override fun onFailure(call: Call<AddStaffResponse?>, t: Throwable) {
-                Toast.makeText(this@AddStafFragment.requireContext(), "Something went wrong", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@AddStafFragment.requireContext(),
+                    "Something went wrong",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         })

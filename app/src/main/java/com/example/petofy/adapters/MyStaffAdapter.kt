@@ -10,13 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petofy.Classes.MyStaffViewModel
 import com.example.petofy.R
 import com.example.petofy.activity.ViewStaffDetails
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
+import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
 
 class MyStaffAdapter(
     var item: ArrayList<MyStaffResponseStaffDetail>,
-    private val listener: Context,
+    private val listener:MyStaffFragment,
     myStaffActivity: Context
 
 ) : RecyclerView.Adapter<MyStaffAdapter.ViewHolder>() {
@@ -46,6 +48,12 @@ class MyStaffAdapter(
         holder.stafflastname.text = currentData.lastName
         holder.phonenumber.text = currentData.phoneNumber
         Log.d("check","${currentData.isActive},${currentData.email},${currentData.encryptedId}")
+        var viewModel=MyStaffViewModel()
+      /*  viewModel.firstNmae=currentData.firstName
+        viewModel.lastName=currentData.lastName
+        viewModel.email=currentData.email
+        viewModel.number=currentData.phoneNumber
+        viewModel.study=currentData.vetQualification*/
         holder.status.setOnClickListener()
         {
             listener.itemClicked(holder.status, currentData.encryptedId)

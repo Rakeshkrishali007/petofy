@@ -1,20 +1,27 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
+import com.example.petofy.Classes.CheckConnection
+import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.Classes.ViewModelObject.viewModel
+import com.example.petofy.activity.LogIn_Activity
 import com.example.petofy.activity.MyStaffActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse
@@ -30,14 +37,15 @@ public var hasData = true
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
+class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConnection{
 
-
+    val connectivityReceiver = ConnectivityReceiver(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,6 +82,12 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
     ):View {
 
+
+        requireActivity().registerReceiver(connectivityReceiver,
+            IntentFilter(
+                ConnectivityManager.CONNECTIVITY_ACTION
+        ))
+
         binding = FragmentHomeBinding.inflate(layoutInflater)
         if(viewModel==null)
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
@@ -107,6 +121,12 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
          return  binding.root
     }
 
+   /* override fun onDestroy() {
+        super.onDestroy()
+
+        // Unregister the BroadcastReceiver when the activity is destroyed
+        unregisterReceiver(connectivityReceiver)
+    }*/
     public fun setViewModelData() {
 
       Log.d("yes1","hello")
@@ -116,6 +136,18 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+
+        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        requireActivity().registerReceiver(connectivityReceiver, intentFilter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(connectivityReceiver)
+    }
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
@@ -186,5 +218,17 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
                 }
             }
     }
+
+    override fun isConnectedToInternet(isConnected: Boolean) {
+        if(isConnected)
+        {
+
+        }
+        else
+        {
+            Toast.makeText(this@Home_Fragment.requireContext(), "Not Connected to Internet", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
 }

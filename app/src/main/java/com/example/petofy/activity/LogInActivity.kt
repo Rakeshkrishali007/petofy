@@ -45,7 +45,9 @@ class LogIn_Activity : AppCompatActivity() {
          /*   email = "vet.petofy@gmail.com"
             password = "pass@123"*/
             if (isValid()) {
-                logIn()
+                val intent=Intent(this@LogIn_Activity,DashBoardActivity::class.java)
+                startActivity(intent)
+                //logIn()
 
             }
             else

@@ -2,15 +2,19 @@ package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -221,12 +225,27 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
     }
 
     override fun isConnectedToInternet(isConnected: Boolean) {
+        val view = LayoutInflater.from(this@Home_Fragment.requireContext())
+            .inflate(R.layout.custom_internet_dialog_alert, null)
+        var mBuilder = AlertDialog.Builder(this.requireContext())
+            .setView(R.layout.custom_internet_dialog_alert)
         if (!isConnected) {
-            Toast.makeText(
-                this@Home_Fragment.requireContext(),
-                "Not Connected to Internet",
-                Toast.LENGTH_SHORT
-            ).show()
+            val view = LayoutInflater.from(this@Home_Fragment.requireContext())
+                .inflate(R.layout.custom_internet_dialog_alert, null)
+            var mBuilder = AlertDialog.Builder(this.requireContext())
+                .setView(R.layout.custom_internet_dialog_alert)
+            var mBuilderDialog = mBuilder.show()
+
+        }
+        view?.findViewById<Button>(R.id.btn_try_again)?.setOnClickListener()
+        {
+            if (isConnected) {
+                Toast.makeText(this@Home_Fragment.requireContext(), "Connected", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(this@Home_Fragment.requireContext(), "Not", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
 

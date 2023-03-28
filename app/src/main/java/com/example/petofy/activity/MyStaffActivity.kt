@@ -8,6 +8,7 @@ import com.example.petofy.R
 import com.example.petofy.databinding.ActivityMyStaffBinding
 import com.example.petofy.fragments.bashboardfragments.AddStafFragment
 import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
+import com.example.petofy.fragments.bashboardfragments.ViewPetDetails
 import kotlin.collections.ArrayList
 
 var status = false
@@ -20,7 +21,7 @@ class MyStaffActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMyStaffBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        loadFragment(MyStaffFragment())
+        loadFragment(ViewPetDetails())
 
     }
 

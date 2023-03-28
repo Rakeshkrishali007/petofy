@@ -21,6 +21,7 @@ import com.example.petofy.Classes.CheckConnection
 import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.Classes.ViewModelObject.viewModel
+import com.example.petofy.activity.IsSearched
 import com.example.petofy.activity.LogIn_Activity
 import com.example.petofy.activity.MyStaffActivity
 import com.example.petofy.activity.shrd
@@ -37,7 +38,7 @@ public var hasData = true
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConnection{
+class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConnection {
 
     val connectivityReceiver = ConnectivityReceiver(this)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
 
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -80,30 +82,29 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
         savedInstanceState: Bundle?
 
 
-    ):View {
+    ): View {
 
-
-        requireActivity().registerReceiver(connectivityReceiver,
-            IntentFilter(
-                ConnectivityManager.CONNECTIVITY_ACTION
-        ))
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        if(viewModel==null)
-        viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
+        binding.search.setOnClickListener()
+        {
+            val intent = Intent(this@Home_Fragment.requireContext(), IsSearched::class.java)
+            startActivity(intent)
+        }
+
+        if (viewModel == null)
+            viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
 
         if (hasData) {
             getPetCount()
-        }
-        else
-        {
+        } else {
             setViewModelData()
         }
 
 
         binding.staff.setOnClickListener()
         {
-            val intent= Intent(this@Home_Fragment.requireContext(),MyStaffActivity::class.java)
+            val intent = Intent(this@Home_Fragment.requireContext(), MyStaffActivity::class.java)
             startActivity(intent)
         }
         binding.appointment.setOnClickListener()
@@ -118,18 +119,18 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
             loadFragment(Pet_Fragment())
         }
         val pet = requireActivity().findViewById<TextView>(R.id.txt_myPets)
-         return  binding.root
+        return binding.root
     }
 
-   /* override fun onDestroy() {
-        super.onDestroy()
+    /* override fun onDestroy() {
+         super.onDestroy()
 
-        // Unregister the BroadcastReceiver when the activity is destroyed
-        unregisterReceiver(connectivityReceiver)
-    }*/
+         // Unregister the BroadcastReceiver when the activity is destroyed
+         unregisterReceiver(connectivityReceiver)
+     }*/
     public fun setViewModelData() {
 
-      Log.d("yes1","hello")
+        Log.d("yes1", "hello")
         binding.txtAppointment.text = viewModel?.onlineAppointment
         binding.txtMyPets.text = viewModel?.myPet
         binding.txtStaff.text = viewModel?.staff
@@ -148,15 +149,15 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
         super.onPause()
         requireActivity().unregisterReceiver(connectivityReceiver)
     }
+
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.container, fragment)
 
         fragmentTransaction?.addToBackStack(Home_Fragment().toString())
-        var count=transactionManger?.backStackEntryCount
-        for(i in 0 until count!! -1)
-        {
+        var count = transactionManger?.backStackEntryCount
+        for (i in 0 until count!! - 1) {
             transactionManger?.popBackStack()
         }
         fragmentTransaction?.commit()
@@ -171,8 +172,8 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
         progressDialog!!.show()
 
 
-            val token = shrd.getString("valid", "null")
-            RetrofitClient.apiInterface.GetDashBoardCount(token).enqueue(object :
+        val token = shrd.getString("valid", "null")
+        RetrofitClient.apiInterface.GetDashBoardCount(token).enqueue(object :
             Callback<UserDashBoardCountResponse?> {
             override fun onResponse(
                 call: Call<UserDashBoardCountResponse?>,
@@ -220,14 +221,15 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_),CheckConne
     }
 
     override fun isConnectedToInternet(isConnected: Boolean) {
-        if(isConnected)
-        {
+        if (!isConnected) {
+            Toast.makeText(
+                this@Home_Fragment.requireContext(),
+                "Not Connected to Internet",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
-        }
-        else
-        {
-            Toast.makeText(this@Home_Fragment.requireContext(), "Not Connected to Internet", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
 

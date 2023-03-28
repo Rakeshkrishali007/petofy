@@ -41,12 +41,14 @@ class User_Fragment : Fragment(R.layout.fragment_user_) {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Log Out")
                 .setMessage("Are you sure you want to logout")
-                .setPositiveButton("Yes",
-                 { dialog, which ->   val editor = shrd.edit()
-                        editor.clear().commit()
-                        val intent= Intent(requireActivity(),LogIn_Activity::class.java)
-                        startActivity(intent)
-                        activity?.finish() })
+                .setPositiveButton("Yes"
+                ) { dialog, which ->
+                    val editor = shrd.edit()
+                    editor.clear().commit()
+                    val intent = Intent(requireActivity(), LogIn_Activity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
+                }
                 .setNegativeButton("No", null)
                 .show()
         }

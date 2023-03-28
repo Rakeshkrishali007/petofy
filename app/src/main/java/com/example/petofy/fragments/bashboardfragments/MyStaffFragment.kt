@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
+import com.example.petofy.activity.bool
 import com.example.petofy.activity.shrd
 import com.example.petofy.adapters.ActiveClicked
 import com.example.petofy.adapters.MyStaffAdapter
@@ -33,6 +34,7 @@ import kotlin.collections.ArrayList
 
 
 var status = false
+val api = false
 
 class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     lateinit var binding: FragmentMyStaffBinding
@@ -53,13 +55,10 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(isAdded)
-        {
-
-        }
 
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,7 +76,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
             loadFragment(AddStafFragment())
         }
 
-
+        if (!api) 4
         getStaffList()
 
         return binding.root
@@ -87,7 +86,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.myStaffContainer, fragment)
-     //   fragmentTransaction?.addToBackStack("my_fragment")
+        //   fragmentTransaction?.addToBackStack("my_fragment")
         var count = transactionManger?.backStackEntryCount
         /* for(i in 0 until count-1)
          {
@@ -258,8 +257,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         })
     }
 
-    fun RefectorStafStatus(active: TextView)
-    {
+    fun RefectorStafStatus(active: TextView) {
         if (active.text.toString() == "Active") {
 
             active.setTextColor(Color.parseColor("#FF0000"))
@@ -268,14 +266,13 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 0, 0, R.drawable.down_arrow_red, 0
             )
 
-        }
-        else
-        {
+        } else {
             active.setTextColor(Color.parseColor("#47B84B"))
             active.text = "Active"
             active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
         }
     }
+
     override fun itemClicked(active: TextView, encryptedId: String) {
         if (active.text.toString() == "Active") {
             Log.d("id", "${encryptedId}")
@@ -284,12 +281,12 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
             active.setCompoundDrawablesWithIntrinsicBounds(
                 0, 0, R.drawable.down_arrow_red, 0
             )
-            changeStatus(false, encryptedId,active)
+            changeStatus(false, encryptedId, active)
         } else {
             active.setTextColor(Color.parseColor("#47B84B"))
             active.text = "Active"
             active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
-            changeStatus(true, encryptedId,active)
+            changeStatus(true, encryptedId, active)
         }
 
     }

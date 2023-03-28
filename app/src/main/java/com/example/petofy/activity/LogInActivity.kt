@@ -1,12 +1,14 @@
 package com.example.petofy.activity
 
 import android.R
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petofy.apiRequest.Login_Request
@@ -19,7 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-public  var token:String?=null
+public var token: String? = null
 private lateinit var editor: SharedPreferences.Editor
 
 
@@ -36,23 +38,26 @@ class LogIn_Activity : AppCompatActivity() {
             onBackPressed()
 
         }
+
         binding.btnLoginUser.setOnClickListener() {
 
 
-              email = binding.etEmail.text.toString()
-              password = binding.etPassword.text.toString()
+            email = binding.etEmail.text.toString()
+            password = binding.etPassword.text.toString()
             binding.progressBar.visibility = View.VISIBLE
-         /*   email = "vet.petofy@gmail.com"
-            password = "pass@123"*/
+            /*   email = "vet.petofy@gmail.com"
+               password = "pass@123"*/
             if (isValid()) {
-                val intent=Intent(this@LogIn_Activity,DashBoardActivity::class.java)
+                val view = this.currentFocus
+                val inputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+                val intent = Intent(this@LogIn_Activity, DashBoardActivity::class.java)
                 startActivity(intent)
                 //logIn()
 
-            }
-            else
-            {
-                binding.progressBar.visibility=View.INVISIBLE
+            } else {
+                binding.progressBar.visibility = View.INVISIBLE
             }
 
         }
@@ -65,23 +70,23 @@ class LogIn_Activity : AppCompatActivity() {
                     call: Call<LogIn_Response?>, response: Response<LogIn_Response?>
                 ) {
                     if (response.body() != null) {
-                        editor= shrd.edit()
-                        token=response.body()?.response?.token
-                        Log.d("check","$token")
-                        editor.putString("valid",token)
+                        editor = shrd.edit()
+                        token = response.body()?.response?.token
+                        Log.d("check", "$token")
+                        editor.putString("valid", token)
                         editor.commit()
-                        Log.d("yes","${shrd.getString("valid","null")}")
+                        Log.d("yes", "${shrd.getString("valid", "null")}")
                         if (response.body()?.data?.email == "vet.petofy@gmail.com") {
 
                             val intent = Intent(this@LogIn_Activity, DashBoardActivity::class.java)
                             startActivity(intent)
                             finish()
                         }
-                        if(response.body()?.data?.email != "vet.petofy@gmail.com") {
+                        if (response.body()?.data?.email != "vet.petofy@gmail.com") {
                             Toast.makeText(
                                 this@LogIn_Activity, "Invalid user", Toast.LENGTH_SHORT
                             ).show()
-                            binding.progressBar.visibility=View.INVISIBLE
+                            binding.progressBar.visibility = View.INVISIBLE
                         }
 
                     }
@@ -89,7 +94,7 @@ class LogIn_Activity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<LogIn_Response?>, t: Throwable) {
-                    binding.progressBar.visibility=View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(this@LogIn_Activity, "error", Toast.LENGTH_SHORT).show()
 
                 }

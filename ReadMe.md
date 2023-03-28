@@ -4,7 +4,4 @@ Obviously, this RealWorld app is a frontend app. But it can connect to all backe
 ## 28/03/2023
 
 * Emulator
-* StaffList Search
-* StaffList ViewDetails
-* StaffList Status Changed
-
+* View Pet Details Screen

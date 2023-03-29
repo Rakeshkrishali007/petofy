@@ -239,7 +239,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 response: Response<ChangeStaffStatusResponse?>
             ) {
                 if (response.body() != null) {
-                    Log.d("stateres", "${response!!.body()?.data?.isActive},${encryptedId}")
+                    RefectorStafStatus(active)
                     Toast.makeText(
                         this@MyStaffFragment.requireContext(),
                         "Status changed successfully",
@@ -250,7 +250,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {
 
-                RefectorStafStatus(active)
+
                 Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -274,20 +274,9 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     }
 
     override fun itemClicked(active: TextView, encryptedId: String) {
-        if (active.text.toString() == "Active") {
-            Log.d("id", "${encryptedId}")
-            active.setTextColor(Color.parseColor("#FF0000"))
-            active.text = "Deactive"
-            active.setCompoundDrawablesWithIntrinsicBounds(
-                0, 0, R.drawable.down_arrow_red, 0
-            )
+
             changeStatus(false, encryptedId, active)
-        } else {
-            active.setTextColor(Color.parseColor("#47B84B"))
-            active.text = "Active"
-            active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
-            changeStatus(true, encryptedId, active)
-        }
+
 
     }
 

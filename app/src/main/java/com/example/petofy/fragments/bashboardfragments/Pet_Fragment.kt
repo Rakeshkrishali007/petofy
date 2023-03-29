@@ -1,6 +1,7 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
+import com.example.petofy.activity.PetActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
@@ -24,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
+class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
 
     lateinit var binding: FragmentPetBinding
     lateinit var adapter: MyPetAdapter
@@ -104,7 +106,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
                         (binding.recycleView.adapter as MyPetAdapter)?.appendData(newData)
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
-                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>)
+                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>,this@Pet_Fragment)
                         binding.recycleView.adapter = adapter
                     }
                     isLoading = false;
@@ -116,6 +118,16 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_) {
 
             }
         })
+
+    }
+
+    override fun ViewPetDetailsClicked() {
+        val intent = Intent(this@Pet_Fragment.requireContext(),PetActivity::class.java)
+        startActivity(intent)
+
+
+
+
 
     }
 

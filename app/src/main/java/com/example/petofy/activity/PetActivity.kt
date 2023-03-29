@@ -2,36 +2,28 @@ package com.example.petofy.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.petofy.R
+import com.example.petofy.fragments.bashboardfragments.ViewPetDetailsFragment
+import com.example.petofy.getpetlist.ItemClicked
 
-import com.example.petofy.databinding.ActivityMyStaffBinding
-import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
-
-var status = false
-
-class MyStaffActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMyStaffBinding
-
-
+class PetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityMyStaffBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        loadFragment(MyStaffFragment())
+        setContentView(R.layout.activity_pet)
+
+        Log.d("in","yes")
+        loadFragment(ViewPetDetailsFragment())
 
     }
+
 
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = supportFragmentManager
         val fragmentTransaction = transactionManger.beginTransaction()
-        fragmentTransaction.replace(R.id.myStaffContainer, fragment)
+        fragmentTransaction.replace(R.id.petContainer, fragment)
         fragmentTransaction.addToBackStack("my_fragment")
         fragmentTransaction.commit()
-
-
     }
-
-
-
 }

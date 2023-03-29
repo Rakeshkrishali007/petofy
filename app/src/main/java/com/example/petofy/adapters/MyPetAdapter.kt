@@ -1,16 +1,16 @@
 package com.example.petofy.getpetlist
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.apiResponse.petlist_response_atributes
 
-class MyPetAdapter(var item: ArrayList<petlist_response_atributes>) : RecyclerView.Adapter<MyViewHolder>() {
+class MyPetAdapter(var item: ArrayList<petlist_response_atributes>, private  val listener:ItemClicked) : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,6 +37,11 @@ class MyPetAdapter(var item: ArrayList<petlist_response_atributes>) : RecyclerVi
         val s2=current.petUniqueId.subSequence(l-3,l) as String
         holder.petNumber.text=  s1.plus(" ").plus(s2)
         holder.owner.text=current.petParentName
+        holder.viewPetDetails.setOnClickListener()
+        {
+            listener.ViewPetDetailsClicked()
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -49,5 +54,12 @@ class MyPetAdapter(var item: ArrayList<petlist_response_atributes>) : RecyclerVi
         val dogdate = itemView.findViewById<TextView>(R.id.txt_dog_dataOfBirth)
         val owner = itemView.findViewById<TextView>(R.id.txt_dog_owner)
         val petNumber=itemView.findViewById<TextView>(R.id.txt_petNumber)
+        val viewPetDetails=itemView.findViewById<Button>(R.id.btn_viewPetDetails)
+        val addToClinic = itemView.findViewById<Button>(R.id.btn_addToClinicVisit)
     }
+
+interface ItemClicked
+{
+    fun ViewPetDetailsClicked()
+}
 

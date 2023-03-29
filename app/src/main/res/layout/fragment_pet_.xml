@@ -82,8 +82,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_gravity="center_vertical | center_horizontal"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5sdp">
 

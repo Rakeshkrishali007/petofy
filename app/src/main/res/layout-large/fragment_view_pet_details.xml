@@ -22,8 +22,8 @@
         app:layout_constraintVertical_bias="0.018">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_marginStart="9dp"
             android:src="@drawable/baseline_arrow_back_ios_24"
 
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="249dp"
+        android:layout_width="890dp"
+        android:layout_height="418dp"
         android:src="@drawable/dogs"
         app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
                 android:layout_marginStart="37dp"
                 android:text="Aman Robort "
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,27 +78,28 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/pet_breed_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintHorizontal_bias="0.113"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.238" />
+                app:layout_constraintVertical_bias="0.187" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bread"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView8"
                 app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                app:layout_constraintHorizontal_bias="0.068"
+                app:layout_constraintHorizontal_bias="0.045"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintVertical_bias="0.363" />
+                app:layout_constraintVertical_bias="0.886" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -106,42 +107,44 @@
                 android:layout_height="wrap_content"
                 android:text="Other"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                app:layout_constraintHorizontal_bias="0.067"
+                app:layout_constraintHorizontal_bias="0.044"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintVertical_bias="0.491" />
+                app:layout_constraintVertical_bias="0.359" />
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/pet_gender_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.718"
+                app:layout_constraintHorizontal_bias="0.711"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10"
-                app:layout_constraintVertical_bias="0.032" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pet age"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.73"
+                app:layout_constraintHorizontal_bias="0.762"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.274" />
+                app:layout_constraintVertical_bias="0.105" />
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/profile_edit_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -154,66 +157,73 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/pet_age_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.719"
+                app:layout_constraintHorizontal_bias="0.711"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.238" />
+                app:layout_constraintVertical_bias="0.187" />
 
 
             <TextView
+                android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Year(s)"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView10"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.723"
+                app:layout_constraintHorizontal_bias="0.755"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.485" />
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:layout_constraintVertical_bias="0.5" />
+
 
             <TextView
+                android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView13"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.746"
+                app:layout_constraintHorizontal_bias="0.755"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.754" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textView10"
+                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"
                 android:textColor="@color/black"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.713"
+                app:layout_constraintHorizontal_bias="0.722"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.857" />
+                app:layout_constraintVertical_bias="0.673" />
 
             <TextView
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age: "
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView16"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.696"
+                app:layout_constraintHorizontal_bias="0.725"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.368" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -221,49 +231,52 @@
                 android:layout_height="wrap_content"
                 android:text="Months(s)"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView17"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.775"
+                app:layout_constraintHorizontal_bias="0.806"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.578" />
+                app:layout_constraintTop_toBottomOf="@+id/textView16"
+                app:layout_constraintVertical_bias="0.5" />
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/pet_id_image"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.332" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pet ID"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintHorizontal_bias="0.059"
+                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintVertical_bias="0.839" />
+                app:layout_constraintVertical_bias="0.687" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PETO-5920"
                 android:textColor="@color/black"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintVertical_bias="0.938" />
+                app:layout_constraintVertical_bias="0.821" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -273,12 +286,12 @@
                 android:layout_marginEnd="150dp"
                 android:text="Parent Details"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
                 app:layout_constraintVertical_bias="0.5" />
 
 
@@ -299,7 +312,7 @@
                 <LinearLayout
                     android:id="@+id/numberView"
                     android:layout_width="@dimen/_200sdp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -337,7 +350,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout15"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -375,7 +388,7 @@
                 <LinearLayout
                     android:id="@+id/studyView"
                     android:layout_width="@dimen/_200sdp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

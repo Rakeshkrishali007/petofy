@@ -38,7 +38,6 @@ class LogIn_Activity : AppCompatActivity() {
             onBackPressed()
 
         }
-
         binding.btnLoginUser.setOnClickListener() {
 
 
@@ -47,14 +46,15 @@ class LogIn_Activity : AppCompatActivity() {
             binding.progressBar.visibility = View.VISIBLE
             /*   email = "vet.petofy@gmail.com"
                password = "pass@123"*/
+
+            val view = this.currentFocus
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
             if (isValid()) {
-                val view = this.currentFocus
-                val inputMethodManager =
-                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
-                val intent = Intent(this@LogIn_Activity, DashBoardActivity::class.java)
-                startActivity(intent)
-                //logIn()
+
+
+                logIn()
 
             } else {
                 binding.progressBar.visibility = View.INVISIBLE

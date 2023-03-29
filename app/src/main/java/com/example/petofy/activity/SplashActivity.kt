@@ -41,7 +41,7 @@ class Splash_Activity : AppCompatActivity() {
             }, 3000)
 
         } else {
-            val intent = Intent(this@Splash_Activity, DashBoardActivity::class.java)
+            val intent = Intent(this@Splash_Activity, LogIn_Activity::class.java)
             startActivity(intent)
             finish()
         }

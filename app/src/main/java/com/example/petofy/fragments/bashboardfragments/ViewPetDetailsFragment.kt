@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.petofy.R
 import com.example.petofy.databinding.FragmentViewPetDetailsBinding
 
-class ViewPetDetails : Fragment(R.layout.fragment_view_pet_details) {
+class ViewPetDetailsFragment : Fragment(R.layout.fragment_view_pet_details) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -26,6 +26,10 @@ class ViewPetDetails : Fragment(R.layout.fragment_view_pet_details) {
         savedInstanceState: Bundle?
     ): View? {
             binding = FragmentViewPetDetailsBinding.inflate(layoutInflater)
+            binding.backPressed.setOnClickListener()
+            {
+                activity?.onBackPressed()
+            }
 
 
         return binding.root

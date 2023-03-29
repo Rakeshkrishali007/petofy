@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Petofy"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PetActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ViewStaffDetails"
             android:exported="false" />
         <activity

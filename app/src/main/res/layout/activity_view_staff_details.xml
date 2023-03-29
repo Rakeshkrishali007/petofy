@@ -63,8 +63,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="590dp"
-        app:cardCornerRadius="50dp"
+        android:layout_height="0dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,14 +75,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginBottom="?actionBarSize"
-            >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp">
 
 
                 <TextView
@@ -113,11 +110,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -139,8 +137,8 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/email"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
@@ -153,12 +151,12 @@
 
 
             <LinearLayout
+                android:id="@+id/numberView"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="50dp"
-                android:id="@+id/numberView"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -179,8 +177,8 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/phone"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
@@ -190,13 +188,14 @@
 
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
                 android:id="@+id/studyView"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="50dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -217,9 +216,9 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
+                    android:id="@+id/study"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/study"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
                     android:text="Mca"
@@ -230,11 +229,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
                 android:id="@+id/resView"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="50dp"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -256,8 +255,8 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/regisnum"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
@@ -267,21 +266,21 @@
 
 
             </LinearLayout>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edit Permission"
-                android:background="@drawable/round_corners"
-                android:layout_marginBottom="15dp"
+                android:layout_gravity="bottom"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_gravity="bottom"
-                />
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round_corners"
+                android:text="Edit Permission" />
         </LinearLayout>
 
 

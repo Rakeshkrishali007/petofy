@@ -140,8 +140,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+
+                        android:layout_gravity="center_horizontal  | center_vertical"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/_5sdp">
 
@@ -224,8 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_90sdp"
-
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:text="My Pets" />
@@ -243,8 +242,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_200sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
                         android:text="0"
+                        android:layout_gravity="center_vertical"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_20ssp" />
 
@@ -252,7 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/forward_gray_icon" />
                 </androidx.cardview.widget.CardView>
 
@@ -283,21 +282,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_100sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_90sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
-                        android:text="Online " />
+                        android:text="Online\nAppointment " />
 
-                    <TextView
-                        android:id="@+id/rk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_85sdp"
-                        android:layout_marginTop="@dimen/_59sdp"
-                        android:autoSizeMaxTextSize="@dimen/_15ssp"
-                        android:autoSizeMinTextSize="@dimen/_10ssp"
-                        android:text="Appointment " />
 
                     <View
                         android:layout_width="1dp"
@@ -312,16 +302,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_200sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
                         android:text="0"
+                        android:layout_gravity="center_vertical"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_20ssp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
                         android:src="@drawable/forward_gray_icon" />
 
                     <ProgressBar
@@ -354,14 +344,14 @@
 
                     <ImageView
                         android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:src="@drawable/generate_bill" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_100sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_90sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:text="Generate Bills " />
@@ -371,7 +361,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/forward_gray_icon" />
 
 
@@ -406,7 +396,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_90sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:text="Your Staff" />
@@ -424,7 +414,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_200sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:text="0"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_20ssp" />
@@ -433,7 +423,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/forward_gray_icon" />
                 </androidx.cardview.widget.CardView>
 
@@ -466,7 +456,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_90sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:text="Records" />
@@ -484,7 +474,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/forward_gray_icon" />
                 </androidx.cardview.widget.CardView>
 
@@ -515,8 +505,8 @@
                         android:id="@+id/txt_b2b"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_85sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_90sdp"
+                        android:layout_gravity="center_vertical"
                         android:autoSizeMaxTextSize="@dimen/_15ssp"
                         android:autoSizeMinTextSize="@dimen/_10ssp"
                         android:text="B2B Services" />
@@ -533,7 +523,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_250sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/forward_gray_icon" />
                 </androidx.cardview.widget.CardView>
 

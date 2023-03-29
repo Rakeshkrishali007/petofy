@@ -225,6 +225,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
     }
 
     override fun isConnectedToInternet(isConnected: Boolean) {
+
         val view = LayoutInflater.from(this@Home_Fragment.requireContext())
             .inflate(R.layout.custom_internet_dialog_alert, null)
         var mBuilder = AlertDialog.Builder(this.requireContext())
@@ -234,19 +235,16 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
                 .inflate(R.layout.custom_internet_dialog_alert, null)
             var mBuilder = AlertDialog.Builder(this.requireContext())
                 .setView(R.layout.custom_internet_dialog_alert)
-            var mBuilderDialog = mBuilder.show()
+            var  mBuilderDialog = mBuilder.show()
+            val tryagain=view.findViewById<Button>(R.id.btn_try_again)
+            tryagain.setOnClickListener()
+            {
+                mBuilderDialog.dismiss()
+            }
 
         }
-        view?.findViewById<Button>(R.id.btn_try_again)?.setOnClickListener()
-        {
-            if (isConnected) {
-                Toast.makeText(this@Home_Fragment.requireContext(), "Connected", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                Toast.makeText(this@Home_Fragment.requireContext(), "Not", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
+
+
 
 
     }

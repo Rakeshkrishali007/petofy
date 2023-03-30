@@ -108,32 +108,42 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/_99sdp"
-                    android:layout_height="@dimen/_29sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:layout_marginTop="@dimen/_25sdp"
                     app:cardBackgroundColor="#fff3eb"
                     app:cardCornerRadius="@dimen/_5sdp">
 
 
-                    <ImageView
-                        android:layout_width="50dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:src="@drawable/pet_id_image"
-                        android:layout_marginBottom="3dp"
-                        android:layout_gravity="start"
-                        />
+                        >
 
-                    <TextView
-                        android:id="@+id/txt_petNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity=" end | center_vertical"
-                        android:layout_marginEnd="10dp"
-                        android:maxLength="12"
-                        android:text="PETO-5930"
-                        android:textSize="@dimen/text_size_small"
-                        />
+                        <ImageView
+                            android:id="@+id/pet_image"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:src="@drawable/pet_id_image"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txt_petNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_gravity=" end | center_vertical"
+                            android:maxLength="12"
+                            android:text="PETO-5930"
+                            android:textSize="@dimen/text_size_small"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/pet_image"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>

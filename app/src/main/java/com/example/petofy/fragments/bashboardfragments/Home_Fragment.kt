@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +25,6 @@ import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.Classes.ViewModelObject.viewModel
 import com.example.petofy.activity.IsSearched
-import com.example.petofy.activity.LogIn_Activity
 import com.example.petofy.activity.MyStaffActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiResponse.UserDashBoardCountResponse

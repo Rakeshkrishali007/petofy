@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.petofy.R
+import com.example.petofy.fragments.bashboardfragments.AddPetToClinicFragment
 import com.example.petofy.fragments.bashboardfragments.ViewPetDetailsFragment
 import com.example.petofy.getpetlist.ItemClicked
 
@@ -14,7 +15,7 @@ class PetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pet)
 
         Log.d("in","yes")
-        loadFragment(ViewPetDetailsFragment())
+        loadFragment(AddPetToClinicFragment())
 
     }
 

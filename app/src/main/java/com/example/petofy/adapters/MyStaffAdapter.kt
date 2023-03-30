@@ -15,6 +15,7 @@ import com.example.petofy.R
 import com.example.petofy.activity.ViewStaffDetails
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
 import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
+import com.example.petofy.fragments.bashboardfragments.status
 
 class MyStaffAdapter(
     var item: ArrayList<MyStaffResponseStaffDetail>,
@@ -40,6 +41,13 @@ class MyStaffAdapter(
         notifyDataSetChanged()
     }
 
+    fun setText(res:Boolean)
+    {
+       if(res == true)
+       {
+
+       }
+    }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = item[position]
         holder.staffname.text = currentData.firstName
@@ -51,6 +59,7 @@ class MyStaffAdapter(
         holder.status.setOnClickListener()
         {
             listener.itemClicked(holder.status, currentData.encryptedId)
+
         }
         if(currentData.isActive==true)
         {
@@ -83,6 +92,7 @@ class MyStaffAdapter(
     fun FilterData(newData: ArrayList<MyStaffResponseStaffDetail>) {
         item = newData
         notifyDataSetChanged()
+
     }
 
     fun appendData(newData: ArrayList<MyStaffResponseStaffDetail>) {
@@ -96,7 +106,7 @@ class MyStaffAdapter(
         var staffstudy = itemView.findViewById<TextView>(R.id.staff_study)
         var staffemail = itemView.findViewById<TextView>(R.id.staff_email)
         var phonenumber = itemView.findViewById<TextView>(R.id.phonenumber)
-        var status = itemView.findViewById<TextView>(R.id.txt_staff_status)
+       var status = itemView.findViewById<TextView>(R.id.txt_staff_status)
         var viewDetails = itemView.findViewById<TextView>(R.id.viewDetails)
     }
 

@@ -245,6 +245,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                         "Status changed successfully",
                         Toast.LENGTH_SHORT
                     ).show()
+                    adapter.setText(true)
                 }
             }
 

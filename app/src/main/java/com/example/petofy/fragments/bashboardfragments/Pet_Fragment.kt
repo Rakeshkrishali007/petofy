@@ -131,5 +131,10 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
 
     }
 
+    override fun AddPetToClinic() {
+        val intent = Intent(this@Pet_Fragment.requireContext(),PetActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }

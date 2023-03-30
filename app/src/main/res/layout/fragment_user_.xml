@@ -68,13 +68,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_120sdp"
+            android:weightSum="3"
             android:layout_marginTop="@dimen/_85sdp">
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Expiry Date :"
+                android:text="Gold :"
+                android:layout_weight="0.6"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:autoSizeMinTextSize="@dimen/_8ssp"
@@ -84,6 +85,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Expiry Date :"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:autoSizeMinTextSize="@dimen/_8ssp"
+                android:autoSizeMaxTextSize="@dimen/_12ssp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:text="23/2/2023"
                 android:autoSizeMinTextSize="@dimen/_8ssp"
@@ -119,7 +133,7 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -143,8 +157,10 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/arrow"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
                     android:text="Geranal Details"
@@ -156,7 +172,7 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -180,8 +196,10 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:id="@+id/changePassword"
+                    android:drawableEnd="@drawable/arrow"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
@@ -194,7 +212,7 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -218,11 +236,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
                     android:text="Setting"
+                    android:drawableEnd="@drawable/arrow"
+                    android:layout_marginEnd="20dp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
@@ -230,7 +250,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -238,7 +258,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view"
-                app:layout_constraintVertical_bias="0.207">
+                app:layout_constraintVertical_bias="0.207"
+                android:orientation="horizontal">
 
 
                 <androidx.cardview.widget.CardView
@@ -254,11 +275,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
-                    android:text="Connect &amp;Like us"
+                    android:drawableEnd="@drawable/arrow"
+                    android:layout_marginEnd="20dp"
+                    android:text="Connect &amp; Like us"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
@@ -274,7 +297,7 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -298,9 +321,11 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    android:drawableEnd="@drawable/arrow"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="18dp"
                     android:text="Privicy Policy"
                     android:textColor="@color/black"
@@ -312,7 +337,7 @@
 
             <LinearLayout
                 android:id="@+id/logout"
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -336,11 +361,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
                     android:text="Logout"
+                    android:layout_marginEnd="20dp"
+                    android:drawableEnd="@drawable/arrow"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 

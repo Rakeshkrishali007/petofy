@@ -41,6 +41,10 @@ class MyPetAdapter(var item: ArrayList<petlist_response_atributes>, private  val
         {
             listener.ViewPetDetailsClicked()
         }
+        holder.addToClinic.setOnClickListener()
+        {
+            listener.AddPetToClinic()
+        }
 
     }
 
@@ -61,5 +65,7 @@ class MyPetAdapter(var item: ArrayList<petlist_response_atributes>, private  val
 interface ItemClicked
 {
     fun ViewPetDetailsClicked()
+
+    fun AddPetToClinic()
 }
 

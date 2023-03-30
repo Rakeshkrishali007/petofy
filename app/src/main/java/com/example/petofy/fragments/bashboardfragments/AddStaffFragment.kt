@@ -88,67 +88,37 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
             return  false
         }
         if (binding.firstname.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "name require",
-                Toast.LENGTH_SHORT
-            ).show()
+           binding.firstname.setError("First name require")
             return false
         }
         if (binding.lastname.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "name require",
-                Toast.LENGTH_SHORT
-            ).show()
+            binding.lastname.setError("Last name require")
             return false
         }
         if (binding.password.text?.isEmpty() == true && binding.confirmpassword.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "Password require",
-                Toast.LENGTH_SHORT
-            ).show()
+           binding.password.setError("Password require")
+            binding.confirmpassword.setError("password require")
             return false
         }
         if (binding.email.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "email require",
-                Toast.LENGTH_SHORT
-            ).show()
+            binding.email.setError("Email require")
             return false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.toString().trim()).matches()) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "Invalid email",
-                Toast.LENGTH_SHORT
-            ).show()
+            binding.email.setError("Invalid email")
             return false
         }
         if (binding.password.text != binding.confirmpassword.text) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "Both password feild should be same",
-                Toast.LENGTH_SHORT
-            ).show()
+           binding.password.setError("password must be same")
+            binding.confirmpassword.setError("password must be same")
             return false
         }
 
         if (binding.qualification.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "Qualification require",
-                Toast.LENGTH_SHORT
-            ).show()
+           binding.qualification.setError("Fill")
         }
         if (binding.resgisnumer.text?.isEmpty() == true) {
-            Toast.makeText(
-                this@AddStafFragment.requireContext(),
-                "Registration Number require",
-                Toast.LENGTH_SHORT
-            ).show()
+           binding.resgisnumer.setError("Fill")
         }
 
         return true

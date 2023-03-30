@@ -51,7 +51,8 @@ class MyStaffAdapter(
         var viewModel = MyStaffViewModel()
         holder.status.setOnClickListener()
         {
-            listener.itemClicked(holder.status, currentData.encryptedId)
+             listener.itemClicked( holder.status ,currentData.encryptedId)
+
         }
         if (currentData.isActive == true) {
             holder.status.setTextColor(Color.parseColor("#47B84B"))
@@ -107,7 +108,7 @@ class MyStaffAdapter(
 }
 
 interface ActiveClicked {
-    fun itemClicked(active: TextView, encryptedId: String)
+    fun itemClicked( encryptedId: String)
 
 
 }

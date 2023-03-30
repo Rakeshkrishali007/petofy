@@ -273,11 +273,9 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         }
     }
 
+
     override fun itemClicked(active: TextView, encryptedId: String) {
-
-            changeStatus(false, encryptedId, active)
-
-
+        changeStatus(false, encryptedId, active)
     }
 
 }

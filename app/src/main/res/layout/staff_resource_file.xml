@@ -79,7 +79,7 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.6"
+                                android:layout_weight="0.8"
                                 >
 
                                 <TextView
@@ -87,6 +87,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="Staff Name"
+                                    android:textColor="@color/black"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -97,13 +98,14 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1.4"
+                                android:layout_weight="1.2"
                                 >
 
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_width="0dp"
                                     android:id="@+id/txt_staff_status"
                                     android:layout_height="wrap_content"
+                                    android:gravity="end"
                                     android:text="Staff Status"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"

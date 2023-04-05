@@ -9,15 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petofy.Classes.MyStaffViewModel
 import com.example.petofy.R
 import com.example.petofy.activity.ViewStaffDetails
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
 import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
-import com.example.petofy.fragments.bashboardfragments.status
-import kotlin.math.log
 
 class MyStaffAdapter(
     var item: ArrayList<MyStaffResponseStaffDetail>,
@@ -56,7 +52,30 @@ class MyStaffAdapter(
 
         holder.status.setOnClickListener()
         {
-           // listener.itemClicked(currentData.isActive,currentData.encryptedId)
+            Log.d("tag", "${currentData.isActive}")
+            if(holder.status.text == "Active")
+            {
+                listener.itemClicked(false,currentData.encryptedId)
+                holder.status.setTextColor(Color.parseColor("#FF0000"))
+                holder.status.text = "Deactive"
+                holder.status.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.down_arrow_red, 0
+                )
+
+            }
+            else
+            {
+                listener.itemClicked(true,currentData.encryptedId)
+                holder.status.setTextColor(Color.parseColor("#47B84B"))
+                holder.status.text = "Active"
+                holder.status.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.down_arrow,
+                    0
+                )
+            }
+          /* // listener.itemClicked(currentData.isActive,currentData.encryptedId)
             Log.d("tag", "${currentData.isActive}")
             if(currentData.isActive == true)
             {
@@ -77,8 +96,6 @@ class MyStaffAdapter(
 
             else
             {
-                listener.itemClicked(true,currentData.encryptedId)
-                notifyDataSetChanged()
                 holder.status.setTextColor(Color.parseColor("#FF0000"))
                 holder.status.text = "Deactive"
                 holder.status.setCompoundDrawablesWithIntrinsicBounds(
@@ -86,7 +103,7 @@ class MyStaffAdapter(
                 )
 
 
-            }
+            }*/
 
         }
 

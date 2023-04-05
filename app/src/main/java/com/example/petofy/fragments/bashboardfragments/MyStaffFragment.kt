@@ -274,12 +274,13 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
 
     override fun itemClicked(boolean: Boolean, encryptedId: String) {
-        if (boolean == true) {
+        changeStatus(encryptedId,boolean)
+       /* if (boolean == true) {
             changeStatus(encryptedId, false)
         }
         if(boolean == false){
             changeStatus(encryptedId, true)
-        }
+        }*/
 
     }
 

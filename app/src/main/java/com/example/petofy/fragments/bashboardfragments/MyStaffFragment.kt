@@ -255,18 +255,26 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 if (response.body() != null) {
 
                     Log.d("statusResponse", "${response.body()!!.response}")
-                    Toast.makeText(
-                        this@MyStaffFragment.requireContext(),
-                        "Status changed successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if(isAdded)
+                    {
+                        Toast.makeText(
+                            this@MyStaffFragment.requireContext(),
+                            "status changed successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 }
             }
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {
 
 
-                Toast.makeText(this@MyStaffFragment.requireContext(), "something went wrong", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@MyStaffFragment.requireContext(),
+                    "something went wrong",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         })
@@ -274,13 +282,13 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
 
     override fun itemClicked(boolean: Boolean, encryptedId: String) {
-        changeStatus(encryptedId,boolean)
-       /* if (boolean == true) {
-            changeStatus(encryptedId, false)
-        }
-        if(boolean == false){
-            changeStatus(encryptedId, true)
-        }*/
+        changeStatus(encryptedId, boolean)
+        /* if (boolean == true) {
+             changeStatus(encryptedId, false)
+         }
+         if(boolean == false){
+             changeStatus(encryptedId, true)
+         }*/
 
     }
 

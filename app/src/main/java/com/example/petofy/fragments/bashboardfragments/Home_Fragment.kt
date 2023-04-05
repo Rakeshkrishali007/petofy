@@ -3,6 +3,7 @@ package com.example.petofy.fragments.bashboardfragments
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -212,16 +213,23 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
         val view = LayoutInflater.from(this@Home_Fragment.requireContext())
             .inflate(R.layout.custom_internet_dialog_alert, null)
         view.setBackgroundColor(Color.TRANSPARENT)
-        var dailog = AlertDialog.Builder(this.requireContext())
+        var dailog = AlertDialog.Builder(this.requireContext()).create()
 
         dailog.setView(view)
         val tryAgain = view.findViewById<Button>(R.id.btn_try_again)
 
         if (!isConnected)
         {
-            val dailogShown = dailog.show()
+             dailog.show()
         }
 
+        tryAgain.setOnClickListener()
+        {
+            if(isConnected)
+            {
+                dailog.dismiss()
+            }
+        }
 
     }
 

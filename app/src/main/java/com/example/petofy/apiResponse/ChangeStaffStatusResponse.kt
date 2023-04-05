@@ -6,5 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class ChangeStaffStatusResponse(
     @SerializedName("data")
     val `data`: ChangeStaffStatusResponseData,
+    @SerializedName("response")
+    val response: Response
 
 )

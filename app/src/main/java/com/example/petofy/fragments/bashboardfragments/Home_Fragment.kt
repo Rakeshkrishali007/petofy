@@ -2,12 +2,10 @@ package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
@@ -43,11 +41,13 @@ private const val ARG_PARAM2 = "param2"
 class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConnection {
 
     val connectivityReceiver = ConnectivityReceiver(this)
+    var dailogShown = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
 
         }
     }
@@ -124,12 +124,6 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
         return binding.root
     }
 
-    /* override fun onDestroy() {
-         super.onDestroy()
-
-         // Unregister the BroadcastReceiver when the activity is destroyed
-         unregisterReceiver(connectivityReceiver)
-     }*/
     public fun setViewModelData() {
 
         Log.d("yes1", "hello")
@@ -203,15 +197,6 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Home_Fragment().apply {
@@ -226,23 +211,16 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
 
         val view = LayoutInflater.from(this@Home_Fragment.requireContext())
             .inflate(R.layout.custom_internet_dialog_alert, null)
-        var mBuilder = AlertDialog.Builder(this.requireContext())
-            .setView(R.layout.custom_internet_dialog_alert)
-        if (!isConnected) {
-            val view = LayoutInflater.from(this@Home_Fragment.requireContext())
-                .inflate(R.layout.custom_internet_dialog_alert, null)
-            var mBuilder = AlertDialog.Builder(this.requireContext())
-                .setView(R.layout.custom_internet_dialog_alert)
-            var  mBuilderDialog = mBuilder.show()
-            val tryagain=view.findViewById<Button>(R.id.btn_try_again)
-            tryagain.setOnClickListener()
-            {
-                mBuilderDialog.dismiss()
-            }
+        view.setBackgroundColor(Color.TRANSPARENT)
+        var dailog = AlertDialog.Builder(this.requireContext())
 
+        dailog.setView(view)
+        val tryAgain = view.findViewById<Button>(R.id.btn_try_again)
+
+        if (!isConnected)
+        {
+            val dailogShown = dailog.show()
         }
-
-
 
 
     }

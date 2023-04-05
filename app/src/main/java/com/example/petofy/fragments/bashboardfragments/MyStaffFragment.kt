@@ -1,19 +1,18 @@
 package com.example.petofy.fragments.bashboardfragments
 
-import android.graphics.Color
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
-import com.example.petofy.activity.bool
 import com.example.petofy.activity.shrd
 import com.example.petofy.adapters.ActiveClicked
 import com.example.petofy.adapters.MyStaffAdapter
@@ -30,7 +29,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 var status = false
@@ -43,6 +41,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     var page = "1"
     var count = 1
     lateinit var adapter: MyStaffAdapter
+    val token = shrd.getString("valid", "null")
     var newData = ArrayList<MyStaffResponseStaffDetail>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +54,20 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val activity: Activity? = activity
+        if (!isAdded && activity == null) {
+            requireActivity().onBackPressedDispatcher.addCallback(
+                viewLifecycleOwner,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+
+                        requireActivity().onBackPressed()
+                    }
+                })
+
+
+        }
 
 
     }
@@ -173,7 +186,8 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     }
 
     private fun getStaff(page: String) {
-        val token = shrd.getString("valid", "null")
+
+
         RetrofitClient.apiInterface.getStaffList(
             token, MyStaffRequest(MyStaffRequestData(page, "10", ""))
         ).enqueue(object : Callback<MyStaffResponse?> {
@@ -227,8 +241,8 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
     }
 
-    private fun changeStatus(status: Boolean, encryptedId: String, active: TextView) {
-        val token = shrd.getString("valid", "null")
+    private fun changeStatus(encryptedId: String, status: Boolean) {
+
         RetrofitClient.apiInterface.changeStaffStatus(
             token, ChangedStaffStatusRequest(
                 ChangeStaffStatusData(encryptedId, status)
@@ -239,44 +253,34 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 response: Response<ChangeStaffStatusResponse?>
             ) {
                 if (response.body() != null) {
-                    RefectorStafStatus(active)
+
+                    Log.d("statusResponse", "${response.body()!!.response}")
                     Toast.makeText(
                         this@MyStaffFragment.requireContext(),
                         "Status changed successfully",
                         Toast.LENGTH_SHORT
                     ).show()
-                    adapter.setText(true)
                 }
             }
 
             override fun onFailure(call: Call<ChangeStaffStatusResponse?>, t: Throwable) {
 
 
-                Toast.makeText(this@MyStaffFragment.requireContext(), "error", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MyStaffFragment.requireContext(), "something went wrong", Toast.LENGTH_SHORT)
                     .show()
             }
         })
     }
 
-    fun RefectorStafStatus(active: TextView) {
-        if (active.text.toString() == "Active") {
 
-            active.setTextColor(Color.parseColor("#FF0000"))
-            active.text = "Deactive"
-            active.setCompoundDrawablesWithIntrinsicBounds(
-                0, 0, R.drawable.down_arrow_red, 0
-            )
-
-        } else {
-            active.setTextColor(Color.parseColor("#47B84B"))
-            active.text = "Active"
-            active.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow, 0)
+    override fun itemClicked(boolean: Boolean, encryptedId: String) {
+        if (boolean == true) {
+            changeStatus(encryptedId, false)
         }
-    }
+        if(boolean == false){
+            changeStatus(encryptedId, true)
+        }
 
-
-    override fun itemClicked(active: TextView, encryptedId: String) {
-        changeStatus(false, encryptedId, active)
     }
 
 }

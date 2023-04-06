@@ -43,7 +43,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
         binding = FragmentAddStaffBinding.inflate(layoutInflater)
         binding.backPressed.setOnClickListener()
         {
-            activity?.onBackPressed()
+          activity?.onBackPressed()
         }
         val status = arrayOf("Dr.", "Mrs.", "Mr.", "Miss.")
 

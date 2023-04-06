@@ -51,18 +51,17 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         }
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val activity: Activity? = activity
-        if (!isAdded && activity == null) {
+        if (isAdded && activity != null) {
             requireActivity().onBackPressedDispatcher.addCallback(
                 viewLifecycleOwner,
                 object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
 
-                        requireActivity().onBackPressed()
+                        requireActivity().finish()
                     }
                 })
 
@@ -186,6 +185,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     }
 
     private fun getStaff(page: String) {
+
 
 
         RetrofitClient.apiInterface.getStaffList(

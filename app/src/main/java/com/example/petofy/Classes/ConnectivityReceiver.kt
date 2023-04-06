@@ -11,13 +11,12 @@ class ConnectivityReceiver(private val listenet: CheckConnection) : BroadcastRec
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         if (networkInfo != null && networkInfo.isConnected) {
-            listenet.isConnectedToInternet(true)
+           listenet.isConnectedToInternet(true)
         } else {
             listenet.isConnectedToInternet(false)
         }
 
     }
-
 }
 
 interface CheckConnection {

@@ -40,6 +40,7 @@ class MyStaffAdapter(
     }
 
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = item[position]
         holder.staffname.text = currentData.firstName
@@ -47,21 +48,24 @@ class MyStaffAdapter(
         holder.staffstudy.text = currentData.vetQualification
         holder.phonenumber.text = currentData.phoneNumber
         Log.d("check", "${currentData.isActive},${currentData.email},${currentData.encryptedId}")
-        Log.d("tag", "onBindViewHolder" + "${currentData.isActive}")
+        Log.d("tag", "onBindViewHolder"+"${currentData.isActive}")
 
         holder.status.setOnClickListener()
         {
             Log.d("tag", "${currentData.isActive}")
-            if (holder.status.text == "Active") {
-                listener.itemClicked(false, currentData.encryptedId)
+            if(holder.status.text == "Active")
+            {
+                listener.itemClicked(false,currentData.encryptedId)
                 holder.status.setTextColor(Color.parseColor("#FF0000"))
                 holder.status.text = "Deactive"
                 holder.status.setCompoundDrawablesWithIntrinsicBounds(
                     0, 0, R.drawable.down_arrow_red, 0
                 )
 
-            } else {
-                listener.itemClicked(true, currentData.encryptedId)
+            }
+            else
+            {
+                listener.itemClicked(true,currentData.encryptedId)
                 holder.status.setTextColor(Color.parseColor("#47B84B"))
                 holder.status.text = "Active"
                 holder.status.setCompoundDrawablesWithIntrinsicBounds(
@@ -109,12 +113,10 @@ class MyStaffAdapter(
         notifyDataSetChanged()
 
     }
-
     fun appendData(newData: ArrayList<MyStaffResponseStaffDetail>) {
         item.addAll(newData)
         notifyDataSetChanged()
     }
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var staffname = itemView.findViewById<TextView>(R.id.txt_staff_name)
         var staffstudy = itemView.findViewById<TextView>(R.id.staff_study)
@@ -127,7 +129,7 @@ class MyStaffAdapter(
 }
 
 interface ActiveClicked {
-    fun itemClicked(bool: Boolean, encryptedId: String)
+    fun itemClicked(bool:Boolean, encryptedId: String)
 
 
 }

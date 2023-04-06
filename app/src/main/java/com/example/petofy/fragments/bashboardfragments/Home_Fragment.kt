@@ -11,10 +11,12 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -39,10 +41,9 @@ public var hasData = true
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConnection {
+class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
-    val connectivityReceiver = ConnectivityReceiver(this)
-    var dailogShown = null
+    var connected = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -134,19 +135,6 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
 
     }
 
-
-    override fun onResume() {
-        super.onResume()
-
-        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        requireActivity().registerReceiver(connectivityReceiver, intentFilter)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        requireActivity().unregisterReceiver(connectivityReceiver)
-    }
-
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
@@ -160,13 +148,16 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
         fragmentTransaction?.commit()
     }
 
+
     private fun getPetCount() {
 
+        Log.d("call", "function calll")
         progressDialog = ProgressDialog(context)
         progressDialog!!.setTitle("Loading")
         progressDialog!!.setMessage("Please wait...")
         progressDialog!!.setCancelable(false)
         progressDialog!!.show()
+
 
 
         val token = shrd.getString("valid", "null")
@@ -195,6 +186,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
                 Log.d("error", "onResponse: not runnning")
             }
         })
+       // progressDialog?.dismiss()
     }
 
     companion object {
@@ -207,31 +199,4 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_), CheckConn
                 }
             }
     }
-
-    override fun isConnectedToInternet(isConnected: Boolean) {
-
-        val view = LayoutInflater.from(this@Home_Fragment.requireContext())
-            .inflate(R.layout.custom_internet_dialog_alert, null)
-        view.setBackgroundColor(Color.TRANSPARENT)
-        var dailog = AlertDialog.Builder(this.requireContext()).create()
-
-        dailog.setView(view)
-        val tryAgain = view.findViewById<Button>(R.id.btn_try_again)
-
-        if (!isConnected)
-        {
-             dailog.show()
-        }
-
-        tryAgain.setOnClickListener()
-        {
-            if(isConnected)
-            {
-                dailog.dismiss()
-            }
-        }
-
-    }
-
-
 }

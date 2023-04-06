@@ -63,6 +63,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
             ) {
                if(response.body()!=null)
                {
+                   binding.shimmerEffect.visibility = View.INVISIBLE
                    val list=response.body()?.data
                    val adapter=UpcomingApapter(list as ArrayList<PetResponseUpcomingData>)
                    binding.recycleViewUpcoming.adapter=adapter
@@ -89,6 +90,7 @@ class CalenderFragment : Fragment(R.layout.fragment_calender_) {
           ) {
               if(response.body()!=null)
               {
+                  binding.shimmerEffectUpcoming.visibility = View.INVISIBLE
                   val list=response.body()?.info
                   val adapter=PendingRequestAdapter(list as ArrayList<PetPendingResponseData>)
                     binding.recycleView.adapter=adapter

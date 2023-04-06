@@ -1,17 +1,11 @@
 package com.example.petofy.activity
 
 import android.content.IntentFilter
-import android.graphics.Color
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.petofy.Classes.CheckConnection
 import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
@@ -20,7 +14,7 @@ import com.example.petofy.fragments.bashboardfragments.*
 public lateinit var fragment: Fragment
 public var bool = false
 
-class DashBoardActivity : AppCompatActivity(),CheckConnection {
+class DashBoardActivity : AppCompatActivity() {
     lateinit var binding: ActivityDashBoardBinding
     val connectivityReceiver = ConnectivityReceiver(this)
     var connected = false
@@ -40,11 +34,15 @@ class DashBoardActivity : AppCompatActivity(),CheckConnection {
         super.onCreate(savedInstanceState)
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        loadFragment(Home_Fragment())
 
-        /* fragment2 = supportFragmentManager.findFragmentById(R.id.myStaffContainer) as? Home_Fragment
-        fragment?.setNetworkStatus(isNetworkAvailable)*/
-        val fragment=Home_Fragment.newInstance("hello", "hello")
+        if(connectivityReceiver.isConnected(this))
+        {
+            loadFragment(Home_Fragment())
+        }
+
+
+
+
 
         bool = true
         binding.bnView.setOnNavigationItemSelectedListener {null
@@ -102,43 +100,6 @@ class DashBoardActivity : AppCompatActivity(),CheckConnection {
     }
 
 
-    override fun isConnectedToInternet(isConnected: Boolean) {
-
-        connected= isConnected
-        val view = LayoutInflater.from(this@DashBoardActivity)
-            .inflate(R.layout.custom_internet_dialog_alert, null)
-        view.setBackgroundColor(Color.TRANSPARENT)
-        var dailog = AlertDialog.Builder(this@DashBoardActivity).create()
-        dailog.setCancelable(false)
-
-
-        dailog.setView(view)
-        val tryAgain = view.findViewById<Button>(R.id.btn_try_again)
-
-        if (!connected)
-        {
-            dailog.show()
-        }
-        else
-        {
-
-            dailog.dismiss()
-            loadFragment(Home_Fragment())
-        }
-
-        tryAgain.setOnClickListener()
-        {
-
-            if(connected) {
-                dailog.dismiss()
-            }
-            else
-            {
-                Toast.makeText(this@DashBoardActivity, "Turn on internet connection", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    }
 
 
 

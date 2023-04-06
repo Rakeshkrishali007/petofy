@@ -1,28 +1,18 @@
 package com.example.petofy.fragments.bashboardfragments
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.IntentFilter
-import android.graphics.Color
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.petofy.*
-import com.example.petofy.Classes.CheckConnection
-import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.Classes.HomeFragmentViewModel
 import com.example.petofy.Classes.ViewModelObject.viewModel
 import com.example.petofy.activity.IsSearched
@@ -186,7 +176,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
                 Log.d("error", "onResponse: not runnning")
             }
         })
-       // progressDialog?.dismiss()
+
     }
 
     companion object {

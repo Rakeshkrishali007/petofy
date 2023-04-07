@@ -14,8 +14,7 @@ class PetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet)
 
-        Log.d("in","yes")
-        loadFragment(AddPetToClinicFragment())
+
 
     }
 

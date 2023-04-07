@@ -80,6 +80,10 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding.PetProfileActionClick.setOnClickListener()
+        {
+            loadFragment(PetProfileFragment())
+        }
         binding.search.setOnClickListener()
         {
             val intent = Intent(this@Home_Fragment.requireContext(), IsSearched::class.java)

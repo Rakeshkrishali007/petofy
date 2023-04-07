@@ -13,7 +13,7 @@
         android:title="Your Pets" />
 
     <item android:id="@+id/nv_date"
-        android:icon="@drawable/baseline_calendar_month_24"
+        android:icon="@drawable/date_picker"
         android:title="Appointments" />
 
     <item android:id="@+id/nv_user"

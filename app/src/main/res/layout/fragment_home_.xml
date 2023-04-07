@@ -207,7 +207,6 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/MyPet"
                     android:layout_width="match_parent"
-
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -216,8 +215,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/dog" />
 
                     <TextView
@@ -275,8 +276,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/appointment" />
 
                     <TextView
@@ -343,8 +346,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="match_parent"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/generate_bill" />
 
                     <TextView
@@ -388,8 +393,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/staff" />
 
                     <TextView
@@ -447,8 +454,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/documemt" />
 
                     <TextView
@@ -497,8 +506,10 @@
                     app:cardElevation="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/b2b" />
 
                     <TextView

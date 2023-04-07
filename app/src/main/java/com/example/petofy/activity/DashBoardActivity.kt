@@ -11,7 +11,7 @@ import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
 import com.example.petofy.fragments.bashboardfragments.*
 
-public lateinit var fragment: Fragment
+
 public var bool = false
 
 class DashBoardActivity : AppCompatActivity() {
@@ -51,11 +51,6 @@ class DashBoardActivity : AppCompatActivity() {
                     if (!bool) {
 
                         loadFragment(Home_Fragment())
-                        if (fragment != null) {
-                            //fragment.setViewModelData()
-                        } else {
-                                Log.d("null","mkdjfkjd")
-                        }
                         hasData = false
                     }
                     true

@@ -11,7 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
-import com.example.petofy.activity.PetActivity
+import com.example.petofy.activity.AddPetToClinicActivity
+import com.example.petofy.activity.ViewPetDetailsActivity
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiRequest.PetListRequest
 import com.example.petofy.apiRequest.petlist_request_feilds
@@ -122,7 +123,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
     }
 
     override fun ViewPetDetailsClicked() {
-        val intent = Intent(this@Pet_Fragment.requireContext(),PetActivity::class.java)
+        val intent = Intent(this@Pet_Fragment.requireContext(),ViewPetDetailsActivity::class.java)
         startActivity(intent)
 
 
@@ -132,7 +133,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
     }
 
     override fun AddPetToClinic() {
-        val intent = Intent(this@Pet_Fragment.requireContext(),PetActivity::class.java)
+        val intent = Intent(this@Pet_Fragment.requireContext(),AddPetToClinicActivity::class.java)
         startActivity(intent)
     }
 

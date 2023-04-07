@@ -43,16 +43,15 @@ class MyStaffAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = item[position]
-        holder.staffname.text = currentData.firstName
+        holder.staffname.text = currentData.firstName + " " +  currentData.lastName
         holder.staffemail.text = currentData.email
         holder.staffstudy.text = currentData.vetQualification
         holder.phonenumber.text = currentData.phoneNumber
-        Log.d("check", "${currentData.isActive},${currentData.email},${currentData.encryptedId}")
-        Log.d("tag", "onBindViewHolder"+"${currentData.isActive}")
+
 
         holder.status.setOnClickListener()
         {
-            Log.d("tag", "${currentData.isActive}")
+
             if(holder.status.text == "Active")
             {
                 listener.itemClicked(false,currentData.encryptedId)
@@ -110,6 +109,7 @@ class MyStaffAdapter(
 
     fun FilterData(newData: ArrayList<MyStaffResponseStaffDetail>) {
         item = newData
+        Log.d("test", "Adapter")
         notifyDataSetChanged()
 
     }

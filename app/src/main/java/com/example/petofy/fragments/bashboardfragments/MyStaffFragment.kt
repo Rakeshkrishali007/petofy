@@ -1,5 +1,6 @@
 package com.example.petofy.fragments.bashboardfragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
@@ -29,20 +30,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 var status = false
-val api = false
 
 class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     lateinit var binding: FragmentMyStaffBinding
     var isLoading = false
     lateinit var stafflist: ArrayList<MyStaffResponseStaffDetail>
+    lateinit var  filterData:ArrayList<MyStaffResponseStaffDetail>
+    lateinit var UpdatedData:ArrayList<MyStaffResponseStaffDetail>
     var page = "1"
     var count = 1
     lateinit var adapter: MyStaffAdapter
     val token = shrd.getString("valid", "null")
-    var newData = ArrayList<MyStaffResponseStaffDetail>()
+   // var newData = ArrayList<MyStaffResponseStaffDetail>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +74,8 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
     }
 
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,32 +83,64 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         binding = FragmentMyStaffBinding.inflate(layoutInflater)
         init()
 
+        UpdatedData = ArrayList()
         binding.shimeercontainer.startShimmerAnimation()
 
 
-        searchBarFilter()
 
         binding.addStaff.setOnClickListener()
         {
             loadFragment(AddStafFragment())
         }
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                FilterData(query)
+                return false
+            }
 
-        if (!api) 4
+            override fun onQueryTextChange(newText: String?): Boolean {
+                FilterData(newText)
+
+                return true
+            }
+        })
+        ///if (!api)
         getStaffList()
 
+
         return binding.root
+
+    }
+
+
+    private fun FilterData(newText: String?) {
+        Log.d("Test", "searchibng")
+        filterData = ArrayList<MyStaffResponseStaffDetail>()
+        Log.d("staff","$stafflist")
+        for (item in UpdatedData) {
+            var fullname = item.firstName + " " + item.lastName
+            if (fullname.toLowerCase(Locale.ROOT).contains(newText.toString())) {
+                Log.d("Test","successfull")
+                filterData.addAll(listOf(item))
+            }
+        }
+        if(filterData!=null)
+        {
+            adapter.FilterData(filterData)
+        }
+        else
+        {
+            Toast.makeText(this@MyStaffFragment.requireContext(), "no data found", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun loadFragment(fragment: Fragment) {
         val transactionManger = activity?.supportFragmentManager
         val fragmentTransaction = transactionManger?.beginTransaction()
         fragmentTransaction?.replace(R.id.myStaffContainer, fragment)
-        //   fragmentTransaction?.addToBackStack("my_fragment")
         var count = transactionManger?.backStackEntryCount
-        /* for(i in 0 until count-1)
-         {
-             transactionManger.popBackStack()
-         }*/
+
         fragmentTransaction?.commit()
 
 
@@ -130,6 +167,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
                         if (visibleItemCount!! + pastVisibleItem >= total!!) {
 
+                            Log.d("test","scrolled")
                             binding.progressBar.visibility = View.VISIBLE
 
                             page = ""
@@ -152,37 +190,19 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     }
 
 
-    private fun openAddStaffScreen() {
+ /*   private fun openAddStaffScreen() {
         binding.addStaff.setOnClickListener() {
-            /*  val intent = Intent(this@MyStaffActivity, AddStafFragment::class.java)
-              startActivity(intent)*/
+            *//*  val intent = Intent(this@MyStaffActivity, AddStafFragment::class.java)
+              startActivity(intent)*//*
         }
     }
 
     private fun MyStaffFragment.onBackPress() {
-        /*  binding.backPressed.setOnClickListener() {
+        *//*  binding.backPressed.setOnClickListener() {
               onBackPressed()
-          }*/
-    }
+          }*//*
+    }*/
 
-    private fun searchBarFilter() {
-        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val filterData = ArrayList<MyStaffResponseStaffDetail>()
-                for (item in stafflist) {
-                    if (item.firstName.toLowerCase(Locale.ROOT).contains(newText.toString())) {
-                        filterData.add(item)
-                    }
-                }
-                adapter.FilterData(filterData)
-                return true
-            }
-        })
-    }
 
     private fun getStaff(page: String) {
 
@@ -199,15 +219,16 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                     binding.shimeercontainer.visibility = View.INVISIBLE
                     binding.shimeercontainer.stopShimmerAnimation()
 
-                    stafflist =
-                        response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
+                    stafflist =response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
+                    UpdatedData.addAll(stafflist)
 
+                    Log.d("size", "${UpdatedData.size}")
 
 
                     if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
 
-                        newData = stafflist
-                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(newData)
+
+                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(stafflist)
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
                         adapter =

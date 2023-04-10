@@ -33,19 +33,16 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-var status = false
-
 class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     lateinit var binding: FragmentMyStaffBinding
     var isLoading = false
     lateinit var stafflist: ArrayList<MyStaffResponseStaffDetail>
-    lateinit var  filterData:ArrayList<MyStaffResponseStaffDetail>
-    lateinit var UpdatedData:ArrayList<MyStaffResponseStaffDetail>
+    lateinit var filterData: ArrayList<MyStaffResponseStaffDetail>
+    lateinit var UpdatedData: ArrayList<MyStaffResponseStaffDetail>
     var page = "1"
     var count = 1
     lateinit var adapter: MyStaffAdapter
     val token = shrd.getString("valid", "null")
-   // var newData = ArrayList<MyStaffResponseStaffDetail>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,11 +64,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                         requireActivity().finish()
                     }
                 })
-
-
         }
-
-
     }
 
 
@@ -84,11 +77,8 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         init()
 
         UpdatedData = ArrayList()
-        binding.shimeercontainer.startShimmerAnimation()
-
-
-
-        binding.addStaff.setOnClickListener()
+        binding.shimeercontainer?.startShimmerAnimation()
+        binding.addStaff?.setOnClickListener()
         {
             loadFragment(AddStafFragment())
         }
@@ -104,7 +94,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 return true
             }
         })
-        ///if (!api)
+
         getStaffList()
 
 
@@ -116,21 +106,22 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
     private fun FilterData(newText: String?) {
         Log.d("Test", "searchibng")
         filterData = ArrayList<MyStaffResponseStaffDetail>()
-        Log.d("staff","$stafflist")
+        Log.d("staff", "$stafflist")
         for (item in UpdatedData) {
             var fullname = item.firstName + " " + item.lastName
             if (fullname.toLowerCase(Locale.ROOT).contains(newText.toString())) {
-                Log.d("Test","successfull")
+                Log.d("Test", "successfull")
                 filterData.addAll(listOf(item))
             }
         }
-        if(filterData!=null)
-        {
+        if (filterData != null) {
             adapter.FilterData(filterData)
-        }
-        else
-        {
-            Toast.makeText(this@MyStaffFragment.requireContext(), "no data found", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                this@MyStaffFragment.requireContext(),
+                "no data found",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
@@ -143,32 +134,31 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
         fragmentTransaction?.commit()
 
-
     }
 
     private fun init() {
         binding = FragmentMyStaffBinding.inflate(layoutInflater)
-        binding.recycleView.layoutManager =
+        binding.recycleView?.layoutManager =
             LinearLayoutManager(this@MyStaffFragment.requireContext())
     }
 
     private fun getStaffList() {
         getStaff("1")
-        binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recycleView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
                 if (dy > 0) {
                     var visibleItemCount = binding.recycleView?.layoutManager?.childCount
                     var pastVisibleItem =
-                        (binding.recycleView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                        (binding.recycleView?.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
 
-                    var total = binding.recycleView.adapter?.itemCount
+                    var total = binding.recycleView?.adapter?.itemCount
                     if (!isLoading) {
 
                         if (visibleItemCount!! + pastVisibleItem >= total!!) {
 
-                            Log.d("test","scrolled")
-                            binding.progressBar.visibility = View.VISIBLE
+                            Log.d("test", "scrolled")
+                            binding.progressBar?.visibility = View.VISIBLE
 
                             page = ""
                             count = count + 1
@@ -177,7 +167,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                             if (count < 6) {
                                 getStaff(page)
                             } else {
-                                binding.progressBar.visibility = View.INVISIBLE
+                                binding.progressBar?.visibility = View.INVISIBLE
                             }
 
                         }
@@ -189,23 +179,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
         })
     }
 
-
- /*   private fun openAddStaffScreen() {
-        binding.addStaff.setOnClickListener() {
-            *//*  val intent = Intent(this@MyStaffActivity, AddStafFragment::class.java)
-              startActivity(intent)*//*
-        }
-    }
-
-    private fun MyStaffFragment.onBackPress() {
-        *//*  binding.backPressed.setOnClickListener() {
-              onBackPressed()
-          }*//*
-    }*/
-
-
     private fun getStaff(page: String) {
-
 
 
         RetrofitClient.apiInterface.getStaffList(
@@ -216,20 +190,21 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
             ) {
 
                 if (response.body() != null) {
-                    binding.shimeercontainer.visibility = View.INVISIBLE
-                    binding.shimeercontainer.stopShimmerAnimation()
+                    binding.shimeercontainer?.visibility = View.INVISIBLE
+                    binding.shimeercontainer?.stopShimmerAnimation()
 
-                    stafflist =response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
+                    stafflist =
+                        response.body()?.data?.staffDetail as ArrayList<MyStaffResponseStaffDetail>
                     UpdatedData.addAll(stafflist)
 
                     Log.d("size", "${UpdatedData.size}")
 
 
-                    if (::adapter.isInitialized && binding.recycleView.adapter is MyStaffAdapter) {
+                    if (::adapter.isInitialized && binding.recycleView?.adapter is MyStaffAdapter) {
 
 
-                        (binding.recycleView.adapter as MyStaffAdapter)?.appendData(stafflist)
-                        binding.progressBar.visibility = View.INVISIBLE
+                        (binding.recycleView?.adapter as MyStaffAdapter)?.appendData(stafflist)
+                        binding.progressBar?.visibility = View.INVISIBLE
                     } else {
                         adapter =
 
@@ -238,8 +213,8 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                                 requireActivity()
 
                             )
-                        binding.recycleView.adapter = adapter
-                        binding.progressBar.visibility = View.INVISIBLE
+                        binding.recycleView?.adapter = adapter
+                        binding.progressBar?.visibility = View.INVISIBLE
 
                     }
 
@@ -276,8 +251,7 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
                 if (response.body() != null) {
 
                     Log.d("statusResponse", "${response.body()!!.response}")
-                    if(isAdded)
-                    {
+                    if (isAdded) {
                         Toast.makeText(
                             this@MyStaffFragment.requireContext(),
                             "status changed successfully",
@@ -304,13 +278,6 @@ class MyStaffFragment : Fragment(R.layout.fragment_my_staff), ActiveClicked {
 
     override fun itemClicked(boolean: Boolean, encryptedId: String) {
         changeStatus(encryptedId, boolean)
-        /* if (boolean == true) {
-             changeStatus(encryptedId, false)
-         }
-         if(boolean == false){
-             changeStatus(encryptedId, true)
-         }*/
-
     }
 
 }

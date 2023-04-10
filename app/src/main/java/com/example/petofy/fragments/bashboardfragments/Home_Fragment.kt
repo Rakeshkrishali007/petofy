@@ -94,6 +94,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
             viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
 
         if (hasData) {
+            Log.d("hasdata", "inside, $hasData",)
             getPetCount()
         } else {
             setViewModelData()

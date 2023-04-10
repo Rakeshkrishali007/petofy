@@ -41,6 +41,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddStaffBinding.inflate(layoutInflater)
+        hasData = false
         binding.backPressed.setOnClickListener()
         {
           activity?.onBackPressed()
@@ -66,10 +67,12 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
             }
         }
 
-        binding.addStaff.setOnClickListener()
+        binding.btnAddStaff.setOnClickListener()
         {
 
+
             if (isValid()) {
+                binding.progressBar.visibility = View.VISIBLE
                 addNewStaff()
             }
 
@@ -95,30 +98,44 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
             binding.lastname.setError("Last name require")
             return false
         }
+        if (binding.email.text?.isEmpty() == true) {
+            binding.email.setError("Email require")
+            return false
+        }
         if (binding.password.text?.isEmpty() == true && binding.confirmpassword.text?.isEmpty() == true) {
            binding.password.setError("Password require")
             binding.confirmpassword.setError("password require")
             return false
         }
-        if (binding.email.text?.isEmpty() == true) {
-            binding.email.setError("Email require")
-            return false
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.toString().trim()).matches()) {
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString().trim()).matches()) {
             binding.email.setError("Invalid email")
             return false
         }
-        if (binding.password.text != binding.confirmpassword.text) {
-           binding.password.setError("password must be same")
+        if (binding.password.text.toString() != binding.confirmpassword.text.toString()) {
+
             binding.confirmpassword.setError("password must be same")
             return false
         }
 
+        if(binding.phonenumber.text.toString().isEmpty())
+        {
+            binding.phonenumber.setError("phone Number require")
+            return  false
+        }
+        if(binding.phonenumber.text?.count()!! > 10)
+        {
+            Log.d("count","${binding.phonenumber.text!!.count()}")
+            binding.phonenumber.setError("Invalid Number")
+            return  false
+        }
         if (binding.qualification.text?.isEmpty() == true) {
            binding.qualification.setError("Fill")
+            return false
         }
         if (binding.resgisnumer.text?.isEmpty() == true) {
            binding.resgisnumer.setError("Fill")
+            return false
         }
 
         return true
@@ -160,6 +177,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
             ) {
                 if (response.body() != null) {
 
+                    binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(
                         this@AddStafFragment.requireContext(),
                         "${response.body()!!.response.responseMessage}",

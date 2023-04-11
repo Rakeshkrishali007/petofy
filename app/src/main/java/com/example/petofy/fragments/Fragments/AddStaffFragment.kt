@@ -1,4 +1,4 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,12 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.example.petofy.Classes.Validation
 import com.example.petofy.R
-import com.example.petofy.activity.bool
 import com.example.petofy.activity.shrd
 import com.example.petofy.apiRequest.AddStaffData
 import com.example.petofy.apiRequest.AddStaffRequest
@@ -22,7 +19,6 @@ import com.example.petofy.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.system.exitProcess
 
 class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
 
@@ -48,24 +44,9 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
         }
         val status = arrayOf("Dr.", "Mrs.", "Mr.", "Miss.")
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, status)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
+        val adapter= ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, status)
+        binding.AutoCompleteTextview.setAdapter(adapter)
 
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent?.getItemAtPosition(position).toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-        }
 
         binding.btnAddStaff.setOnClickListener()
         {
@@ -153,7 +134,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
         val phone = binding.phonenumber.text.toString()
         val quli = binding.qualification.text.toString()
         val regis = binding.resgisnumer.text.toString()
-        val ini = binding.spinner.selectedItem.toString()
+
         RetrofitClient.apiInterface.addStaff(
             token,
             AddStaffRequest(
@@ -162,7 +143,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
                     "false",
                     email.toString(),
                     firstname.toString(),
-                    ini.toString(),
+                    "Dr.",
                     lastname.toString(),
                     password.toString(),
                     phone.toString(),

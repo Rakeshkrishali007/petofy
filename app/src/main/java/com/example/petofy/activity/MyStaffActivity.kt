@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.petofy.R
 
 import com.example.petofy.databinding.ActivityMyStaffBinding
-import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
+import com.example.petofy.fragments.Fragments.MyStaffFragment
 
 var status = false
 

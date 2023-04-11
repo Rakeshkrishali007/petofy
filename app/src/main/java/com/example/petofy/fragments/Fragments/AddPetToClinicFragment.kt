@@ -1,4 +1,4 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,7 +21,7 @@ class AddPetToClinicFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_add_pet_to_clinic, container, false)
     }
 

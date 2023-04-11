@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.petofy.R
 import com.example.petofy.activity.DashBoardActivity
-import com.example.petofy.fragments.bashboardfragments.Home_Fragment
+import com.example.petofy.fragments.Fragments.Home_Fragment
 
 class ConnectivityReceiver(private  val context: DashBoardActivity) : BroadcastReceiver() {
 

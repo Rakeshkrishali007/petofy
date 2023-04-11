@@ -1,4 +1,4 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +27,8 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
@@ -32,6 +36,8 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
     lateinit var binding: FragmentPetBinding
     lateinit var adapter: MyPetAdapter
     lateinit var shimmer: ShimmerFrameLayout
+    lateinit var filterData: ArrayList<petlist_response_atributes>
+    lateinit var UpdatedData: ArrayList<petlist_response_atributes>
     var cout = 1
     var newData = ArrayList<petlist_response_atributes>()
 
@@ -44,7 +50,22 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
     ): View? {
         binding = FragmentPetBinding.inflate(layoutInflater)
         binding.recycleView.layoutManager = LinearLayoutManager(context)
+        UpdatedData  = ArrayList()
         binding.shimmerViewContainer.startShimmerAnimation()
+
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                FilterData(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                FilterData(newText)
+
+                return true
+            }
+        })
+
 
         getPetList(1)
         binding.recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -78,6 +99,28 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
         return binding.root
     }
 
+    private fun FilterData(newText: String?) {
+        Log.d("Test", "searchibng")
+        filterData = ArrayList()
+
+        for (item in UpdatedData) {
+
+            if (item.petName.toLowerCase(Locale.ROOT).contains(newText.toString())) {
+                filterData.addAll(listOf(item))
+            }
+        }
+        if (filterData != null) {
+            adapter.FilterData(filterData)
+        } else {
+            Toast.makeText(
+                this@Pet_Fragment.requireContext(),
+                "no data found",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+    }
+
     @SuppressLint("SuspiciousIndentation")
     private fun getPetList(pageNumber: Int) {
 
@@ -97,7 +140,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
             ) {
                 if (response.body() != null) {
                     val petList = response.body()?.data?.petList
-
+                    UpdatedData.addAll(petList!!)
                     binding.recycleView.visibility = View.VISIBLE
                     binding.shimmerViewContainer.stopShimmerAnimation()
                     binding.shimmerViewContainer.visibility = View.INVISIBLE
@@ -107,7 +150,7 @@ class Pet_Fragment : Fragment(R.layout.fragment_pet_),ItemClicked {
                         (binding.recycleView.adapter as MyPetAdapter)?.appendData(newData)
                         binding.progressBar.visibility = View.INVISIBLE
                     } else {
-                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>,this@Pet_Fragment)
+                        adapter = MyPetAdapter(petList as ArrayList<petlist_response_atributes>,this@Pet_Fragment,this@Pet_Fragment.requireContext())
                         binding.recycleView.adapter = adapter
                     }
                     isLoading = false;

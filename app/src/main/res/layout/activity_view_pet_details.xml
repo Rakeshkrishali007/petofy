@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddPetToClinicActivity">
+    tools:context=".activity.ViewPetDetailsActivity">
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/addPetClinicFragment"
+        android:id="@+id/viewPetFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="409dp"
         android:layout_height="912dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/add_pet_to_clinic_nav_graph"
+        app:navGraph="@navigation/view_pet_details_nav_graph"
         tools:ignore="MissingConstraints" />
        <!-- tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"-->
 
-        />
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

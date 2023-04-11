@@ -1,4 +1,4 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
@@ -65,7 +65,7 @@ class Home_Fragment constructor() : Fragment(R.layout.fragment_home_) {
 
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var binding: FragmentHomeBinding
+    lateinit var binding:FragmentHomeBinding
 
     var progressDialog: ProgressDialog? = null
 

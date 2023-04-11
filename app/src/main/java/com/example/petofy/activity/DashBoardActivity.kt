@@ -4,12 +4,11 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.petofy.Classes.ConnectivityReceiver
 import com.example.petofy.R
 import com.example.petofy.databinding.ActivityDashBoardBinding
-import com.example.petofy.fragments.bashboardfragments.*
+import com.example.petofy.fragments.Fragments.*
 
 
 public var bool = false

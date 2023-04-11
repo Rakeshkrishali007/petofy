@@ -2,25 +2,22 @@ package com.example.petofy.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.petofy.R
-import com.example.petofy.fragments.bashboardfragments.ViewPetDetailsFragment
 
 class ViewPetDetailsActivity : AppCompatActivity() {
+    private  lateinit var  navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pet)
-        loadFragment(ViewPetDetailsFragment())
+        setContentView(R.layout.activity_view_pet_details)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.viewPetFragment)  as NavHostFragment
+        navController = navHostFragment.navController
+
 
 
     }
 
 
-    private fun loadFragment(fragment: Fragment) {
-        val transactionManger = supportFragmentManager
-        val fragmentTransaction = transactionManger.beginTransaction()
-        fragmentTransaction.replace(R.id.petContainer, fragment)
-        fragmentTransaction.addToBackStack("my_fragment")
-        fragmentTransaction.commit()
-    }
+
 }

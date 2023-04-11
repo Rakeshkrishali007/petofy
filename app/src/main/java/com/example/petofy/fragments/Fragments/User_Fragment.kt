@@ -1,4 +1,4 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.app.AlertDialog
 import android.content.Intent

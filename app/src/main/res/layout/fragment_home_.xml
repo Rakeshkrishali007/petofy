@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.bashboardfragments.Home_Fragment">
+    tools:context=".fragments.Fragments.Home_Fragment">
 
 
     <LinearLayout
@@ -103,6 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
+                android:focusableInTouchMode="true"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/edit_text_outline"
                 app:iconifiedByDefault="false"

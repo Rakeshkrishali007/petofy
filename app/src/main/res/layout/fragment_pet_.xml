@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.bashboardfragments.Pet_Fragment">
+    tools:context=".fragments.Fragments.Pet_Fragment">
 
 
     <TextView
@@ -153,6 +153,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="invisible"

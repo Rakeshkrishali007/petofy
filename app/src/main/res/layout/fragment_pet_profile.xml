@@ -189,7 +189,6 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/LoginTextInputLayoutStyle"
                         app:layout_constraintTop_toTopOf="parent"
-
                         android:id="@+id/txt_calender"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -197,13 +196,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="20dp"
                         android:hint="DD/MM/YYYY">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/date_picker"
                             android:layout_width="match_parent"
+                            android:textStyle="bold"
                             android:focusableInTouchMode="false"
                             android:layout_height="50dp"
                             android:drawableEnd="@drawable/date_picker"
@@ -216,8 +215,8 @@
                         android:layout_width="match_parent"
                         android:id="@+id/txt_day_age"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         android:paddingBottom="5dp"
+                        android:visibility="gone"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -229,6 +228,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="20dp"
                             android:layout_weight="1"
@@ -237,6 +237,7 @@
                             <AutoCompleteTextView
                                 android:id="@+id/AutoCompleteTextview2"
                                 android:layout_width="match_parent"
+
                                 android:layout_height="wrap_content"
                                 android:inputType="none" />
 
@@ -246,6 +247,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/LoginTextInputLayoutStyle"
                             android:layout_width="0dp"
+                            android:layout_marginTop="3dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="20dp"

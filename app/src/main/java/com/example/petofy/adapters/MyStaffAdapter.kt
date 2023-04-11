@@ -4,7 +4,6 @@ package com.example.petofy.adapters
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petofy.R
 import com.example.petofy.activity.ViewStaffDetails
 import com.example.petofy.apiResponse.MyStaffResponseStaffDetail
-import com.example.petofy.fragments.bashboardfragments.MyStaffFragment
+import com.example.petofy.fragments.Fragments.MyStaffFragment
 
 class MyStaffAdapter(
     var item: ArrayList<MyStaffResponseStaffDetail>,
@@ -109,7 +108,6 @@ class MyStaffAdapter(
 
     fun FilterData(newData: ArrayList<MyStaffResponseStaffDetail>) {
         item = newData
-        Log.d("test", "Adapter")
         notifyDataSetChanged()
 
     }

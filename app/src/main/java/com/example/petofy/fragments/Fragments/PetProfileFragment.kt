@@ -1,15 +1,14 @@
-package com.example.petofy.fragments.bashboardfragments
+package com.example.petofy.fragments.Fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.petofy.R
-import com.example.petofy.databinding.FragmentPetBinding
 import com.example.petofy.databinding.FragmentPetProfileBinding
 import java.util.*
 
@@ -52,22 +51,32 @@ class PetProfileFragment : Fragment(R.layout.fragment_pet_profile) {
         binding.AutoCompleteTextview.setAdapter(adapter)
         binding.AutoCompleteTextview2.setAdapter(petDateAdapter)
 
+
         binding.datePicker.setOnClickListener()
         {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
+            var month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
 
             val dpd = DatePickerDialog(this@PetProfileFragment.requireContext(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-
+                Log.d("date", "$dayOfMonth , $monthOfYear , $year")
+                var mutablemonth = monthOfYear + 1
+                var date = "$dayOfMonth/$mutablemonth/$year"
+                setDate(date)
             }, year, month, day)
 
+            dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
             dpd.show()
         }
         return binding.root
+    }
+
+    private fun setDate(date: String) {
+        binding.datePicker.setText(date)
+
     }
 
 }

@@ -44,7 +44,7 @@ class AddStafFragment : Fragment(R.layout.fragment_add_staff) {
         }
         val status = arrayOf("Dr.", "Mrs.", "Mr.", "Miss.")
 
-        val adapter= ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, status)
+        val adapter= ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, status)
         binding.AutoCompleteTextview.setAdapter(adapter)
 
 

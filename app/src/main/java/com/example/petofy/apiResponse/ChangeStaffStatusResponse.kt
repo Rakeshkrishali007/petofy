@@ -7,6 +7,6 @@ data class ChangeStaffStatusResponse(
     @SerializedName("data")
     val `data`: ChangeStaffStatusResponseData,
     @SerializedName("response")
-    val response: Response
+    val response: Reponse
 
 )

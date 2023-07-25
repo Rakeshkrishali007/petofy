@@ -3,9 +3,12 @@ package com.example.petofy.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.petofy.R
 import com.example.petofy.adapters.ViewPagerAdapter
 import com.example.petofy.databinding.ActivityHomeBinding
+import java.util.logging.Logger
+import kotlin.math.log
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding:ActivityHomeBinding
@@ -13,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Toast(this);
         val image= listOf(
             R.drawable.dogs,
             R.drawable.man,
